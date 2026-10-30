@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NotreDame Saúde</title>
     
-    <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="./logo-notredame.png">
-<link rel="shortcut icon" href="./logo-notredame.png" type="image/png">
+    <!-- FAVICON GERADO E CORRIGIDO PARA GITHUB PAGES -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
 
     <!-- =========================================================
          1. GOOGLE CONSENT MODE V2 (DEVE SER O PRIMEIRO SCRIPT)
@@ -52,12 +54,11 @@
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         
-        // Inicializa o Pixel 1
+        // Inicializa os dois Pixels
         fbq('init', '1109561711811511');
-        // Inicializa o Pixel 2
         fbq('init', '1468775435179688');
         
-        // Dispara o PageView para ambos os pixels
+        // Dispara o PageView para ambos
         fbq('track', 'PageView');
         
         // Revoga o rastreamento padrão até que o usuário aceite (LGPD)
@@ -123,6 +124,7 @@
             z-index: 1000;
         }
 
+        /* Logo do Cabeçalho */
         .logo img { 
             height: 50px; 
             width: auto;
@@ -711,7 +713,7 @@
 
     <header>
         <a href="#" data-target="home" class="logo" style="cursor:pointer;">
-            <img src="logo-notredame.png" alt="NotreDame Saúde">
+            <img src="./logo-notredame.png" alt="NotreDame Saúde">
         </a>
         <nav class="nav-links">
             <a href="#" data-target="home" class="active">Home</a>
