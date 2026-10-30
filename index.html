@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotreDame Saúde</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========== VARIÁVEIS DE CORES E IDENTIDADE ========== */
+        :root {
+            --bg-body: #f8f7f4;
+            --texto-azul: #000b45; 
+            --texto-cinza: #555555;
+            --texto-cinza-claro: #888888;
+            --card-bg-white: #ffffff;
+            --card-border: #e6e6e6;
+            --card-bg-blue: #000b45;
+            --btn-blue-light: #a4c6e6;
+            --btn-blue-hover: #8eb5db;
+            --btn-green: #25d366; 
+            --tab-container-bg: #e8e6db;
+            --tab-active-bg: #000b45;
+            --font-family: 'Montserrat', sans-serif;
+            
+            /* Cores específicas da Hero */
+            --nd-navy: #000b45;
+            --nd-bege: #c5b38b;
+            --hero-bg: #F4F3EC;
+            --hero-muted: #2D4A8A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--texto-azul);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ========== HEADER GLOBAL ========== */
+        header {
+            background-color: var(--texto-azul);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo img { height: 30px; filter: brightness(0) invert(1); }
+
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active { opacity: 0.7; }
+
+        .btn-header {
+            background-color: var(--btn-blue-light);
+            color: var(--texto-azul) !important;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .btn-header:hover { background-color: var(--btn-blue-hover); }
+
+        /* ========== CONTROLE DE SEÇÕES ========== */
+        .page-section { display: none; animation: fadeIn 0.4s ease-in-out; }
+        .page-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* =========================================================
+           SEÇÃO 1: HOME (HERO SECTION COM IMAGEM NOVA E ESPAÇAMENTO)
+           ========================================================= */
+        .hero-container {
+            max-width: 1440px;
+            margin: 40px auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero-section {
+            position: relative;
+            background-color: var(--hero-bg);
+            border-radius: 28px;
+            overflow: hidden;
+            min-height: 680px;
+            display: flex;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        /* Lado Esquerdo: Imagem */
+        .hero-image-wrapper {
+            width: 35%;
+            position: relative;
+            background-color: #E4E2D4;
+            flex-shrink: 0;
+        }
+        
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .badge-inedito {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background-color: var(--hero-bg);
+            color: var(--nd-navy);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .badge-inedito .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--nd-navy);
+        }
+
+        /* Logo no Topo Direito */
+        .hero-logo-top {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            z-index: 10;
+        }
+        .hero-logo-top svg { width: 100%; height: 100%; fill: var(--nd-navy); }
+
+        /* Conteúdo Central (Ticket e Textos) */
+        .hero-center-content {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 35%;
+            width: 35%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-bottom: 60px;
+            z-index: 5;
+        }
+
+        /* O Ticket */
+        .ticket-wrapper {
+            position: relative;
+            filter: drop-shadow(0 15px 25px rgba(0,20,83,0.35));
+            transform: rotate(-2deg);
+            margin-bottom: 35px;
+            width: 100%;
+            margin-left: -5%;
+        }
+
+        .ticket-top {
+            background-color: var(--nd-navy);
+            color: var(--hero-bg);
+            padding: 30px 35px;
+            border-radius: 18px 18px 0 0;
+            -webkit-mask: radial-gradient(circle at 0 100%, transparent 12px, #000 13px) left/51% 100% no-repeat, radial-gradient(circle at 100% 100%, transparent 12px, #000 13px) right/51% 100% no-repeat;
+            mask: radial-gradient(circle at 0 100%, transparent 12px, #000 13px) left/51% 100% no-repeat, radial-gradient(circle at 100% 100%, transparent 12px, #000 13px) right/51% 100% no-repeat;
+        }
+
+        .ticket-price {
+            display: flex;
+            align-items: flex-end;
+            gap: 15px;
+            line-height: 0.78;
+        }
+
+        .ticket-price .number {
+            font-size: 7.5rem;
+            font-weight: 200;
+            letter-spacing: -0.065em;
+        }
+
+        .ticket-price .off {
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--nd-bege);
+            padding-bottom: 5px;
+        }
+
+        .ticket-top p {
+            margin-top: 15px;
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+
+        .ticket-bottom {
+            background-color: var(--nd-navy);
+            color: var(--hero-bg);
+            padding: 20px 35px;
+            border-radius: 0 0 18px 18px;
+            -webkit-mask: radial-gradient(circle at 0 0, transparent 12px, #000 13px) left/51% 100% no-repeat, radial-gradient(circle at 100% 0, transparent 12px, #000 13px) right/51% 100% no-repeat;
+            mask: radial-gradient(circle at 0 0, transparent 12px, #000 13px) left/51% 100% no-repeat, radial-gradient(circle at 100% 0, transparent 12px, #000 13px) right/51% 100% no-repeat;
+            background-image: linear-gradient(90deg, transparent 20px, rgba(244,243,236,.35) 20px, rgba(244,243,236,.35) calc(100% - 20px), transparent calc(100% - 20px));
+            background-size: 100% 1px;
+            background-position: top;
+            background-repeat: no-repeat;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .ticket-bottom .muted { color: #C9D3E3; }
+        .ticket-bottom .bold { font-weight: 700; color: #fff; }
+
+        /* Textos Abaixo do Ticket */
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 300;
+            line-height: 1.12;
+            letter-spacing: -0.02em;
+            color: var(--nd-navy);
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .hero-bullet {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--hero-muted);
+            margin-bottom: 30px;
+        }
+
+        .hero-bullet .bullet {
+            width: 6px;
+            height: 6px;
+            background-color: var(--nd-bege);
+            border-radius: 50%;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        .hero-bullet strong {
+            color: var(--nd-navy);
+            font-weight: 700;
+            display: block;
+        }
+
+        .btn-whatsapp-hero {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--btn-green);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s;
+            width: fit-content;
+        }
+        .btn-whatsapp-hero:hover { background-color: #1ebe5d; }
+        .btn-whatsapp-hero svg { width: 18px; height: 18px; fill: currentColor; }
+
+        /* Formulário (Lado Direito) */
+        .hero-form-wrapper {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25%;
+            z-index: 10;
+        }
+
+        .hero-form-wrapper h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--nd-navy);
+        }
+
+        .hero-form-group { margin-bottom: 15px; }
+
+        .hero-form-group input {
+            width: 100%;
+            height: 56px;
+            padding: 0 18px;
+            font-size: 1rem;
+            color: var(--nd-navy);
+            background: #fff;
+            border: 1px solid rgba(0,11,69,0.18);
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .hero-form-group input::placeholder { color: #5B6478; }
+        .hero-form-group input:focus { 
+            border-color: var(--nd-navy); 
+            box-shadow: 0 0 0 3px rgba(0,11,69,0.15); 
+        }
+
+        .hero-submit-btn {
+            width: 100%;
+            height: 56px;
+            background-color: var(--nd-navy);
+            color: var(--hero-bg);
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+        .hero-submit-btn:hover { background-color: #0B2A7A; }
+        .hero-submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+        .hero-disclaimer-form {
+            font-size: 0.75rem;
+            color: #4F5B7A;
+            line-height: 1.5;
+            margin-top: 15px;
+        }
+        .hero-disclaimer-form a {
+            color: var(--nd-navy);
+            text-decoration: underline;
+        }
+
+        /* Disclaimer Inferior Esquerdo */
+        .hero-disclaimer-bottom {
+            position: absolute;
+            bottom: 20px;
+            left: 35%;
+            width: 33%;
+            font-size: 0.7rem;
+            line-height: 1.55;
+            color: #4F5B7A;
+            z-index: 5;
+        }
+
+        /* =========================================================
+           SEÇÃO 2: PLANOS (CABEÇALHO CORRIGIDO)
+           ========================================================= */
+        
+        /* Nova Div para o fundo azul escuro */
+        .plans-header-bg {
+            background-color: var(--texto-azul);
+            padding: 60px 0;
+            width: 100%;
+        }
+
+        .plans-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .plans-header .subtitle {
+            color: #a0aec0; /* Cinza claro para contraste */
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            line-height: 1.5;
+        }
+
+        .plans-header .description {
+            color: #ffffff; /* Branco para contraste */
+            font-size: 1rem;
+            max-width: 550px;
+            line-height: 1.6;
+        }
+
+        /* Layout dos Cards de Planos */
+        .plans-layout {
+            max-width: 1200px;
+            margin: 60px auto 80px;
+            padding: 0 20px;
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .plans-left { width: 38%; padding-top: 10px; }
+
+        .category-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #dcdcdc;
+            padding-bottom: 10px;
+        }
+        .category-btn {
+            background: transparent;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--texto-cinza-claro);
+            cursor: pointer;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .category-btn.active { color: var(--texto-azul); }
+        .category-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--texto-azul);
+        }
+
+        .product-tabs {
+            background-color: var(--tab-container-bg);
+            border-radius: 30px;
+            padding: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 40px;
+            width: fit-content;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--texto-cinza);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            background-color: var(--tab-active-bg);
+            color: #ffffff;
+        }
+
+        .plan-info-box { transition: opacity 0.3s ease; }
+        .plan-tag { font-size: 0.7rem; font-weight: 700; color: var(--texto-cinza); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .plan-desc { font-size: 0.95rem; color: var(--texto-cinza); margin-bottom: 15px; }
+        .plan-min-lives { display: inline-block; font-size: 0.8rem; font-weight: 600; color: var(--texto-azul); background-color: rgba(0, 11, 69, 0.05); padding: 8px 12px; border-radius: 6px; border-left: 3px solid var(--texto-azul); margin-bottom: 40px; }
+
+        .footnotes { font-size: 0.65rem; color: var(--texto-cinza-claro); line-height: 1.6; border-top: 1px solid #dcdcdc; padding-top: 20px; }
+        .footnotes p { margin-bottom: 5px; }
+
+        .plans-right {
+            width: 62%;
+            display: flex;
+            gap: 25px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .plan-card {
+            flex: 1;
+            border-radius: 16px;
+            padding: 35px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-light { background-color: var(--card-bg-white); border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.02); color: var(--texto-azul); }
+        .card-dark { background-color: var(--card-bg-blue); color: #ffffff; }
+        .card-dot { width: 20px; height: 20px; border-radius: 50%; margin-bottom: 25px; }
+        .card-light .card-dot { background-color: #d1d5db; }
+        .card-dark .card-dot { background-color: #ffffff; }
+        .plan-card h3 { font-size: 1.8rem; font-weight: 500; margin-bottom: 30px; line-height: 1.2; }
+
+        .features-table { flex-grow: 1; margin-bottom: 30px; }
+        .feature-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.75rem; gap: 15px; }
+        .card-dark .feature-row { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .feature-label { color: var(--texto-cinza); font-weight: 400; }
+        .card-dark .feature-label { color: #a0aec0; }
+        .feature-value { font-weight: 600; text-align: right; color: var(--texto-azul); }
+        .card-dark .feature-value { color: #ffffff; }
+
+        .btn-card {
+            display: block; width: 100%; background-color: var(--btn-blue-light); color: var(--texto-azul);
+            text-align: center; padding: 15px; border-radius: 25px; text-decoration: none;
+            font-size: 0.9rem; font-weight: 700; border: none; cursor: pointer; transition: 0.3s;
+        }
+        .btn-card:hover { background-color: var(--btn-blue-hover); }
+
+        /* =========================================================
+           SEÇÃO 3: DIFERENCIAIS
+           ========================================================= */
+        .diff-split { display: flex; width: 100%; min-height: 500px; }
+        .diff-image { width: 50%; object-fit: cover; display: block; }
+        .diff-text { width: 50%; padding: 80px 10%; display: flex; flex-direction: column; justify-content: center; }
+        
+        .diff-text.blue-bg { background-color: var(--texto-azul); color: #ffffff; }
+        .diff-text.cream-bg { background-color: var(--bg-body); color: var(--texto-azul); }
+
+        .diff-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+        .diff-text.blue-bg .diff-tag { color: #a0aec0; }
+        .diff-text.cream-bg .diff-tag { color: var(--texto-cinza); }
+
+        .diff-text h2 { font-size: 2.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
+        .diff-text p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 40px; max-width: 90%; }
+        .diff-text.blue-bg p { color: #e2e8f0; }
+        .diff-text.cream-bg p { color: var(--texto-cinza); }
+
+        .diff-link {
+            font-size: 0.9rem; font-weight: 600; text-decoration: underline; text-underline-offset: 4px;
+            color: inherit; cursor: pointer; display: inline-block;
+        }
+        .diff-link:hover { opacity: 0.8; }
+
+        /* =========================================================
+           SEÇÃO 4: BENEFÍCIOS
+           ========================================================= */
+        .beneficios-container { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
+        .beneficios-header { margin-bottom: 50px; }
+        .beneficios-header .subtitle { font-size: 0.75rem; font-weight: 600; color: var(--texto-cinza); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; }
+        .beneficios-header h2 { font-size: 2.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 15px; color: var(--texto-azul); }
+        .beneficios-header p { font-size: 1rem; color: var(--texto-cinza); max-width: 600px; }
+
+        .beneficios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .beneficio-card { background-color: var(--card-bg-white); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.3s; }
+        .beneficio-card:hover { transform: translateY(-5px); }
+        .beneficio-card img { width: 100%; height: 220px; object-fit: cover; }
+        .beneficio-content { padding: 30px; flex-grow: 1; }
+        .beneficio-tag { font-size: 0.65rem; font-weight: 700; color: var(--texto-cinza-claro); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
+        .beneficio-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: var(--texto-azul); line-height: 1.3; }
+        .beneficio-card p { font-size: 0.85rem; color: var(--texto-cinza); line-height: 1.5; }
+
+        .beneficio-card.dark { background-color: var(--texto-azul); }
+        .beneficio-card.dark .beneficio-tag { color: #a0aec0; }
+        .beneficio-card.dark h3 { color: #ffffff; }
+        .beneficio-card.dark p { color: #e2e8f0; }
+
+        /* ========== BOTÃO FLUTUANTE WHATSAPP ========== */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px; background-color: var(--btn-green); color: white;
+            padding: 12px 24px; border-radius: 30px; display: flex; align-items: center; gap: 10px;
+            font-size: 0.9rem; font-weight: 600; text-decoration: none; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000; transition: transform 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.05); }
+        .whatsapp-float svg { width: 20px; height: 20px; fill: currentColor; }
+
+        /* ========== RESPONSIVIDADE ========== */
+        @media (max-width: 1200px) {
+            .hero-image-wrapper { width: 30%; }
+            .hero-center-content { left: 30%; width: 38%; }
+            .hero-form-wrapper { width: 26%; right: 3%; }
+            .ticket-price .number { font-size: 6rem; }
+            .ticket-price .off { font-size: 3rem; }
+        }
+
+        @media (max-width: 1024px) {
+            /* Ajuste Header Planos Mobile */
+            .plans-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+
+            .hero-section { flex-direction: column; min-height: auto; }
+            .hero-image-wrapper { width: 100%; height: 300px; }
+            .hero-center-content { position: relative; left: 0; width: 100%; padding: 20px; transform: none; padding-bottom: 0; }
+            .ticket-wrapper { margin: -40px auto 20px; width: 90%; margin-left: auto; }
+            .hero-title { font-size: 1.8rem; text-align: center; }
+            .hero-bullet { justify-content: center; text-align: center; flex-direction: column; align-items: center; }
+            .hero-bullet .bullet { display: none; }
+            .hero-form-wrapper { position: relative; right: 0; top: 0; transform: none; width: 100%; max-width: 400px; margin: 30px auto; padding: 0 20px; }
+            .hero-disclaimer-bottom { position: relative; left: 0; bottom: 0; width: 100%; text-align: center; padding: 20px; }
+            .btn-whatsapp-hero { margin: 0 auto; display: flex; }
+            
+            .plans-layout { flex-direction: column; gap: 40px; }
+            .plans-left, .plans-right { width: 100%; }
+            .plans-right { flex-direction: column; }
+            
+            .diff-split { flex-direction: column; }
+            .diff-image { width: 100%; height: 300px; }
+            .diff-text { width: 100%; padding: 60px 20px; text-align: center; }
+            .diff-text p { margin: 0 auto 30px; }
+            .beneficios-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .beneficios-grid { grid-template-columns: 1fr; }
+            .ticket-price .number { font-size: 5rem; }
+            .ticket-price .off { font-size: 2rem; }
+            .ticket-top p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header>
+        <a href="#" data-target="home" class="logo" style="cursor:pointer;">
+            <img src="https://gndi.planium.io/custom/gndi/web/venda/simulacao/assets/notredame.png" alt="NotreDame">
+        </a>
+        <nav class="nav-links">
+            <a href="#" data-target="home" class="active">Home</a>
+            <a href="#" data-target="planos">Planos</a>
+            <a href="#" data-target="diferenciais">Diferenciais</a>
+            <a href="#" data-target="beneficios">Benefícios</a>
+            <a href="https://wa.me/5511934152666" target="_blank" class="btn-header">Quero mais informações</a>
+        </nav>
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- SEÇÃO 1: HOME (HERO SECTION) -->
+    <!-- ========================================================= -->
+    <section id="home" class="page-section active">
+        <div class="hero-container">
+            <div class="hero-section">
+                
+                <!-- Imagem Substituída -->
+                <div class="hero-image-wrapper">
+                    <img src="https://hospitalsiriolibanes.org.br/sites/institucional/files/2025-12/interna_belavista-1.jpg" alt="Hospital Sírio-Libanês">
+                    <span class="badge-inedito"><span class="dot"></span>INÉDITO</span>
+                </div>
+
+                <div class="hero-logo-top">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </div>
+
+                <div class="hero-center-content">
+                    <div class="ticket-wrapper">
+                        <div class="ticket-top">
+                            <div class="ticket-price">
+                                <span class="number">75%</span>
+                                <span class="off">Off</span>
+                            </div>
+                            <p>na primeira mensalidade</p>
+                        </div>
+                        <div class="ticket-bottom">
+                            <p class="muted">Condição válida de 01 a 31/10/2026</p>
+                            <p class="bold">Exclusivo para CNPJ | Rio de Janeiro e São Paulo</p>
+                        </div>
+                    </div>
+
+                    <h1 class="hero-title">Viva o lado premium do bem-estar.</h1>
+                    
+                    <p class="hero-bullet">
+                        <span class="bullet"></span>
+                        <span>Seu CNPJ abre as portas para o cuidado premium. <br><strong>Contrate a partir de 1 beneficiário.</strong></span>
+                    </p>
+
+                    <a href="https://wa.me/5511934152666?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20os%20planos." target="_blank" class="btn-whatsapp-hero">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        Solicitar proposta
+                    </a>
+                </div>
+
+                <div class="hero-form-wrapper">
+                    <h2>Preencha e fale com um especialista:</h2>
+                    <form id="homeLeadForm">
+                        <div class="hero-form-group">
+                            <input type="text" id="homeNome" name="nome" placeholder="Nome completo" required>
+                        </div>
+                        <div class="hero-form-group">
+                            <input type="tel" id="homeWhatsapp" name="whatsapp" placeholder="Whatsapp (00) 0 0000-0000" required>
+                        </div>
+                        <div class="hero-form-group">
+                            <input type="email" id="homeEmail" name="email" placeholder="E-mail" required>
+                        </div>
+                        <button type="submit" class="hero-submit-btn" id="homeBtnSubmit">Quero minha proposta</button>
+                        <p class="hero-disclaimer-form">
+                            Ao continuar, você autoriza a NotreDame Saúde a entrar em contato e a tratar seus dados para elaborar a proposta, conforme a <a href="#">Política de Privacidade</a>.
+                        </p>
+                    </form>
+                </div>
+
+                <p class="hero-disclaimer-bottom">
+                    Condições podem variar por região. Oferta válida por tempo limitado e sujeita a alterações sem aviso prévio. Consulte todas as condições no ato da contratação. Responsável técnico: Dr. Rodolfo Pires de Albuquerque – CRM 40137. NotreDame Saúde | ANS 359017
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SEÇÃO 2: PLANOS -->
+    <!-- ========================================================= -->
+    <section id="planos" class="page-section">
+        <!-- Novo Header com fundo azul e texto branco -->
+
+
+        <div class="plans-layout">
+            <div class="plans-left">
+                <div class="category-tabs">
+                    <button class="category-btn active" onclick="switchCategory('tradicional')">Linha Tradicional</button>
+                    <button class="category-btn" onclick="switchCategory('metais')">Linha Metais</button>
+                </div>
+                <div class="product-tabs" id="productTabs"></div>
+                <div class="plan-info-box" id="planInfoBox">
+                    <span class="plan-tag" id="planTag"></span>
+                    <p class="plan-desc" id="planDesc"></p>
+                    <span class="plan-min-lives" id="planMinLives"></span>
+                </div>
+                <div class="footnotes">
+                    <p>¹ Reembolso de acordo com plano contratado.</p>
+                    <p>² Cobertura odontológica para contratos de até 99 vidas.</p>
+                    <p>³ Por prestadores indicados pela NotreDame Saúde, em São Paulo e Rio de Janeiro. Vacinas conforme o Calendário do Ministério da Saúde.</p>
+                    <p style="margin-top: 10px;">Consulte regras, condições contratuais e abrangência aplicável.</p>
+                </div>
+            </div>
+
+            <div class="plans-right" id="cardsContainer">
+                <div class="plan-card card-light" id="card1">
+                    <div class="card-dot"></div>
+                    <h3 id="card1Title"></h3>
+                    <div class="features-table" id="card1Features"></div>
+                    <button class="btn-card" id="card1Btn">Quero saber mais</button>
+                </div>
+                <div class="plan-card card-dark" id="card2">
+                    <div class="card-dot"></div>
+                    <h3 id="card2Title"></h3>
+                    <div class="features-table" id="card2Features"></div>
+                    <button class="btn-card" id="card2Btn">Quero saber mais</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SEÇÃO 3: DIFERENCIAIS -->
+    <!-- ========================================================= -->
+    <section id="diferenciais" class="page-section">
+        <div class="diff-split">
+            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2070&auto=format&fit=crop" alt="Médica com criança" class="diff-image">
+            <div class="diff-text blue-bg">
+                <span class="diff-tag">QUALIDADE PREMIUM</span>
+                <h2>Rede de excelência, e<br>a liberdade de ir além</h2>
+                <p>A rede de referência que você já confia — e a liberdade de ir além. Quando você prefere um médico fora da rede, o reembolso garante essa escolha. O cuidado se adapta a você, sua família e sua equipe.</p>
+                <a href="https://wa.me/5511934152666?text=Ol%C3%A1%2C%20Leonardo!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20rede%20de%20atendimento." target="_blank" class="diff-link">Ver rede de atendimento</a>
+            </div>
+        </div>
+        <div class="diff-split">
+            <div class="diff-text cream-bg">
+                <span class="diff-tag">INTELIGÊNCIA QUE ANTECIPA</span>
+                <h2>O cuidado começa<br>antes de você<br>precisar pedir</h2>
+                <p>Tecnologia a serviço do cuidado: mais precisão, mais fluidez e mais presença em cada etapa da jornada. Do concierge que organiza a agenda à prevenção que age antes do sintoma.</p>
+                <a href="#" class="diff-link">Ver mais benefícios</a>
+            </div>
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop" alt="Médica em consultório" class="diff-image">
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SEÇÃO 4: BENEFÍCIOS -->
+    <!-- ========================================================= -->
+    <section id="beneficios" class="page-section">
+        <div class="beneficios-container">
+            <div class="beneficios-header">
+                <div class="subtitle">BENEFÍCIOS</div>
+                <h2>Benefícios que fazem a<br>diferença no seu dia a dia</h2>
+                <p>Para quem toca o próprio negócio, tempo é cuidado. Cada benefício foi pensado para caber na sua rotina.</p>
+            </div>
+            <div class="beneficios-grid">
+                <div class="beneficio-card dark">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop" alt="Cartão">
+                    <div class="beneficio-content">
+                        <span class="beneficio-tag">REEMBOLSO ÁGIL E DIGITAL</span>
+                        <h3>Do pedido ao pagamento</h3>
+                        <p>Quando você prefere um médico fora da rede, o reembolso é feito pelo aplicativo, com prazo definido em cada linha de plano.</p>
+                    </div>
+                </div>
+                <div class="beneficio-card">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" alt="Corrida">
+                    <div class="beneficio-content">
+                        <span class="beneficio-tag">MEDICINA PREVENTIVA E CHECK-UP</span>
+                        <h3>Cuidado que se antecipa</h3>
+                        <p>Programas de prevenção e check-up para você acompanhar sua saúde antes que um sintoma apareça.</p>
+                    </div>
+                </div>
+                <div class="beneficio-card">
+                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=2070&auto=format&fit=crop" alt="Bebê">
+                    <div class="beneficio-content">
+                        <span class="beneficio-tag">COLETA DOMICILIAR DE EXAMES</span>
+                        <h3>O exame vai até você</h3>
+                        <p>A coleta domiciliar leva o exame até você no horário que combina com a sua rotina, sem precisar sair de casa.</p>
+                    </div>
+                </div>
+                <div class="beneficio-card">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2070&auto=format&fit=crop" alt="Yoga">
+                    <div class="beneficio-content">
+                        <span class="beneficio-tag">ECOSSISTEMA DE BEM-ESTAR</span>
+                        <h3>Saúde é mais do que<br>os dias de hospital</h3>
+                        <p>Clube de vantagens com benefícios exclusivos, descontos e serviços de bem-estar que fazem do cuidado parte do seu dia, não só do consultório.</p>
+                    </div>
+                </div>
+                <div class="beneficio-card">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop" alt="Teleconsulta">
+                    <div class="beneficio-content">
+                        <span class="beneficio-tag">TELECONSULTA</span>
+                        <h3>Orientação médica onde você estiver</h3>
+                        <p>Fale com um médico pelo celular, sem sair de onde você está, quando a dúvida não pode esperar.</p>
+                    </div>
+                </div>
+                <div class="beneficio-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="App">
+                    <div class="beneficio-content">
+                        <span class="beneficio-tag">APLICATIVO</span>
+                        <h3>Tudo em um só lugar</h3>
+                        <p>Carteirinha, agendamentos, resultados de exames e reembolso, direto no seu celular.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BOTÃO WHATSAPP FLUTUANTE ========== -->
+    <a href="https://wa.me/5511934152666" target="_blank" class="whatsapp-float">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Falar no WhatsApp
+    </a>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        const WHATSAPP_NUMBER = "5511934152666";
+
+        // 1. NAVEGAÇÃO
+        const navLinks = document.querySelectorAll('.nav-links a[data-target]');
+        const logoLink = document.querySelector('.logo');
+        const sections = document.querySelectorAll('.page-section');
+
+        function navigateTo(targetId) {
+            navLinks.forEach(l => l.classList.remove('active'));
+            sections.forEach(s => s.classList.remove('active'));
+            
+            const targetLink = document.querySelector(`.nav-links a[data-target="${targetId}"]`);
+            if (targetLink) targetLink.classList.add('active');
+            
+            document.getElementById(targetId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateTo(link.getAttribute('data-target'));
+            });
+        });
+
+        if(logoLink) {
+            logoLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateTo('home');
+            });
+        }
+
+        // 2. FORMULÁRIO DA HOME
+        const homeForm = document.getElementById('homeLeadForm');
+        const homeBtnSubmit = document.getElementById('homeBtnSubmit');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzDWwBgsoqBV--vrHchWWgvEehO9rBVlLDMikrMMw4xRNyFhONpUqFp-xtJJ_MLWNtL/exec';
+
+        if(homeForm) {
+            const homeWhatsappInput = document.getElementById('homeWhatsapp');
+            homeWhatsappInput.addEventListener('input', function (e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 11) value = value.slice(0, 11);
+                if (value.length > 6) value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+                else if (value.length > 2) value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+                else if (value.length > 0) value = value.replace(/^(\d*)/, '($1');
+                e.target.value = value;
+            });
+
+            homeForm.addEventListener('submit', e => {
+                e.preventDefault();
+                const nome = document.getElementById('homeNome').value;
+                const whatsapp = document.getElementById('homeWhatsapp').value;
+                const email = document.getElementById('homeEmail').value;
+
+                homeBtnSubmit.innerText = 'Enviando...';
+                homeBtnSubmit.disabled = true;
+
+                const formData = new FormData(homeForm);
+                const data = new URLSearchParams(formData);
+
+                fetch(scriptURL, { method: 'POST', body: data })
+                .then(response => console.log('Dados salvos.'))
+                .catch(error => console.error('Erro:', error.message))
+                .finally(() => {
+                    const mensagem = `Olá, Leonardo! Vim pela sua página e quero uma cotação de plano de saúde.\n\nNome: ${nome}\nWhatsApp: ${whatsapp}\nE-mail: ${email}`;
+                    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`, '_blank');
+                    homeForm.reset();
+                    homeBtnSubmit.innerText = 'Quero minha proposta';
+                    homeBtnSubmit.disabled = false;
+                });
+            });
+        }
+
+        // 3. LÓGICA DE PLANOS
+        const db = {
+            tradicional: {
+                advance600: {
+                    name: "Advance 600", tag: "EQUILÍBRIO E CUSTO-BENEFÍCIO",
+                    desc: "A escolha perfeita para quem busca proteção completa, abrangência nacional e hospitais de referência com mensalidades mais acessíveis para a família ou PME.",
+                    minLives: "Mínimo de vidas: A partir de 2 vidas para PME / Empresarial",
+                    card1: { title: "Advance 600 (Enfermaria)", features: [
+                        { label: "Acomodação", value: "Enfermaria" }, { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 30 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Até 5 dias" }, { label: "Reembolso no exterior¹", value: "Não incluso" },
+                        { label: "Odontologia²", value: "Opcional / Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Conforme rede" },
+                        { label: "Retaguarda Sírio-Libanês", value: "—" }, { label: "Retaguarda Albert Einstein", value: "—" }
+                    ]},
+                    card2: { title: "Advance 600 (Apartamento)", features: [
+                        { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 60 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Até 3 dias" }, { label: "Reembolso no exterior¹", value: "Incluso" },
+                        { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Inclusa" },
+                        { label: "Retaguarda Sírio-Libanês", value: "—" }, { label: "Retaguarda Albert Einstein", value: "—" }
+                    ]}
+                },
+                advance700: {
+                    name: "Advance 700", tag: "EXPERIÊNCIA INTERMEDIÁRIA-ROBUSTA",
+                    desc: "O plano ideal para quem busca abrangência nacional, excelente custo-benefício e hospitais de referência com suporte completo para a família ou PME.",
+                    minLives: "Mínimo de vidas: A partir de 2 vidas para PME / Empresarial",
+                    card1: { title: "Advance 700 (Enfermaria)", features: [
+                        { label: "Acomodação", value: "Enfermaria" }, { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 30 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Até 5 dias" }, { label: "Reembolso no exterior¹", value: "Não incluso" },
+                        { label: "Odontologia²", value: "Opcional / Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Conforme rede" },
+                        { label: "Retaguarda Sírio-Libanês", value: "—" }, { label: "Retaguarda Albert Einstein", value: "—" }
+                    ]},
+                    card2: { title: "Advance 700 (Apartamento)", features: [
+                        { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 60 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Até 3 dias" }, { label: "Reembolso no exterior¹", value: "Incluso" },
+                        { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Inclusa" },
+                        { label: "Retaguarda Sírio-Libanês", value: "—" }, { label: "Retaguarda Albert Einstein", value: "—" }
+                    ]}
+                },
+                premiumCare: {
+                    name: "Premium Care", tag: "EXPERIÊNCIA DE ALTO PADRÃO",
+                    desc: "Acesso aos hospitais mais renomados e diferenciados, combinando sofisticação, conforto hospitalar superior e atendimento exclusivo.",
+                    minLives: "Mínimo de vidas: A partir de 2 vidas para PME / Empresarial",
+                    card1: { title: "Premium Care (Opção 1)", features: [
+                        { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 100 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Até 3 dias" }, { label: "Reembolso no exterior¹", value: "Incluso" },
+                        { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Inclusa" },
+                        { label: "Retaguarda Sírio-Libanês", value: "Parcial / Conforme rede" }, { label: "Retaguarda Albert Einstein", value: "—" }
+                    ]},
+                    card2: { title: "Premium Care (Opção 2)", features: [
+                        { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 300 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Até 3 dias (Prioritário)" }, { label: "Reembolso no exterior¹", value: "Incluso" },
+                        { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Inclusa" },
+                        { label: "Retaguarda Sírio-Libanês", value: "Inclusa" }, { label: "Retaguarda Albert Einstein", value: "Parcial" }
+                    ]}
+                },
+                premium900: {
+                    name: "Premium 900.1", tag: "EXCELÊNCIA EM DIAGNÓSTICOS E REDE",
+                    desc: "Desenvolvido para quem exige laboratórios de ponta (Fleury, A+, Femme) e uma rede hospitalar altamente qualificada para o dia a dia e emergências.",
+                    minLives: "Mínimo de vidas: A partir de 2 vidas para PME / Empresarial",
+                    card1: { title: "Premium 900.1 (Opção 1)", features: [
+                        { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 100 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Até 3 dias" }, { label: "Reembolso no exterior¹", value: "Incluso" },
+                        { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Inclusa" },
+                        { label: "Retaguarda Sírio-Libanês", value: "Inclusa" }, { label: "Retaguarda Albert Einstein", value: "—" }
+                    ]},
+                    card2: { title: "Premium 900.1 (Opção 2)", features: [
+                        { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 300 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Até 3 dias" }, { label: "Reembolso no exterior¹", value: "Incluso" },
+                        { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Inclusa" },
+                        { label: "Retaguarda Sírio-Libanês", value: "Inclusa" }, { label: "Retaguarda Albert Einstein", value: "Inclusa" }
+                    ]}
+                },
+                infinity: {
+                    name: "Infinity", tag: "EXPERIÊNCIA MÁXIMA / PINHÁCULO GLOBAL",
+                    desc: "O plano mais completo da NotreDame, com retaguarda total dos hospitais de elite (Albert Einstein e Sírio-Libanês) e todos os serviços domiciliares incluídos.",
+                    minLives: "Mínimo de vidas: A partir de 2 vidas para PME / Empresarial",
+                    card1: { title: "Infinity (Opção 1)", features: [
+                        { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 300 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Até 3 dias" }, { label: "Reembolso no exterior¹", value: "Incluso" },
+                        { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Inclusa" },
+                        { label: "Retaguarda Sírio-Libanês", value: "Inclusa" }, { label: "Retaguarda Albert Einstein", value: "Inclusa" }
+                    ]},
+                    card2: { title: "Infinity (Opção 2 - VIP)", features: [
+                        { label: "Acomodação", value: "Apartamento (VIP)" }, { label: "Abrangência", value: "Nacional e Internacional (Ampla)" },
+                        { label: "Assistência viagem", value: "Global (USD/€ 500 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Prioritário (24h)" }, { label: "Reembolso no exterior¹", value: "Incluso ampliado" },
+                        { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Inclusa (Check-up anual)" },
+                        { label: "Retaguarda Sírio-Libanês", value: "Inclusa" }, { label: "Retaguarda Albert Einstein", value: "Inclusa" }
+                    ]}
+                }
+            },
+            metais: {
+                prata: {
+                    name: "Prata", tag: "CUSTO-BENEFÍCIO", desc: "Rede de atendimento qualificada e excelente custo-benefício.", minLives: "Mínimo de vidas: A partir de 2 vidas para PME / Empresarial",
+                    card1: { title: "Prata", features: [ { label: "Acomodação", value: "Enfermaria / Apartamento" }, { label: "Abrangência", value: "Regional / Nacional" }, { label: "Rede", value: "Qualificada" }, { label: "Diferencial", value: "Excelente custo-benefício" } ]},
+                    card2: { title: "Prata Max", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" }, { label: "Rede", value: "Ampliada" }, { label: "Diferencial", value: "Reembolso intermediário" } ]}
+                },
+                ouro: {
+                    name: "Ouro", tag: "INTERMEDIÁRIO ROBUSTO", desc: "Rede hospitalar de referência com reembolso diferenciado.", minLives: "Mínimo de vidas: A partir de 2 vidas para PME / Empresarial",
+                    card1: { title: "Ouro", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" }, { label: "Rede", value: "Referência" }, { label: "Diferencial", value: "Reembolso diferenciado" } ]},
+                    card2: { title: "Ouro Max", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" }, { label: "Rede", value: "Superior" }, { label: "Diferencial", value: "Maior flexibilidade e reembolso estendido" } ]}
+                },
+                diamante: {
+                    name: "Diamante", tag: "TOPO CORPORATIVO", desc: "Topo da linha corporativa com máxima flexibilidade e retaguarda hospitalar avançada.", minLives: "Mínimo de vidas: A partir de 2 vidas para PME / Empresarial",
+                    card1: { title: "Diamante", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" }, { label: "Rede", value: "Excelência" }, { label: "Diferencial", value: "Retaguarda hospitalar avançada" } ]},
+                    card2: { title: "Diamante Max", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" }, { label: "Rede", value: "Máxima" }, { label: "Diferencial", value: "Reembolso global" } ]}
+                }
+            }
+        };
+
+        let currentCategory = 'tradicional';
+        let currentPlanKey = 'advance600';
+
+        const productTabs = document.getElementById('productTabs');
+        const planInfoBox = document.getElementById('planInfoBox');
+        const cardsContainer = document.getElementById('cardsContainer');
+        const planTag = document.getElementById('planTag');
+        const planDesc = document.getElementById('planDesc');
+        const planMinLives = document.getElementById('planMinLives');
+        const card1Title = document.getElementById('card1Title');
+        const card1Features = document.getElementById('card1Features');
+        const card1Btn = document.getElementById('card1Btn');
+        const card2Title = document.getElementById('card2Title');
+        const card2Features = document.getElementById('card2Features');
+        const card2Btn = document.getElementById('card2Btn');
+
+        function switchCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase().includes(category === 'tradicional' ? 'tradicional' : 'metais')) {
+                    btn.classList.add('active');
+                }
+            });
+            productTabs.innerHTML = '';
+            const planKeys = Object.keys(db[category]);
+            planKeys.forEach((key, index) => {
+                const plan = db[category][key];
+                const btn = document.createElement('button');
+                btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
+                btn.innerText = plan.name;
+                btn.onclick = () => selectPlan(key, btn);
+                productTabs.appendChild(btn);
+            });
+            selectPlan(planKeys[0]);
+        }
+
+        function selectPlan(planKey, btnElement = null) {
+            currentPlanKey = planKey;
+            const data = db[currentCategory][planKey];
+
+            if (btnElement) {
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                btnElement.classList.add('active');
+            } else {
+                const buttons = document.querySelectorAll('.tab-btn');
+                buttons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.innerText === data.name) btn.classList.add('active');
+                });
+            }
+
+            planInfoBox.style.opacity = '0';
+            cardsContainer.style.opacity = '0';
+            cardsContainer.style.transform = 'translateY(10px)';
+
+            setTimeout(() => {
+                planTag.innerText = data.tag;
+                planDesc.innerText = data.desc;
+                planMinLives.innerText = data.minLives;
+
+                card1Title.innerText = data.card1.title;
+                card1Features.innerHTML = generateFeatureRows(data.card1.features);
+                card1Btn.onclick = () => redirectToWhatsApp(data.card1.title);
+
+                card2Title.innerText = data.card2.title;
+                card2Features.innerHTML = generateFeatureRows(data.card2.features);
+                card2Btn.onclick = () => redirectToWhatsApp(data.card2.title);
+
+                planInfoBox.style.opacity = '1';
+                cardsContainer.style.opacity = '1';
+                cardsContainer.style.transform = 'translateY(0)';
+            }, 250);
+        }
+
+        function generateFeatureRows(features) {
+            return features.map(f => `
+                <div class="feature-row">
+                    <span class="feature-label">${f.label}</span>
+                    <span class="feature-value">${f.value}</span>
+                </div>
+            `).join('');
+        }
+
+        function redirectToWhatsApp(planTitle) {
+            const message = `Olá, Leonardo! Vim pela sua página e gostaria de saber mais sobre o plano *${planTitle}*.`;
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        window.onload = () => {
+            switchCategory('tradicional');
+            navigateTo('home');
+        };
+    </script>
+</body>
+</html>
