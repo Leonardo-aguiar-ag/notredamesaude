@@ -8,10 +8,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- META PIXEL CODE -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2022345561781338');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2022345561781338&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
     <!-- VERCEL ANALYTICS -->
     <script defer src="/_vercel/insights/script.js"></script>
     
-    <!-- VERCEL SPEED INSIGHTS (Adicionado aqui) -->
+    <!-- VERCEL SPEED INSIGHTS -->
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <style>
@@ -853,7 +871,7 @@
     <script>
         const WHATSAPP_NUMBER = "5511934152666";
 
-        // 1. NAVEGAÇÃO COM TRACKING DA VERCEL
+        // 1. NAVEGAÇÃO COM TRACKING DA VERCEL E META PIXEL
         const navLinks = document.querySelectorAll('.nav-links a[data-target]');
         const logoLink = document.querySelector('.logo');
         const sections = document.querySelectorAll('.page-section');
@@ -868,9 +886,14 @@
             document.getElementById(targetId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // VERCEL ANALYTICS: Envia um evento de visualização de página para a Vercel
+            // VERCEL ANALYTICS
             if (window.va) {
                 window.va('event', { name: 'pageview', data: { page: targetId } });
+            }
+
+            // META PIXEL - PAGEVIEW (Para cada troca de aba)
+            if (window.fbq) {
+                fbq('track', 'PageView', { page: targetId });
             }
         }
 
@@ -888,7 +911,7 @@
             });
         }
 
-        // 2. FORMULÁRIO DA HOME
+        // 2. FORMULÁRIO DA HOME (COM TRACKING DE LEAD)
         const homeForm = document.getElementById('homeLeadForm');
         const homeBtnSubmit = document.getElementById('homeBtnSubmit');
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzDWwBgsoqBV--vrHchWWgvEehO9rBVlLDMikrMMw4xRNyFhONpUqFp-xtJJ_MLWNtL/exec';
@@ -920,6 +943,11 @@
                 .then(response => console.log('Dados salvos.'))
                 .catch(error => console.error('Erro:', error.message))
                 .finally(() => {
+                    // META PIXEL - LEAD
+                    if (window.fbq) {
+                        fbq('track', 'Lead');
+                    }
+
                     const mensagem = `Olá, Leonardo! Vim pela sua página e quero uma cotação de plano de saúde.\n\nNome: ${nome}\nWhatsApp: ${whatsapp}\nE-mail: ${email}`;
                     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`, '_blank');
                     homeForm.reset();
@@ -1132,9 +1160,23 @@
         }
 
         function redirectToWhatsApp(planTitle) {
+            // META PIXEL - CONTACT (Clique no botão do plano)
+            if (window.fbq) {
+                fbq('track', 'Contact', { content_name: planTitle });
+            }
+
             const message = `Olá, Leonardo! Vim pela sua página e gostaria de saber mais sobre o plano *${planTitle}*.`;
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
         }
+
+        // META PIXEL - CONTACT (Para todos os links estáticos do WhatsApp)
+        document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.fbq) {
+                    fbq('track', 'Contact');
+                }
+            });
+        });
 
         window.onload = () => {
             switchCategory('tradicional');
