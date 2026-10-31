@@ -1,0 +1,22 @@
+{
+  "name": "notredamesaude",
+  "version": "1.0.0",
+  "description": "NotreDame Saúde website with Vercel Web Analytics",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build needed'",
+    "lint": "echo 'No linter configured for static HTML'"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "notredame",
+    "saude",
+    "health"
+  ],
+  "author": "",
+  "license": "ISC"
+}
