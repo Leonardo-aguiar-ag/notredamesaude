@@ -4,76 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NotreDame Saúde</title>
-    
-    <!-- FAVICON GERADO E CORRIGIDO PARA GITHUB PAGES -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
-    <link rel="manifest" href="./site.webmanifest">
-
-    <!-- =========================================================
-         1. GOOGLE CONSENT MODE V2 (DEVE SER O PRIMEIRO SCRIPT)
-         ========================================================= -->
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-
-        // Padrão LGPD: Tudo negado até o usuário aceitar
-        gtag('consent', 'default', {
-            'ad_storage': 'denied',
-            'ad_user_data': 'denied',
-            'ad_personalization': 'denied',
-            'analytics_storage': 'denied',
-            'functionality_storage': 'denied',
-            'personalization_storage': 'denied',
-            'security_storage': 'granted',
-            'wait_for_update': 500
-        });
-    </script>
-
-    <!-- =========================================================
-         2. GOOGLE TAG (gtag.js) - GOOGLE ADS / ANALYTICS
-         Substitua 'G-XXXXXXXXXX' pelo seu ID real
-         ========================================================= -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
-
-    <!-- =========================================================
-         3. META PIXEL (MÚLTIPLOS PIXELS) - FACEBOOK / INSTAGRAM ADS
-         ========================================================= -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        
-        // Inicializa os dois Pixels
-        fbq('init', '1109561711811511');
-        fbq('init', '1468775435179688');
-        
-        // Dispara o PageView para ambos
-        fbq('track', 'PageView');
-        
-        // Revoga o rastreamento padrão até que o usuário aceite (LGPD)
-        fbq('consent', 'revoke');
-    </script>
-    <noscript>
-        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1109561711811511&ev=PageView&noscript=1"/>
-        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1468775435179688&ev=PageView&noscript=1"/>
-    </noscript>
-    <!-- ========================================================= -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- VERCEL ANALYTICS -->
+    <script defer src="/_vercel/insights/script.js"></script>
+    
+    <!-- VERCEL SPEED INSIGHTS (Adicionado aqui) -->
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+
     <style>
         /* ========== VARIÁVEIS DE CORES E IDENTIDADE ========== */
         :root {
@@ -91,6 +31,7 @@
             --tab-active-bg: #000b45;
             --font-family: 'Montserrat', sans-serif;
             
+            /* Cores específicas da Hero */
             --nd-navy: #000b45;
             --nd-bege: #c5b38b;
             --hero-bg: #F4F3EC;
@@ -115,7 +56,7 @@
         /* ========== HEADER GLOBAL ========== */
         header {
             background-color: var(--texto-azul);
-            padding: 10px 40px;
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -124,11 +65,7 @@
             z-index: 1000;
         }
 
-        /* Logo do Cabeçalho */
-        .logo img { 
-            height: 50px; 
-            width: auto;
-        }
+        .logo img { height: 30px; filter: brightness(0) invert(1); }
 
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a {
@@ -159,7 +96,7 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* =========================================================
-           SEÇÃO 1: HOME (HERO SECTION)
+           SEÇÃO 1: HOME (HERO SECTION COM IMAGEM NOVA E ESPAÇAMENTO)
            ========================================================= */
         .hero-container {
             max-width: 1440px;
@@ -178,6 +115,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
+        /* Lado Esquerdo: Imagem */
         .hero-image-wrapper {
             width: 35%;
             position: relative;
@@ -216,6 +154,7 @@
             background-color: var(--nd-navy);
         }
 
+        /* Logo no Topo Direito */
         .hero-logo-top {
             position: absolute;
             top: 30px;
@@ -226,6 +165,7 @@
         }
         .hero-logo-top svg { width: 100%; height: 100%; fill: var(--nd-navy); }
 
+        /* Conteúdo Central (Ticket e Textos) */
         .hero-center-content {
             position: absolute;
             top: 0;
@@ -239,6 +179,7 @@
             z-index: 5;
         }
 
+        /* O Ticket */
         .ticket-wrapper {
             position: relative;
             filter: drop-shadow(0 15px 25px rgba(0,20,83,0.35));
@@ -301,6 +242,7 @@
         .ticket-bottom .muted { color: #C9D3E3; }
         .ticket-bottom .bold { font-weight: 700; color: #fff; }
 
+        /* Textos Abaixo do Ticket */
         .hero-title {
             font-size: 2.2rem;
             font-weight: 300;
@@ -354,6 +296,7 @@
         .btn-whatsapp-hero:hover { background-color: #1ebe5d; }
         .btn-whatsapp-hero svg { width: 18px; height: 18px; fill: currentColor; }
 
+        /* Formulário (Lado Direito) */
         .hero-form-wrapper {
             position: absolute;
             right: 5%;
@@ -418,6 +361,7 @@
             text-decoration: underline;
         }
 
+        /* Disclaimer Inferior Esquerdo */
         .hero-disclaimer-bottom {
             position: absolute;
             bottom: 20px;
@@ -430,8 +374,9 @@
         }
 
         /* =========================================================
-           SEÇÃO 2: PLANOS
+           SEÇÃO 2: PLANOS (CABEÇALHO CORRIGIDO)
            ========================================================= */
+        
         .plans-header-bg {
             background-color: var(--texto-azul);
             padding: 60px 0;
@@ -449,7 +394,7 @@
         }
 
         .plans-header .subtitle {
-            color: #a0aec0; 
+            color: #a0aec0;
             font-size: 0.75rem;
             font-weight: 600;
             letter-spacing: 1.5px;
@@ -458,7 +403,7 @@
         }
 
         .plans-header .description {
-            color: #ffffff; 
+            color: #ffffff;
             font-size: 1rem;
             max-width: 550px;
             line-height: 1.6;
@@ -631,42 +576,6 @@
         .whatsapp-float:hover { transform: scale(1.05); }
         .whatsapp-float svg { width: 20px; height: 20px; fill: currentColor; }
 
-        /* ========== BANNER DE COOKIES ========== */
-        #cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #ffffff;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-            padding: 20px;
-            display: none; 
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            z-index: 9999;
-            flex-wrap: wrap;
-            font-size: 0.85rem;
-            color: var(--texto-azul);
-        }
-        #cookie-banner p { max-width: 800px; margin: 0; text-align: center; }
-        #cookie-banner a { color: var(--nd-navy); text-decoration: underline; }
-        .cookie-btns { display: flex; gap: 10px; }
-        .cookie-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: var(--font-family);
-            font-size: 0.85rem;
-            transition: 0.3s;
-        }
-        .btn-accept { background-color: var(--texto-azul); color: white; }
-        .btn-accept:hover { background-color: #0B2A7A; }
-        .btn-reject { background-color: #e0e0e0; color: var(--texto-azul); }
-        .btn-reject:hover { background-color: #d0d0d0; }
-
         /* ========== RESPONSIVIDADE ========== */
         @media (max-width: 1200px) {
             .hero-image-wrapper { width: 30%; }
@@ -678,6 +587,7 @@
 
         @media (max-width: 1024px) {
             .plans-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+
             .hero-section { flex-direction: column; min-height: auto; }
             .hero-image-wrapper { width: 100%; height: 300px; }
             .hero-center-content { position: relative; left: 0; width: 100%; padding: 20px; transform: none; padding-bottom: 0; }
@@ -688,9 +598,11 @@
             .hero-form-wrapper { position: relative; right: 0; top: 0; transform: none; width: 100%; max-width: 400px; margin: 30px auto; padding: 0 20px; }
             .hero-disclaimer-bottom { position: relative; left: 0; bottom: 0; width: 100%; text-align: center; padding: 20px; }
             .btn-whatsapp-hero { margin: 0 auto; display: flex; }
+            
             .plans-layout { flex-direction: column; gap: 40px; }
             .plans-left, .plans-right { width: 100%; }
             .plans-right { flex-direction: column; }
+            
             .diff-split { flex-direction: column; }
             .diff-image { width: 100%; height: 300px; }
             .diff-text { width: 100%; padding: 60px 20px; text-align: center; }
@@ -704,16 +616,15 @@
             .ticket-price .number { font-size: 5rem; }
             .ticket-price .off { font-size: 2rem; }
             .ticket-top p { font-size: 1rem; }
-            .logo img { height: 35px; }
-            header { padding: 10px 20px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ========== HEADER ========== -->
     <header>
         <a href="#" data-target="home" class="logo" style="cursor:pointer;">
-            <img src="./logo-notredame.png" alt="NotreDame Saúde">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/NotreDame_Sa%C3%BAde_logo.svg" alt="NotreDame">
         </a>
         <nav class="nav-links">
             <a href="#" data-target="home" class="active">Home</a>
@@ -730,15 +641,18 @@
     <section id="home" class="page-section active">
         <div class="hero-container">
             <div class="hero-section">
+                
                 <div class="hero-image-wrapper">
                     <img src="https://hospitalsiriolibanes.org.br/sites/institucional/files/2025-12/interna_belavista-1.jpg" alt="Hospital Sírio-Libanês">
                     <span class="badge-inedito"><span class="dot"></span>INÉDITO</span>
                 </div>
+
                 <div class="hero-logo-top">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                     </svg>
                 </div>
+
                 <div class="hero-center-content">
                     <div class="ticket-wrapper">
                         <div class="ticket-top">
@@ -753,16 +667,20 @@
                             <p class="bold">Exclusivo para CNPJ | Rio de Janeiro e São Paulo</p>
                         </div>
                     </div>
+
                     <h1 class="hero-title">Viva o lado premium do bem-estar.</h1>
+                    
                     <p class="hero-bullet">
                         <span class="bullet"></span>
                         <span>Seu CNPJ abre as portas para o cuidado premium. <br><strong>Contrate a partir de 1 beneficiário.</strong></span>
                     </p>
+
                     <a href="https://wa.me/5511934152666?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20os%20planos." target="_blank" class="btn-whatsapp-hero">
                         <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                         Solicitar proposta
                     </a>
                 </div>
+
                 <div class="hero-form-wrapper">
                     <h2>Preencha e fale com um especialista:</h2>
                     <form id="homeLeadForm">
@@ -781,9 +699,11 @@
                         </p>
                     </form>
                 </div>
+
                 <p class="hero-disclaimer-bottom">
                     Condições podem variar por região. Oferta válida por tempo limitado e sujeita a alterações sem aviso prévio. Consulte todas as condições no ato da contratação. Responsável técnico: Dr. Rodolfo Pires de Albuquerque – CRM 40137. NotreDame Saúde | ANS 359017
                 </p>
+
             </div>
         </div>
     </section>
@@ -792,6 +712,13 @@
     <!-- SEÇÃO 2: PLANOS -->
     <!-- ========================================================= -->
     <section id="planos" class="page-section">
+        <div class="plans-header-bg">
+            <header class="plans-header">
+                <div class="subtitle">PLANOS PARA<br>PESSOA<br>JURÍDICA</div>
+                <div class="description">Do profissional que contrata só para si à empresa com até<br>99 pessoas: um plano para cada fase do seu negócio.</div>
+            </header>
+        </div>
+
         <div class="plans-layout">
             <div class="plans-left">
                 <div class="category-tabs">
@@ -811,6 +738,7 @@
                     <p style="margin-top: 10px;">Consulte regras, condições contratuais e abrangência aplicável.</p>
                 </div>
             </div>
+
             <div class="plans-right" id="cardsContainer">
                 <div class="plan-card card-light" id="card1">
                     <div class="card-dot"></div>
@@ -915,64 +843,17 @@
         </div>
     </section>
 
+    <!-- ========== BOTÃO WHATSAPP FLUTUANTE ========== -->
     <a href="https://wa.me/5511934152666" target="_blank" class="whatsapp-float">
         <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
         Falar no WhatsApp
     </a>
 
-    <!-- ========== BANNER DE COOKIES (LGPD) ========== -->
-    <div id="cookie-banner">
-        <p>Utilizamos cookies para melhorar sua experiência e analisar o tráfego do site, conforme nossa <a href="#">Política de Privacidade</a>. Ao clicar em "Aceitar", você concorda com o uso de cookies de análise e marketing.</p>
-        <div class="cookie-btns">
-            <button class="cookie-btn btn-reject" onclick="handleConsent(false)">Recusar</button>
-            <button class="cookie-btn btn-accept" onclick="handleConsent(true)">Aceitar</button>
-        </div>
-    </div>
-
     <!-- ========== SCRIPTS ========== -->
     <script>
-        // =========================================================
-        // LÓGICA DO BANNER DE COOKIES E CONSENTIMENTO
-        // =========================================================
-        function handleConsent(granted) {
-            const isGranted = granted ? 'granted' : 'denied';
-
-            // Atualiza Google Consent Mode v2
-            gtag('consent', 'update', {
-                'ad_storage': isGranted,
-                'ad_user_data': isGranted,
-                'ad_personalization': isGranted,
-                'analytics_storage': isGranted,
-                'functionality_storage': isGranted,
-                'personalization_storage': isGranted
-            });
-
-            // Atualiza Meta Pixels (aplica para os dois inicializados)
-            fbq('consent', granted ? 'grant' : 'revoke');
-
-            // Esconde o banner
-            document.getElementById('cookie-banner').style.display = 'none';
-
-            // Salva a preferência no navegador
-            localStorage.setItem('cookieConsent', granted ? 'granted' : 'denied');
-        }
-
-        // Verifica se o usuário já escolheu anteriormente
-        window.addEventListener('load', function() {
-            const savedConsent = localStorage.getItem('cookieConsent');
-            if (savedConsent === 'granted') {
-                handleConsent(true);
-            } else if (savedConsent === 'denied') {
-                handleConsent(false);
-            } else {
-                document.getElementById('cookie-banner').style.display = 'flex';
-            }
-        });
-
-        // =========================================================
-        // NAVEGAÇÃO
-        // =========================================================
         const WHATSAPP_NUMBER = "5511934152666";
+
+        // 1. NAVEGAÇÃO COM TRACKING DA VERCEL
         const navLinks = document.querySelectorAll('.nav-links a[data-target]');
         const logoLink = document.querySelector('.logo');
         const sections = document.querySelectorAll('.page-section');
@@ -986,6 +867,11 @@
             
             document.getElementById(targetId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // VERCEL ANALYTICS: Envia um evento de visualização de página para a Vercel
+            if (window.va) {
+                window.va('event', { name: 'pageview', data: { page: targetId } });
+            }
         }
 
         navLinks.forEach(link => {
@@ -1002,9 +888,7 @@
             });
         }
 
-        // =========================================================
-        // FORMULÁRIO DA HOME (COM DISPARO DE CONVERSÃO)
-        // =========================================================
+        // 2. FORMULÁRIO DA HOME
         const homeForm = document.getElementById('homeLeadForm');
         const homeBtnSubmit = document.getElementById('homeBtnSubmit');
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzDWwBgsoqBV--vrHchWWgvEehO9rBVlLDMikrMMw4xRNyFhONpUqFp-xtJJ_MLWNtL/exec';
@@ -1029,16 +913,6 @@
                 homeBtnSubmit.innerText = 'Enviando...';
                 homeBtnSubmit.disabled = true;
 
-                // ===== DISPARO DE CONVERSÃO PARA TRÁFEGO PAGO =====
-                // Google Ads / GA4 - Evento de Lead
-                gtag('event', 'generate_lead', {
-                    'event_category': 'formulario',
-                    'event_label': 'home_lead'
-                });
-                // Meta Pixels - Evento de Lead (envia para os dois pixels)
-                fbq('track', 'Lead');
-                // ===================================================
-
                 const formData = new FormData(homeForm);
                 const data = new URLSearchParams(formData);
 
@@ -1055,9 +929,7 @@
             });
         }
 
-        // =========================================================
-        // LÓGICA DE PLANOS
-        // =========================================================
+        // 3. LÓGICA DE PLANOS
         const db = {
             tradicional: {
                 advance600: {
