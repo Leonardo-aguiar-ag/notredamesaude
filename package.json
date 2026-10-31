@@ -1,0 +1,17 @@
+{
+  "name": "notredamesaude",
+  "version": "1.0.0",
+  "description": "NotreDame Saúde - Landing Page",
+  "type": "module",
+  "scripts": {
+    "dev": "npx http-server -p 3000",
+    "build": "echo 'Static site - no build needed'",
+    "test": "echo 'No tests configured'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
