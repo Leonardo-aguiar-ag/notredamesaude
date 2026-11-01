@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NotreDame Saúde</title>
+    
+    <!-- FAVICON NOVO -->
+    <link rel="icon" type="image/png" href="logo-notredame.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- GOOGLE SEARCH CONSOLE VERIFICATION (NOVA TAG) -->
+    <!-- GOOGLE SEARCH CONSOLE VERIFICATION -->
     <meta name="google-site-verification" content="CDyUAamBO4qaLWkTcwXq_FCLo52zURGgHk4B_KwIZFE" />
     
     <!-- META PIXEL CODE -->
@@ -86,7 +90,8 @@
             z-index: 1000;
         }
 
-        .logo img { height: 30px; filter: brightness(0) invert(1); }
+        /* Ajuste na logo para não aplicar filtro branco se ela já for branca */
+        .logo img { height: 35px; } 
 
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a {
@@ -645,7 +650,8 @@
     <!-- ========== HEADER ========== -->
     <header>
         <a href="#" data-target="home" class="logo" style="cursor:pointer;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/NotreDame_Sa%C3%BAde_logo.svg" alt="NotreDame">
+            <!-- NOVA LOGO AQUI -->
+            <img src="logo-notredame.png" alt="NotreDame">
         </a>
         <nav class="nav-links">
             <a href="#" data-target="home" class="active">Home</a>
