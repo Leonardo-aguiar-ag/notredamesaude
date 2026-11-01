@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planos de Saúde | NotreDame Saúde</title>
+    <link rel="icon" type="image/png" href="logo-notredame.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Cole aqui o META PIXEL e o CSS do Index (copie o bloco <style> inteiro do index.html) -->
+    <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '2022345561781338');fbq('track', 'PageView');</script>
+    
+    <style>
+        /* === COLE TODO O CSS DO INDEX.HTML AQUI === */
+        /* Para encurtar, estou assumindo que você copiou o CSS do index para cá */
+        /* ... (TODO O CSS DO INDEX AQUI) ... */
+
+        /* Estilos específicos da página de planos */
+        .plans-header-bg { background-color: var(--texto-azul); padding: 60px 0; width: 100%; }
+        .plans-header { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+        .plans-header .subtitle { color: #a0aec0; font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
+        .plans-header .description { color: #ffffff; font-size: 1rem; max-width: 550px; }
+        .plans-layout { max-width: 1200px; margin: 60px auto 80px; padding: 0 20px; display: flex; gap: 60px; align-items: flex-start; }
+        .plans-left { width: 38%; }
+        .category-tabs { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 2px solid #dcdcdc; padding-bottom: 10px; }
+        .category-btn { background: transparent; border: none; font-size: 1.1rem; font-weight: 700; color: var(--texto-cinza-claro); cursor: pointer; padding: 5px 0; position: relative; transition: 0.3s; }
+        .category-btn.active { color: var(--texto-azul); }
+        .category-btn.active::after { content: ''; position: absolute; bottom: -12px; left: 0; width: 100%; height: 3px; background-color: var(--texto-azul); }
+        .product-tabs { background-color: var(--tab-container-bg); border-radius: 30px; padding: 6px; display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 40px; width: fit-content; }
+        .tab-btn { background: transparent; border: none; padding: 10px 20px; border-radius: 25px; font-size: 0.85rem; font-weight: 600; color: var(--texto-cinza); cursor: pointer; transition: 0.3s; }
+        .tab-btn.active { background-color: var(--tab-active-bg); color: #ffffff; }
+        .plan-info-box { transition: opacity 0.3s; }
+        .plan-tag { font-size: 0.7rem; font-weight: 700; color: var(--texto-cinza); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .plan-desc { font-size: 0.95rem; color: var(--texto-cinza); margin-bottom: 15px; }
+        .plan-min-lives { display: inline-block; font-size: 0.8rem; font-weight: 600; color: var(--texto-azul); background-color: rgba(0, 11, 69, 0.05); padding: 8px 12px; border-radius: 6px; border-left: 3px solid var(--texto-azul); margin-bottom: 40px; }
+        .footnotes { font-size: 0.65rem; color: var(--texto-cinza-claro); line-height: 1.6; border-top: 1px solid #dcdcdc; padding-top: 20px; }
+        .plans-right { width: 62%; display: flex; gap: 25px; transition: opacity 0.3s, transform 0.3s; }
+        .plan-card { flex: 1; border-radius: 16px; padding: 35px 30px; display: flex; flex-direction: column; }
+        .card-light { background-color: var(--card-bg-white); border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .card-dark { background-color: var(--card-bg-blue); color: #ffffff; }
+        .card-dot { width: 20px; height: 20px; border-radius: 50%; margin-bottom: 25px; }
+        .card-light .card-dot { background-color: #d1d5db; }
+        .card-dark .card-dot { background-color: #ffffff; }
+        .plan-card h3 { font-size: 1.8rem; font-weight: 500; margin-bottom: 30px; }
+        .features-table { flex-grow: 1; margin-bottom: 30px; }
+        .feature-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.75rem; gap: 15px; }
+        .card-dark .feature-row { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .feature-label { color: var(--texto-cinza); }
+        .card-dark .feature-label { color: #a0aec0; }
+        .feature-value { font-weight: 600; text-align: right; }
+        .card-dark .feature-value { color: #ffffff; }
+        .btn-card { display: block; width: 100%; background-color: var(--btn-blue-light); color: var(--texto-azul); text-align: center; padding: 15px; border-radius: 25px; font-size: 0.9rem; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
+        .btn-card:hover { background-color: var(--btn-blue-hover); }
+        
+        @media (max-width: 1024px) {
+            .plans-layout { flex-direction: column; gap: 40px; }
+            .plans-left, .plans-right { width: 100%; }
+            .plans-right { flex-direction: column; }
+            .plans-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER (Atualize o menu, deixando "Planos" ativo) -->
+    <header>
+        <a href="index.html" class="logo"><img src="logo-notredame.png" alt="NotreDame"></a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="planos.html" class="active">Planos</a>
+            <a href="diferenciais.html">Diferenciais</a>
+            <a href="beneficios.html">Benefícios</a>
+            <a href="blog.html">Blog</a>
+            <a href="index.html#home" class="btn-header">Quero mais informações</a>
+        </nav>
+    </header>
+
+    <!-- CONTEÚDO DE PLANOS -->
+    <section id="planos">
+        <div class="plans-header-bg">
+            <header class="plans-header">
+                <div class="subtitle">PLANOS PARA<br>PESSOA<br>JURÍDICA</div>
+                <div class="description">Do profissional que contrata só para si à empresa com até<br>99 pessoas: um plano para cada fase do seu negócio.</div>
+            </header>
+        </div>
+
+        <div class="plans-layout">
+            <div class="plans-left">
+                <div class="category-tabs">
+                    <button class="category-btn active" onclick="switchCategory('tradicional')">Linha Tradicional</button>
+                    <button class="category-btn" onclick="switchCategory('metais')">Linha Metais</button>
+                </div>
+                <div class="product-tabs" id="productTabs"></div>
+                <div class="plan-info-box" id="planInfoBox">
+                    <span class="plan-tag" id="planTag"></span>
+                    <p class="plan-desc" id="planDesc"></p>
+                    <span class="plan-min-lives" id="planMinLives"></span>
+                </div>
+                <div class="footnotes">
+                    <p>¹ Reembolso de acordo com plano contratado.</p>
+                    <p>² Cobertura odontológica para contratos de até 99 vidas.</p>
+                    <p>³ Por prestadores indicados pela NotreDame Saúde.</p>
+                </div>
+            </div>
+
+            <div class="plans-right" id="cardsContainer">
+                <div class="plan-card card-light" id="card1">
+                    <div class="card-dot"></div>
+                    <h3 id="card1Title"></h3>
+                    <div class="features-table" id="card1Features"></div>
+                    <button class="btn-card" id="card1Btn">Quero saber mais</button>
+                </div>
+                <div class="plan-card card-dark" id="card2">
+                    <div class="card-dot"></div>
+                    <h3 id="card2Title"></h3>
+                    <div class="features-table" id="card2Features"></div>
+                    <button class="btn-card" id="card2Btn">Quero saber mais</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (Copie o footer do index.html) -->
+    <footer class="site-footer">
+        <!-- ... COPIE O FOOTER DO INDEX.HTML AQUI ... -->
+    </footer>
+
+    <a href="https://wa.me/5511934152666?text=Ol%C3%A1%20Leonardo%2C%20estou%20vendo%20os%20planos%20no%20site%20e%20quero%20uma%20cota%C3%A7%C3%A3o." target="_blank" class="whatsapp-float">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <span>Falar no WhatsApp</span>
+    </a>
+
+    <!-- SCRIPT ESPECÍFICO DOS PLANOS (COLE O OBJETO DB E AS FUNÇÕES AQUI) -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navLinks');
+        mobileMenuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+
+        // COLE AS FUNÇÕES switchCategory, selectPlan, generateFeatureRows e o objeto DB do arquivo index.html original aqui.
+        const db = { /* ... COPIE O DB ... */ };
+        let currentCategory = 'tradicional';
+        let currentPlanKey = 'advance600';
+
+        const productTabs = document.getElementById('productTabs');
+        const planInfoBox = document.getElementById('planInfoBox');
+        const cardsContainer = document.getElementById('cardsContainer');
+        const planTag = document.getElementById('planTag');
+        const planDesc = document.getElementById('planDesc');
+        const planMinLives = document.getElementById('planMinLives');
+        const card1Title = document.getElementById('card1Title');
+        const card1Features = document.getElementById('card1Features');
+        const card1Btn = document.getElementById('card1Btn');
+        const card2Title = document.getElementById('card2Title');
+        const card2Features = document.getElementById('card2Features');
+        const card2Btn = document.getElementById('card2Btn');
+
+        function switchCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase().includes(category === 'tradicional' ? 'tradicional' : 'metais')) btn.classList.add('active');
+            });
+            productTabs.innerHTML = '';
+            const planKeys = Object.keys(db[category]);
+            planKeys.forEach((key, index) => {
+                const plan = db[category][key];
+                const btn = document.createElement('button');
+                btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
+                btn.innerText = plan.name;
+                btn.onclick = () => selectPlan(key, btn);
+                productTabs.appendChild(btn);
+            });
+            selectPlan(planKeys[0]);
+        }
+
+        function selectPlan(planKey, btnElement = null) {
+            currentPlanKey = planKey;
+            const data = db[currentCategory][planKey];
+            if (btnElement) {
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                btnElement.classList.add('active');
+            } else {
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.innerText === data.name) btn.classList.add('active');
+                });
+            }
+
+            planInfoBox.style.opacity = '0'; cardsContainer.style.opacity = '0'; cardsContainer.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                planTag.innerText = data.tag; planDesc.innerText = data.desc; planMinLives.innerText = data.minLives;
+                card1Title.innerText = data.card1.title; card1Features.innerHTML = generateFeatureRows(data.card1.features); card1Btn.onclick = () => redirectToWhatsApp(data.card1.title);
+                card2Title.innerText = data.card2.title; card2Features.innerHTML = generateFeatureRows(data.card2.features); card2Btn.onclick = () => redirectToWhatsApp(data.card2.title);
+                planInfoBox.style.opacity = '1'; cardsContainer.style.opacity = '1'; cardsContainer.style.transform = 'translateY(0)';
+            }, 250);
+        }
+
+        function generateFeatureRows(features) {
+            return features.map(f => `<div class="feature-row"><span class="feature-label">${f.label}</span><span class="feature-value">${f.value}</span></div>`).join('');
+        }
+
+        function redirectToWhatsApp(planTitle) {
+            if (window.fbq) fbq('track', 'Contact', { content_name: planTitle });
+            const message = `Olá, Leonardo! Vim pela sua página e gostaria de saber mais sobre o plano *${planTitle}*.`;
+            window.open(`https://wa.me/5511934152666?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        window.onload = () => { switchCategory('tradicional'); };
+    </script>
+</body>
+</html>
