@@ -7,8 +7,6 @@
     <link rel="icon" type="image/png" href="logo-notredame.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- Meta Pixel -->
-    <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '2022345561781338');fbq('track', 'PageView');</script>
 </head>
 <body>
     <header>
@@ -25,46 +23,93 @@
     </header>
 
     <main>
-        <div class="plans-layout">
-            <div class="plans-left">
-                <div class="category-tabs">
-                    <button class="category-btn active" onclick="switchCategory('tradicional')">Linha Tradicional</button>
-                    <button class="category-btn" onclick="switchCategory('metais')">Linha Metais</button>
+        <div class="plans-page-container">
+            <div class="plans-header-text">
+                <h1>Compare os planos e encontre a opção para o seu momento.</h1>
+                <p>Conheça as principais diferenças entre o Advance, Premium e Infinity, planos pensados para cada momento da sua vida.</p>
+            </div>
+
+            <div class="comparison-grid">
+                <!-- Card 1 -->
+                <div class="comparison-card">
+                    <span class="comp-tag">MELHOR VALOR</span>
+                    <h2 class="comp-title">Advance</h2>
+                    <p class="comp-desc">A porta de entrada para a saúde premium, com cobertura nacional, rede assistencial de qualidade e opções para diferentes necessidades.</p>
+                    <ul class="comp-features">
+                        <li>Acomodação em enfermaria ou apartamento.</li>
+                        <li>A partir de 1 pessoa.</li>
+                        <li>Reembolso disponível em até 7 dias úteis.</li>
+                        <li>Assistência viagem nacional.</li>
+                        <li>Teleconsulta 24h.</li>
+                        <li>Odontologia.</li>
+                    </ul>
+                    <div class="comp-footer">Cobertura nacional para consultas, exames e atendimento hospitalar.</div>
+                    <a href="https://wa.me/5511934152666?text=Ol%C3%A1%20Leonardo!%20Gostaria%20de%20saber%20mais%20sobre%20o%20plano%20Advance." target="_blank" class="btn-comp">Solicitar proposta</a>
                 </div>
-                <div class="product-tabs" id="productTabs"></div>
-                <div class="plan-info-box" id="planInfoBox">
-                    <span class="plan-tag" id="planTag"></span>
-                    <p class="plan-desc" id="planDesc"></p>
-                    <span class="plan-min-lives" id="planMinLives"></span>
+
+                <!-- Card 2 -->
+                <div class="comparison-card">
+                    <span class="comp-tag">CUIDADO AMPLIADO</span>
+                    <h2 class="comp-title">Premium</h2>
+                    <p class="comp-desc">Mais conforto, liberdade de escolha e acesso a uma rede de referência para empresas que buscam uma experiência de cuidado diferenciada.</p>
+                    <ul class="comp-features">
+                        <li>Acomodação apartamento.</li>
+                        <li>A partir de 2 pessoas.</li>
+                        <li>Reembolso disponível em até 5 dias úteis.</li>
+                        <li>Assistência viagem nacional e internacional.</li>
+                        <li>Teleconsulta 24h.</li>
+                        <li>Programa de imunização.</li>
+                        <li>Odontologia.</li>
+                    </ul>
+                    <div class="comp-footer">Cobertura nacional, com mais liberdade de escolha.</div>
+                    <a href="https://wa.me/5511934152666?text=Ol%C3%A1%20Leonardo!%20Gostaria%20de%20saber%20mais%20sobre%20o%20plano%20Premium." target="_blank" class="btn-comp">Solicitar proposta</a>
                 </div>
-                <div class="footnotes">
-                    <p>¹ Reembolso de acordo com plano contratado.</p>
-                    <p>² Cobertura odontológica para contratos de até 99 vidas.</p>
-                    <p>³ Por prestadores indicados pela NotreDame Saúde.</p>
+
+                <!-- Card 3 -->
+                <div class="comparison-card">
+                    <span class="comp-tag dark">EXPERIÊNCIA MÁXIMA</span>
+                    <h2 class="comp-title">Infinity</h2>
+                    <p class="comp-desc">O mais alto nível de personalização e cuidado, com serviços exclusivos e acesso a hospitais e laboratórios de referência.</p>
+                    <ul class="comp-features">
+                        <li>Acomodação apartamento.</li>
+                        <li>A partir de 2 pessoas.</li>
+                        <li>Reembolso disponível em até 3 dias úteis.</li>
+                        <li>Assistência viagem nacional e internacional.</li>
+                        <li>Teleconsulta 24h.</li>
+                        <li>Programa de imunização.</li>
+                        <li>Check-up anual preventivo e cobertura para transplantes.</li>
+                        <li>Concierge.</li>
+                    </ul>
+                    <div class="comp-footer">Cobertura Nacional com hospitais renomados como Einstein, Leforte, Nipo Brasileiro, A+, Lavoisier e outros.</div>
+                    <a href="https://wa.me/5511934152666?text=Ol%C3%A1%20Leonardo!%20Gostaria%20de%20saber%20mais%20sobre%20o%20plano%20Infinity." target="_blank" class="btn-comp">Solicitar proposta</a>
                 </div>
             </div>
-            
-            <div class="plans-right" id="cardsContainer">
-                <!-- Card 1 -->
-                <div class="plan-card card-light" id="card1">
-                    <div class="card-dot" id="dot1"></div>
-                    <h3 id="card1Title"></h3>
-                    <div class="features-table" id="card1Features"></div>
-                    <button class="btn-card" id="card1Btn">Quero saber mais</button>
-                </div>
-                
-                <!-- Card 2 -->
-                <div class="plan-card card-dark" id="card2">
-                    <div class="card-dot" id="dot2"></div>
-                    <h3 id="card2Title"></h3>
-                    <div class="features-table" id="card2Features"></div>
-                    <button class="btn-card" id="card2Btn">Quero saber mais</button>
-                </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <div class="faq-left">
+                <h2>Dúvidas Frequentes</h2>
+                <p>Ainda não sente que somos o melhor para você? Confira as nossas respostas ao lado.</p>
+            </div>
+            <div class="faq-right">
+                <details class="faq-item">
+                    <summary>Como fazer uma cotação de plano de saúde na NotreDame?</summary>
+                    <div class="faq-content">É simples: solicite uma proposta pelo site ou fale com a nossa equipe. Você informa o perfil e recebe uma cotação personalizada, com o plano mais adequado para o seu momento.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Qual a diferença entre os planos Advance, Premium e Infinity?</summary>
+                    <div class="faq-content">As linhas se diferenciam principalmente pela abrangência da assistência em viagem (nacional no Advance; nacional e internacional no Premium e no Infinity), pelo prazo de reembolso, pelo número de sessões de terapias e nutrição, e por coberturas adicionais como check-up e transplantes, mais amplas no Infinity. Todas contam com rede nacional própria e credenciada.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Por que escolher o plano de saúde da NotreDame?</summary>
+                    <div class="faq-content">A NotreDame Saúde une rede própria e credenciada de abrangência nacional, hospitais de referência em São Paulo e no Rio de Janeiro, aconselhamento médico por telefone 24 horas por dia e uma contratação simples, tudo pensado para cuidar de você e da sua família em cada momento.</div>
+                </details>
             </div>
         </div>
     </main>
 
-    <!-- FOOTER COMPLETO -->
+    <!-- COLE O FOOTER COMPLETO AQUI (O MESMO DO INDEX.HTML) -->
     <footer class="site-footer">
         <div class="footer-top">
             <div class="footer-col">
@@ -119,258 +164,6 @@
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navMenu = document.getElementById('navLinks');
         mobileMenuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
-
-        // BASE DE DADOS ATUALIZADA CONFORME O ARQUIVO DE TEXTO
-        const db = {
-            tradicional: {
-                advance600: {
-                    name: "Advance 600", tag: "EQUILÍBRIO E CUSTO-BENEFÍCIO", 
-                    desc: "Proteção completa com abrangência nacional e hospitais de referência.", 
-                    minLives: "A partir de 2 vidas",
-                    dot1: "#d1d5db", // Cor bolinha card 1
-                    dot2: "#ffffff", // Cor bolinha card 2
-                    card1: { title: "Advance 600 (Enfermaria)", features: [
-                        { label: "Acomodação", value: "Enfermaria" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Assistência viagem", value: "USD/€ 30 mil" }, 
-                        { label: "Reembolso", value: "Até 5 dias" }, 
-                        { label: "Odontologia", value: "Opcional/Inclusa" },
-                        { label: "Coleta domiciliar", value: "Conforme rede" }
-                    ]},
-                    card2: { title: "Advance 600 (Apartamento)", features: [
-                        { label: "Acomodação", value: "Apartamento" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Assistência viagem", value: "USD/€ 60 mil" }, 
-                        { label: "Reembolso", value: "Até 3 dias" }, 
-                        { label: "Odontologia", value: "Inclusa" },
-                        { label: "Coleta domiciliar", value: "Inclusa" }
-                    ]}
-                },
-                advance700: {
-                    name: "Advance 700", tag: "EXPERIÊNCIA INTERMEDIÁRIA-ROBUSTA", 
-                    desc: "Abrangência nacional e excelente suporte para famílias e PME.", 
-                    minLives: "A partir de 2 vidas",
-                    dot1: "#d1d5db", dot2: "#ffffff",
-                    card1: { title: "Advance 700 (Enfermaria)", features: [
-                        { label: "Acomodação", value: "Enfermaria" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Assistência viagem", value: "USD/€ 30 mil" }, 
-                        { label: "Reembolso", value: "Até 5 dias" }, 
-                        { label: "Odontologia", value: "Opcional/Inclusa" },
-                        { label: "Coleta domiciliar", value: "Conforme rede" }
-                    ]},
-                    card2: { title: "Advance 700 (Apartamento)", features: [
-                        { label: "Acomodação", value: "Apartamento" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Assistência viagem", value: "USD/€ 60 mil" }, 
-                        { label: "Reembolso", value: "Até 3 dias" }, 
-                        { label: "Odontologia", value: "Inclusa" },
-                        { label: "Coleta domiciliar", value: "Inclusa" }
-                    ]}
-                },
-                premiumCare: {
-                    name: "Premium Care", tag: "EXPERIÊNCIA DE ALTO PADRÃO", 
-                    desc: "Acesso aos hospitais mais renomados.", 
-                    minLives: "A partir de 2 vidas",
-                    dot1: "#d1d5db", dot2: "#ffffff",
-                    card1: { title: "Premium Care (Opção 1)", features: [
-                        { label: "Acomodação", value: "Apartamento" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Assistência viagem", value: "USD/€ 100 mil" }, 
-                        { label: "Reembolso", value: "Até 3 dias" }, 
-                        { label: "Sírio-Libanês", value: "Parcial" }
-                    ]},
-                    card2: { title: "Premium Care (Opção 2 / Max)", features: [
-                        { label: "Acomodação", value: "Apartamento" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Assistência viagem", value: "USD/€ 300 mil" }, 
-                        { label: "Reembolso", value: "Até 3 dias (Prioritário)" }, 
-                        { label: "Sírio-Libanês", value: "Inclusa" },
-                        { label: "Albert Einstein", value: "Parcial" }
-                    ]}
-                },
-                premium900: {
-                    name: "Premium 900.1", tag: "EXCELÊNCIA EM DIAGNÓSTICOS", 
-                    desc: "Para quem exige laboratórios de ponta.", 
-                    minLives: "A partir de 2 vidas",
-                    dot1: "#d1d5db", dot2: "#ffffff",
-                    card1: { title: "Premium 900.1 (Opção 1)", features: [
-                        { label: "Acomodação", value: "Apartamento" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Assistência viagem", value: "USD/€ 100 mil" }, 
-                        { label: "Reembolso", value: "Até 3 dias" }, 
-                        { label: "Sírio-Libanês", value: "Inclusa" }
-                    ]},
-                    card2: { title: "Premium 900.1 (Opção 2 / Max)", features: [
-                        { label: "Acomodação", value: "Apartamento" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Assistência viagem", value: "USD/€ 300 mil" }, 
-                        { label: "Reembolso", value: "Até 3 dias" }, 
-                        { label: "Sírio-Libanês", value: "Inclusa" },
-                        { label: "Albert Einstein", value: "Inclusa" }
-                    ]}
-                },
-                infinity: {
-                    name: "Infinity", tag: "EXPERIÊNCIA MÁXIMA", 
-                    desc: "O plano mais completo da NotreDame.", 
-                    minLives: "A partir de 2 vidas",
-                    dot1: "#d1d5db", dot2: "#ffffff",
-                    card1: { title: "Infinity (Opção 1)", features: [
-                        { label: "Acomodação", value: "Apartamento" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Assistência viagem", value: "USD/€ 300 mil" }, 
-                        { label: "Reembolso", value: "Até 3 dias" }, 
-                        { label: "Einstein", value: "Inclusa" }
-                    ]},
-                    card2: { title: "Infinity (Opção 2 / VIP)", features: [
-                        { label: "Acomodação", value: "Apartamento (VIP)" }, 
-                        { label: "Abrangência", value: "Nacional e Internacional" }, 
-                        { label: "Assistência viagem", value: "USD/€ 500 mil" }, 
-                        { label: "Reembolso", value: "24h" }, 
-                        { label: "Einstein e Sírio-Libanês", value: "Inclusas" }
-                    ]}
-                }
-            },
-            metais: {
-                prata: {
-                    name: "Prata", tag: "CUSTO-BENEFÍCIO", desc: "Rede qualificada.", minLives: "A partir de 2 vidas",
-                    dot1: "#b0b0b0", dot2: "#b0b0b0", // Cores Prata
-                    card1: { title: "Prata", features: [
-                        { label: "Acomodação", value: "Enfermaria" }, 
-                        { label: "Abrangência", value: "Regional/Nacional" }, 
-                        { label: "Rede", value: "Atendimento qualificada" } 
-                    ]},
-                    card2: { title: "Prata Max", features: [
-                        { label: "Acomodação", value: "Apartamento" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Rede", value: "Ampliada e conforto superior" } 
-                    ]}
-                },
-                ouro: {
-                    name: "Ouro", tag: "INTERMEDIÁRIO ROBUSTO", desc: "Rede de referência.", minLives: "A partir de 2 vidas",
-                    dot1: "#ffd700", dot2: "#ffd700", // Cores Ouro
-                    card1: { title: "Ouro", features: [
-                        { label: "Acomodação", value: "Apartamento" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Rede", value: "Hospitalar de referência" } 
-                    ]},
-                    card2: { title: "Ouro Max", features: [
-                        { label: "Acomodação", value: "Apartamento" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Rede", value: "Superior e maior flexibilidade" } 
-                    ]}
-                },
-                diamante: {
-                    name: "Diamante", tag: "TOPO CORPORATIVO", desc: "Máxima flexibilidade.", minLives: "A partir de 2 vidas",
-                    dot1: "#e0f7fa", dot2: "#e0f7fa", // Cores Diamante (Azul claro cristal)
-                    card1: { title: "Diamante", features: [
-                        { label: "Acomodação", value: "Apartamento" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Rede", value: "Excelência e retaguarda avançada" } 
-                    ]},
-                    card2: { title: "Diamante Max", features: [
-                        { label: "Acomodação", value: "Apartamento" }, 
-                        { label: "Abrangência", value: "Nacional" }, 
-                        { label: "Diferencial", value: "Topo da linha corporativa com reembolso global" } 
-                    ]}
-                }
-            }
-        };
-
-        let currentCategory = 'tradicional';
-        const productTabs = document.getElementById('productTabs');
-        const planInfoBox = document.getElementById('planInfoBox');
-        const cardsContainer = document.getElementById('cardsContainer');
-        const planTag = document.getElementById('planTag');
-        const planDesc = document.getElementById('planDesc');
-        const planMinLives = document.getElementById('planMinLives');
-        const card1Title = document.getElementById('card1Title');
-        const card1Features = document.getElementById('card1Features');
-        const card1Btn = document.getElementById('card1Btn');
-        const card2Title = document.getElementById('card2Title');
-        const card2Features = document.getElementById('card2Features');
-        const card2Btn = document.getElementById('card2Btn');
-        const dot1 = document.getElementById('dot1');
-        const dot2 = document.getElementById('dot2');
-
-        function switchCategory(category) {
-            currentCategory = category;
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.innerText.toLowerCase().includes(category === 'tradicional' ? 'tradicional' : 'metais')) btn.classList.add('active');
-            });
-            productTabs.innerHTML = '';
-            const planKeys = Object.keys(db[category]);
-            planKeys.forEach((key, index) => {
-                const plan = db[category][key];
-                const btn = document.createElement('button');
-                btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
-                btn.innerText = plan.name;
-                btn.onclick = () => selectPlan(key, btn);
-                productTabs.appendChild(btn);
-            });
-            selectPlan(planKeys[0]);
-        }
-
-        function selectPlan(planKey, btnElement = null) {
-            const data = db[currentCategory][planKey];
-            
-            if (btnElement) {
-                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-                btnElement.classList.add('active');
-            } else {
-                document.querySelectorAll('.tab-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if(btn.innerText === data.name) btn.classList.add('active');
-                });
-            }
-
-            planInfoBox.style.opacity = '0'; 
-            cardsContainer.style.opacity = '0'; 
-            cardsContainer.style.transform = 'translateY(10px)';
-            
-            setTimeout(() => {
-                planTag.innerText = data.tag; 
-                planDesc.innerText = data.desc; 
-                planMinLives.innerText = data.minLives;
-                
-                // Atualiza cores das bolinhas
-                dot1.style.backgroundColor = data.dot1;
-                dot2.style.backgroundColor = data.dot2;
-                
-                // Renderiza Card 1
-                card1Title.innerText = data.card1.title; 
-                card1Features.innerHTML = data.card1.features.map(f => `
-                    <div class="feature-row">
-                        <span class="feature-label">${f.label}</span>
-                        <span class="feature-value">${f.value}</span>
-                    </div>
-                `).join('');
-                card1Btn.onclick = () => redirectToWhatsApp(data.card1.title);
-
-                // Renderiza Card 2
-                card2Title.innerText = data.card2.title; 
-                card2Features.innerHTML = data.card2.features.map(f => `
-                    <div class="feature-row">
-                        <span class="feature-label">${f.label}</span>
-                        <span class="feature-value">${f.value}</span>
-                    </div>
-                `).join('');
-                card2Btn.onclick = () => redirectToWhatsApp(data.card2.title);
-
-                planInfoBox.style.opacity = '1'; 
-                cardsContainer.style.opacity = '1'; 
-                cardsContainer.style.transform = 'translateY(0)';
-            }, 250);
-        }
-
-        function redirectToWhatsApp(planTitle) {
-            if (window.fbq) fbq('track', 'Contact', { content_name: planTitle });
-            const message = `Olá, Leonardo! Vim pela sua página e gostaria de saber mais sobre o plano *${planTitle}*.`;
-            window.open(`https://wa.me/5511934152666?text=${encodeURIComponent(message)}`, '_blank');
-        }
-
-        window.onload = () => { switchCategory('tradicional'); };
     </script>
 </body>
 </html>
