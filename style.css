@@ -15,7 +15,12 @@
 }
 
 /* ========== RESET GLOBAL E ESTRUTURA DO RODAPÉ ========== */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-family); }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: var(--font-family); 
+}
 
 body { 
     background-color: var(--bg-body); 
@@ -64,6 +69,8 @@ header {
 .hero-logo-top { position: absolute; top: 30px; right: 30px; width: 48px; height: 48px; z-index: 10; }
 .hero-logo-top svg { width: 100%; height: 100%; fill: var(--nd-navy); }
 .hero-center-content { position: absolute; top: 0; bottom: 0; left: 35%; width: 35%; display: flex; flex-direction: column; justify-content: center; padding-bottom: 60px; z-index: 5; }
+
+/* O Ticket Promocional */
 .ticket-wrapper { position: relative; filter: drop-shadow(0 15px 25px rgba(0,20,83,0.35)); transform: rotate(-2deg); margin-bottom: 35px; width: 100%; margin-left: -5%; }
 .ticket-top { background-color: var(--nd-navy); color: var(--hero-bg); padding: 30px 35px; border-radius: 18px 18px 0 0; -webkit-mask: radial-gradient(circle at 0 100%, transparent 12px, #000 13px) left/51% 100% no-repeat, radial-gradient(circle at 100% 100%, transparent 12px, #000 13px) right/51% 100% no-repeat; mask: radial-gradient(circle at 0 100%, transparent 12px, #000 13px) left/51% 100% no-repeat, radial-gradient(circle at 100% 100%, transparent 12px, #000 13px) right/51% 100% no-repeat; }
 .ticket-price { display: flex; align-items: flex-end; gap: 15px; line-height: 0.78; }
@@ -72,6 +79,8 @@ header {
 .ticket-top p { margin-top: 15px; font-size: 1.4rem; font-weight: 500; }
 .ticket-bottom { background-color: var(--nd-navy); color: var(--hero-bg); padding: 20px 35px; border-radius: 0 0 18px 18px; -webkit-mask: radial-gradient(circle at 0 0, transparent 12px, #000 13px) left/51% 100% no-repeat, radial-gradient(circle at 100% 0, transparent 12px, #000 13px) right/51% 100% no-repeat; mask: radial-gradient(circle at 0 0, transparent 12px, #000 13px) left/51% 100% no-repeat, radial-gradient(circle at 100% 0, transparent 12px, #000 13px) right/51% 100% no-repeat; background-image: linear-gradient(90deg, transparent 20px, rgba(244,243,236,.35) 20px, rgba(244,243,236,.35) calc(100% - 20px), transparent calc(100% - 20px)); background-size: 100% 1px; background-position: top; background-repeat: no-repeat; font-size: 0.85rem; }
 .ticket-bottom .muted { color: #C9D3E3; } .ticket-bottom .bold { font-weight: 700; color: #fff; }
+
+/* Textos do Hero */
 .hero-title { font-size: 2.2rem; font-weight: 300; line-height: 1.12; letter-spacing: -0.02em; color: var(--nd-navy); margin-bottom: 20px; margin-top: 10px; }
 .hero-bullet { display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; font-weight: 500; color: #2D4A8A; margin-bottom: 30px; }
 .hero-bullet .bullet { width: 6px; height: 6px; background-color: #c5b38b; border-radius: 50%; margin-top: 8px; flex-shrink: 0; }
@@ -79,6 +88,8 @@ header {
 .btn-whatsapp-hero { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background-color: var(--btn-green) !important; color: #fff !important; padding: 14px 28px; border-radius: 30px; font-size: 1rem; font-weight: 600; transition: 0.2s; width: fit-content; }
 .btn-whatsapp-hero:hover { background-color: #1ebe5d !important; }
 .btn-whatsapp-hero svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* Formulário do Hero (Home) */
 .hero-form-wrapper { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); width: 25%; z-index: 10; }
 .hero-form-wrapper h2 { font-size: 1.5rem; font-weight: 500; margin-bottom: 20px; color: var(--nd-navy); }
 .hero-form-group { margin-bottom: 15px; }
@@ -92,13 +103,74 @@ header {
 .hero-disclaimer-form a { color: var(--nd-navy); text-decoration: underline; }
 .hero-disclaimer-bottom { position: absolute; bottom: 20px; left: 35%; width: 33%; font-size: 0.7rem; color: #4F5B7A; z-index: 5; }
 
-/* ========== PÁGINA PLANOS (LAYOUT GERAL) ========== */
+/* ========== PÁGINA PLANOS (NOVO HERO PREMIUM) ========== */
+.plans-hero-premium {
+    position: relative;
+    width: 100%;
+    min-height: 750px;
+    background-image: url('https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?q=80&w=2070&auto=format&fit=crop'); /* Substitua pela imagem exata se tiver */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 5% 60px;
+    color: #fff;
+    margin-bottom: 60px;
+}
+.plans-hero-premium::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0, 11, 69, 0.95) 0%, rgba(0, 11, 69, 0.8) 45%, rgba(0, 11, 69, 0.3) 100%);
+    z-index: 1;
+}
+.premium-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+}
+.premium-text-box { max-width: 600px; }
+.premium-tagline {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: #c5b38b;
+}
+.premium-tagline::before { content: ''; width: 40px; height: 1px; background: #c5b38b; }
+.premium-text-box h1 { font-size: 3.8rem; font-weight: 300; line-height: 1.1; margin-bottom: 20px; }
+.premium-text-box h1 span { font-weight: 700; background: linear-gradient(90deg, #e2d1b3, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
+.premium-text-box p { font-size: 1.1rem; margin-bottom: 40px; color: #e2e8f0; }
+.premium-details { font-size: 0.75rem; text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; color: #a0aec0; }
+.premium-details strong { display: block; font-size: 1rem; text-transform: none; margin-top: 8px; font-weight: 600; color: #fff; }
+
+.premium-form-container { width: 100%; max-width: 750px; background: rgba(0, 11, 69, 0.4); padding: 25px; border-radius: 12px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1); }
+.premium-form-container h3 { font-size: 1.1rem; margin-bottom: 15px; font-weight: 500; }
+.premium-form { display: flex; gap: 10px; width: 100%; }
+.premium-form input { flex: 1; min-width: 0; padding: 16px 20px; border-radius: 8px; border: none; outline: none; font-family: var(--font-family); font-size: 0.9rem; color: #333; }
+.premium-form button { background-color: #a4c6e6; color: var(--texto-azul); padding: 15px 30px; border-radius: 8px; border: none; font-weight: 700; cursor: pointer; font-family: var(--font-family); font-size: 0.95rem; transition: 0.3s; white-space: nowrap; }
+.premium-form button:hover { background-color: #8eb5db; }
+.premium-form button:disabled { background-color: #555; cursor: not-allowed; color: #ccc; }
+.premium-form-disclaimer { font-size: 0.65rem; color: #a0aec0; margin-top: 15px; line-height: 1.4; }
+.premium-form-disclaimer a { text-decoration: underline; color: #fff; }
+.premium-disclaimer-right { position: absolute; bottom: 20px; right: 5%; font-size: 0.65rem; color: #a0aec0; text-align: right; z-index: 2; max-width: 300px; line-height: 1.4; }
+
+/* ========== PÁGINA PLANOS (COMPARATIVO) ========== */
 .plans-page-container { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
 .plans-header-text { text-align: center; margin-bottom: 50px; }
 .plans-header-text h1 { font-size: 2.5rem; color: var(--texto-azul); margin-bottom: 15px; }
 .plans-header-text p { font-size: 1.1rem; color: var(--texto-cinza); max-width: 700px; margin: 0 auto; }
 
-/* Cards de Comparação (Advance, Premium, Infinity) */
 .comparison-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: stretch; }
 .comparison-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 30px; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: 0.3s; }
 .comparison-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.08); transform: translateY(-5px); }
@@ -124,7 +196,6 @@ header {
 .metais-left { width: 30%; }
 .metais-right { width: 70%; display: flex; gap: 25px; }
 
-/* Abas Metais */
 .metais-tabs { background-color: #e8e6db; border-radius: 30px; padding: 6px; display: flex; gap: 5px; margin-bottom: 30px; width: fit-content; }
 .metais-tab-btn { background: transparent; border: none; padding: 10px 24px; border-radius: 25px; font-size: 0.9rem; font-weight: 600; color: #555; cursor: pointer; transition: 0.3s; }
 .metais-tab-btn.active { background-color: var(--texto-azul); color: #fff; }
@@ -133,7 +204,6 @@ header {
 .metais-tag { font-size: 0.75rem; font-weight: 700; color: #555; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: block; }
 .metais-desc { font-size: 0.95rem; color: var(--texto-cinza); line-height: 1.6; }
 
-/* Cards Metais */
 .metais-card { flex: 1; border-radius: 16px; padding: 35px 30px; display: flex; flex-direction: column; }
 .metais-card-white { background-color: #fff; border: 1px solid #e6e6e6; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
 .metais-card-blue { background-color: var(--texto-azul); color: #fff; }
@@ -152,7 +222,6 @@ header {
 
 .btn-metais { display: block; width: 100%; background-color: #a4c6e6; color: var(--texto-azul); text-align: center; padding: 15px; border-radius: 25px; font-size: 0.9rem; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
 .btn-metais:hover { background-color: #8eb5db; }
-
 .metais-footnotes { font-size: 0.65rem; color: #888; line-height: 1.6; border-top: 1px solid #ddd; padding-top: 20px; margin-top: 40px; width: 100%; }
 
 /* ========== FAQ SECTION ========== */
@@ -200,7 +269,7 @@ header {
 .logos-grid:hover { opacity: 1; filter: grayscale(0%); }
 .logos-grid img { max-width: 100px; height: auto; }
 
-/* ========== BLOG ========== */
+/* ========== BLOG E ARTIGOS ========== */
 .blog-hero { background-color: #ffffff; padding: 80px 20px; text-align: center; border-bottom: 1px solid #e0e0e0; width: 100%; }
 .blog-hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; color: var(--texto-azul) !important; }
 .blog-hero p { font-size: 1.1rem; color: #555555 !important; max-width: 700px; margin: 0 auto; }
@@ -272,6 +341,7 @@ header {
 
 /* ========== RESPONSIVIDADE ========== */
 @media (max-width: 1024px) {
+    /* Hero Home */
     .hero-section { flex-direction: column; min-height: auto; }
     .hero-image-wrapper { width: 100%; height: 300px; }
     .hero-center-content { position: relative; left: 0; width: 100%; padding: 20px; padding-bottom: 0; }
@@ -283,36 +353,54 @@ header {
     .hero-disclaimer-bottom { position: relative; left: 0; bottom: 0; width: 100%; text-align: center; padding: 20px; }
     .btn-whatsapp-hero { margin: 0 auto; display: flex; }
     
+    /* Novo Hero Premium (Planos) */
+    .plans-hero-premium { padding-top: 120px; }
+    .premium-hero-content { flex-direction: column; align-items: flex-start; gap: 30px; }
+    .premium-form-container { max-width: 100%; padding: 20px; }
+    .premium-form { flex-direction: column; }
+    .premium-text-box h1 { font-size: 2.5rem; }
+    .premium-disclaimer-right { position: relative; text-align: left; right: 0; margin-top: 20px; max-width: 100%; }
+
+    /* Seções de Planos */
     .comparison-grid { grid-template-columns: 1fr; }
     .metais-layout { flex-direction: column; gap: 40px; }
     .metais-left, .metais-right { width: 100%; }
     .metais-right { flex-direction: column; }
     
+    /* FAQ */
     .faq-section { flex-direction: column; }
     .faq-left, .faq-right { width: 100%; }
     
+    /* Diferenciais */
     .diff-row, .diff-row.reverse { flex-direction: column; }
     
+    /* Benefícios */
     .beneficios-grid { grid-template-columns: repeat(2, 1fr); }
     
+    /* Footer */
     .footer-top { grid-template-columns: 1fr 1fr; }
     .footer-bottom { flex-direction: column; text-align: center; }
 }
 
 @media (max-width: 768px) {
+    /* Header */
     .nav-links { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; width: 100%; background-color: var(--texto-azul); padding: 20px 0; text-align: center; gap: 15px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
     .nav-links.active { display: flex; }
     .mobile-menu-btn { display: block; }
     
+    /* Utilitários */
     .beneficios-grid { grid-template-columns: 1fr; }
     .ticket-price .number { font-size: 5rem; }
     .ticket-price .off { font-size: 2rem; }
     
+    /* Footer */
     .footer-top { grid-template-columns: 1fr; text-align: center; }
     .consultor-card .contato-item { justify-content: center; }
     
+    /* Flutuantes */
     .whatsapp-float { bottom: 20px; right: 20px; padding: 10px; border-radius: 50%; }
     .whatsapp-float span { display: none; }
     
+    /* Blog */
     .article-page { padding: 20px; margin: 20px; }
 }
