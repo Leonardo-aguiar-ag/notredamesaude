@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://notredamesaude.vercel.app/sitemap.xml
