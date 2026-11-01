@@ -21,6 +21,7 @@
 
 /* ========== RESET GLOBAL E ESTRUTURA DO RODAPÉ ========== */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-family); }
+
 body { 
     background-color: var(--bg-body); 
     color: var(--texto-azul); 
@@ -31,7 +32,11 @@ body {
     flex-direction: column;
     min-height: 100vh; /* Força o body a ter a altura da tela */
 }
-main, section { flex: 1; } /* Faz o conteúdo empurrar o rodapé para baixo */
+
+main { 
+    flex: 1; /* Faz o conteúdo empurrar o rodapé para baixo */
+}
+
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
@@ -54,7 +59,7 @@ header {
 .btn-header:hover { background-color: var(--btn-blue-hover) !important; }
 .mobile-menu-btn { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
 
-/* ========== BOTÕES (CORREÇÃO DE CORES) ========== */
+/* ========== BOTÕES (CORREÇÃO DE CORES E CONTRASTE) ========== */
 .btn-card, .btn-read-more, .btn-cta-article {
     display: inline-block;
     text-align: center;
@@ -63,7 +68,7 @@ header {
     font-weight: 700;
 }
 
-/* Botão de Planos (Fundo claro, texto escuro) */
+/* Botão de Planos (Fundo claro, texto escuro - NÃO FICA INVISÍVEL) */
 .btn-card { 
     width: 100%;
     background-color: #a4c6e6 !important; 
@@ -82,7 +87,7 @@ header {
     padding: 12px 24px; 
     border-radius: 8px; 
     font-size: 0.9rem; 
-    margin-top: auto; /* Empurra o botão para o fundo do card */
+    margin-top: auto; 
 }
 .btn-read-more:hover { background-color: #001a3d !important; }
 
@@ -91,6 +96,7 @@ header {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
     background-color: var(--btn-green) !important; color: #fff !important; 
     padding: 14px 28px; border-radius: 30px; font-size: 1rem; font-weight: 600; 
+    transition: 0.2s; width: fit-content;
 }
 .btn-whatsapp-hero:hover { background-color: #1ebe5d !important; }
 .btn-whatsapp-hero svg { width: 18px; height: 18px; fill: currentColor; }
@@ -155,9 +161,7 @@ header {
 .plan-card { flex: 1; border-radius: 16px; padding: 35px 30px; display: flex; flex-direction: column; }
 .card-light { background-color: var(--card-bg-white); border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
 .card-dark { background-color: var(--card-bg-blue); color: #ffffff !important; }
-.card-dot { width: 20px; height: 20px; border-radius: 50%; margin-bottom: 25px; }
-.card-light .card-dot { background-color: #d1d5db; }
-.card-dark .card-dot { background-color: #ffffff; }
+.card-dot { width: 20px; height: 20px; border-radius: 50%; margin-bottom: 25px; border: 1px solid rgba(0,0,0,0.1); /* Borda para não sumir no fundo branco */ }
 .plan-card h3 { font-size: 1.8rem; font-weight: 500; margin-bottom: 30px; color: var(--texto-azul) !important; }
 .card-dark h3 { color: #ffffff !important; }
 .features-table { flex-grow: 1; margin-bottom: 30px; }
