@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planos de Saúde | NotreDame Saúde</title>
     <link rel="icon" type="image/png" href="logo-notredame.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '2022345561781338');fbq('track', 'PageView');</script>
@@ -56,8 +58,9 @@
         </div>
     </section>
 
+    <!-- FOOTER COMPLETO (Cole o mesmo do index.html) -->
     <footer class="site-footer">
-        <!-- (Cole aqui o footer completo) -->
+         <!-- COPIE O FOOTER DO INDEX.HTML E COLE AQUI -->
     </footer>
 
     <a href="https://wa.me/5511934152666?text=Ol%C3%A1%20Leonardo%2C%20estou%20vendo%20os%20planos%20no%20site%20e%20quero%20uma%20cota%C3%A7%C3%A3o." target="_blank" class="whatsapp-float">
@@ -70,18 +73,96 @@
         const navMenu = document.getElementById('navLinks');
         mobileMenuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
 
-        const db = { /* COLE O OBJETO DB COMPLETO AQUI */ };
-        
-        // COLE AS FUNÇÕES switchCategory, selectPlan, generateFeatureRows e redirectToWhatsApp AQUI
-        // (Você pode copiar exatamente como estava no index.html antigo)
-        
-        // Exemplo simplificado das funções:
+        // AQUI ESTÁ O SEGREDO PARA OS CARDS APARECEREM
+        const db = {
+            tradicional: {
+                advance600: {
+                    name: "Advance 600", tag: "EQUILÍBRIO E CUSTO-BENEFÍCIO", desc: "A escolha perfeita para quem busca proteção completa.", minLives: "A partir de 2 vidas",
+                    card1: { title: "Advance 600 (Enfermaria)", features: [ { label: "Acomodação", value: "Enfermaria" }, { label: "Abrangência", value: "Nacional" }, { label: "Reembolso", value: "Até 5 dias" } ]},
+                    card2: { title: "Advance 600 (Apartamento)", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" }, { label: "Reembolso", value: "Até 3 dias" } ]}
+                },
+                advance700: {
+                    name: "Advance 700", tag: "EXPERIÊNCIA INTERMEDIÁRIA-ROBUSTA", desc: "Plano ideal para abrangência nacional.", minLives: "A partir de 2 vidas",
+                    card1: { title: "Advance 700 (Enfermaria)", features: [ { label: "Acomodação", value: "Enfermaria" }, { label: "Abrangência", value: "Nacional" } ]},
+                    card2: { title: "Advance 700 (Apartamento)", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" } ]}
+                },
+                premiumCare: {
+                    name: "Premium Care", tag: "EXPERIÊNCIA DE ALTO PADRÃO", desc: "Acesso aos hospitais mais renomados.", minLives: "A partir de 2 vidas",
+                    card1: { title: "Premium Care (Opção 1)", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Sírio-Libanês", value: "Parcial" } ]},
+                    card2: { title: "Premium Care (Opção 2)", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Sírio-Libanês", value: "Incluso" } ]}
+                },
+                premium900: {
+                    name: "Premium 900.1", tag: "EXCELÊNCIA EM DIAGNÓSTICOS", desc: "Para quem exige laboratórios de ponta.", minLives: "A partir de 2 vidas",
+                    card1: { title: "Premium 900.1 (Opção 1)", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Sírio-Libanês", value: "Inclusa" } ]},
+                    card2: { title: "Premium 900.1 (Opção 2)", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Einstein", value: "Inclusa" } ]}
+                },
+                infinity: {
+                    name: "Infinity", tag: "EXPERIÊNCIA MÁXIMA", desc: "O plano mais completo da NotreDame.", minLives: "A partir de 2 vidas",
+                    card1: { title: "Infinity (Opção 1)", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Einstein", value: "Inclusa" } ]},
+                    card2: { title: "Infinity VIP", features: [ { label: "Acomodação", value: "VIP" }, { label: "Global", value: "Incluso" } ]}
+                }
+            },
+            metais: {
+                prata: { name: "Prata", tag: "CUSTO-BENEFÍCIO", desc: "Rede qualificada.", minLives: "A partir de 2 vidas", card1: { title: "Prata", features: [ { label: "Acomodação", value: "Enfermaria" } ]}, card2: { title: "Prata Max", features: [ { label: "Acomodação", value: "Apartamento" } ]} },
+                ouro: { name: "Ouro", tag: "INTERMEDIÁRIO ROBUSTO", desc: "Rede de referência.", minLives: "A partir de 2 vidas", card1: { title: "Ouro", features: [ { label: "Acomodação", value: "Apartamento" } ]}, card2: { title: "Ouro Max", features: [ { label: "Acomodação", value: "Apartamento" } ]} },
+                diamante: { name: "Diamante", tag: "TOPO CORPORATIVO", desc: "Máxima flexibilidade.", minLives: "A partir de 2 vidas", card1: { title: "Diamante", features: [ { label: "Acomodação", value: "Apartamento" } ]}, card2: { title: "Diamante Max", features: [ { label: "Acomodação", value: "Apartamento" } ]} }
+            }
+        };
+
         let currentCategory = 'tradicional';
-        function switchCategory(category) { currentCategory = category; /* ... */ }
-        function selectPlan(key, btn) { /* ... */ }
-        function generateFeatureRows(f) { return ''; }
-        function redirectToWhatsApp(title) { window.open('https://wa.me/5511934152666', '_blank'); }
-        
+        const productTabs = document.getElementById('productTabs');
+        const planInfoBox = document.getElementById('planInfoBox');
+        const cardsContainer = document.getElementById('cardsContainer');
+        const planTag = document.getElementById('planTag');
+        const planDesc = document.getElementById('planDesc');
+        const planMinLives = document.getElementById('planMinLives');
+        const card1Title = document.getElementById('card1Title');
+        const card1Features = document.getElementById('card1Features');
+        const card1Btn = document.getElementById('card1Btn');
+        const card2Title = document.getElementById('card2Title');
+        const card2Features = document.getElementById('card2Features');
+        const card2Btn = document.getElementById('card2Btn');
+
+        function switchCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase().includes(category === 'tradicional' ? 'tradicional' : 'metais')) btn.classList.add('active');
+            });
+            productTabs.innerHTML = '';
+            const planKeys = Object.keys(db[category]);
+            planKeys.forEach((key, index) => {
+                const plan = db[category][key];
+                const btn = document.createElement('button');
+                btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
+                btn.innerText = plan.name;
+                btn.onclick = () => selectPlan(key, btn);
+                productTabs.appendChild(btn);
+            });
+            selectPlan(planKeys[0]);
+        }
+
+        function selectPlan(planKey, btnElement = null) {
+            const data = db[currentCategory][planKey];
+            if (btnElement) {
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                btnElement.classList.add('active');
+            } else {
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.innerText === data.name) btn.classList.add('active');
+                });
+            }
+
+            planInfoBox.style.opacity = '0'; cardsContainer.style.opacity = '0'; cardsContainer.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                planTag.innerText = data.tag; planDesc.innerText = data.desc; planMinLives.innerText = data.minLives;
+                card1Title.innerText = data.card1.title; card1Features.innerHTML = data.card1.features.map(f => `<div class="feature-row"><span class="feature-label">${f.label}</span><span class="feature-value">${f.value}</span></div>`).join('');
+                card2Title.innerText = data.card2.title; card2Features.innerHTML = data.card2.features.map(f => `<div class="feature-row"><span class="feature-label">${f.label}</span><span class="feature-value">${f.value}</span></div>`).join('');
+                planInfoBox.style.opacity = '1'; cardsContainer.style.opacity = '1'; cardsContainer.style.transform = 'translateY(0)';
+            }, 250);
+        }
+
         window.onload = () => { switchCategory('tradicional'); };
     </script>
 </body>
