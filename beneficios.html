@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benefícios | NotreDame Saúde</title>
+    <link rel="icon" type="image/png" href="logo-notredame.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '2022345561781338');fbq('track', 'PageView');</script>
+
+    <style>
+        /* === COLE TODO O CSS DO INDEX.HTML AQUI === */
+        /* (Adicione o CSS referente ao .beneficios-container, .beneficios-grid, etc) */
+        .beneficios-container { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
+        .beneficios-header { margin-bottom: 50px; }
+        .beneficios-header .subtitle { font-size: 0.75rem; font-weight: 600; color: var(--texto-cinza); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; }
+        .beneficios-header h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 15px; color: var(--texto-azul); }
+        .beneficios-header p { font-size: 1rem; color: var(--texto-cinza); max-width: 600px; }
+        .beneficios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .beneficio-card { background-color: var(--card-bg-white); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.3s; }
+        .beneficio-card:hover { transform: translateY(-5px); }
+        .beneficio-card img { width: 100%; height: 220px; object-fit: cover; }
+        .beneficio-content { padding: 30px; flex-grow: 1; }
+        .beneficio-tag { font-size: 0.65rem; font-weight: 700; color: var(--texto-cinza-claro); text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .beneficio-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: var(--texto-azul); }
+        .beneficio-card p { font-size: 0.85rem; color: var(--texto-cinza); }
+        .beneficio-card.dark { background-color: var(--texto-azul); }
+        .beneficio-card.dark .beneficio-tag { color: #a0aec0; }
+        .beneficio-card.dark h3 { color: #ffffff; }
+        .beneficio-card.dark p { color: #e2e8f0; }
+
+        @media (max-width: 1024px) { .beneficios-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .beneficios-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo"><img src="logo-notredame.png" alt="NotreDame"></a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="planos.html">Planos</a>
+            <a href="diferenciais.html">Diferenciais</a>
+            <a href="beneficios.html" class="active">Benefícios</a>
+            <a href="blog.html">Blog</a>
+            <a href="index.html#home" class="btn-header">Quero mais informações</a>
+        </nav>
+    </header>
+
+    <section id="beneficios">
+        <div class="beneficios-container">
+            <div class="beneficios-header">
+                <div class="subtitle">BENEFÍCIOS</div>
+                <h2>Benefícios que fazem a<br>diferença no seu dia a dia</h2>
+                <p>Para quem toca o próprio negócio, tempo é cuidado. Cada benefício foi pensado para caber na sua rotina.</p>
+            </div>
+            <div class="beneficios-grid">
+                <div class="beneficio-card dark">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop" alt="Cartão">
+                    <div class="beneficio-content"><span class="beneficio-tag">REEMBOLSO ÁGIL</span><h3>Do pedido ao pagamento</h3><p>Quando você prefere um médico fora da rede, o reembolso é feito pelo aplicativo.</p></div>
+                </div>
+                <div class="beneficio-card">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" alt="Corrida">
+                    <div class="beneficio-content"><span class="beneficio-tag">PREVENTIVA</span><h3>Cuidado que se antecipa</h3><p>Programas de prevenção e check-up para acompanhar sua saúde antes dos sintomas.</p></div>
+                </div>
+                <div class="beneficio-card">
+                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=2070&auto=format&fit=crop" alt="Bebê">
+                    <div class="beneficio-content"><span class="beneficio-tag">COLETA DOMICILIAR</span><h3>O exame vai até você</h3><p>A coleta domiciliar leva o exame até você no horário que combina com sua rotina.</p></div>
+                </div>
+                <div class="beneficio-card">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2070&auto=format&fit=crop" alt="Yoga">
+                    <div class="beneficio-content"><span class="beneficio-tag">BEM-ESTAR</span><h3>Saúde é mais do que hospital</h3><p>Clube de vantagens com benefícios exclusivos e descontos em serviços de bem-estar.</p></div>
+                </div>
+                <div class="beneficio-card">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop" alt="Teleconsulta">
+                    <div class="beneficio-content"><span class="beneficio-tag">TELECONSULTA</span><h3>Orientação onde estiver</h3><p>Fale com um médico pelo celular, sem sair de onde você está, quando precisar.</p></div>
+                </div>
+                <div class="beneficio-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="App">
+                    <div class="beneficio-content"><span class="beneficio-tag">APLICATIVO</span><h3>Tudo em um só lugar</h3><p>Carteirinha, agendamentos, exames e reembolso direto no seu celular.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (Copie do index.html) -->
+
+    <a href="https://wa.me/5511934152666?text=Ol%C3%A1%20Leonardo%2C%20quero%20saber%20mais%20sobre%20os%20benef%C3%ADcios%20do%20plano." target="_blank" class="whatsapp-float">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <span>Falar no WhatsApp</span>
+    </a>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navLinks');
+        mobileMenuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+    </script>
+</body>
+</html>
