@@ -7,6 +7,9 @@
     <link rel="icon" type="image/png" href="logo-notredame.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Meta Pixel -->
+    <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '2022345561781338');fbq('track', 'PageView');</script>
 </head>
 <body>
     <header>
@@ -23,6 +26,7 @@
     </header>
 
     <main>
+        <!-- SEÇÃO 1: COMPARATIVO ADVANCE / PREMIUM / INFINITY -->
         <div class="plans-page-container">
             <div class="plans-header-text">
                 <h1>Compare os planos e encontre a opção para o seu momento.</h1>
@@ -30,7 +34,7 @@
             </div>
 
             <div class="comparison-grid">
-                <!-- Card 1 -->
+                <!-- Card Advance -->
                 <div class="comparison-card">
                     <span class="comp-tag">MELHOR VALOR</span>
                     <h2 class="comp-title">Advance</h2>
@@ -47,7 +51,7 @@
                     <a href="https://wa.me/5511934152666?text=Ol%C3%A1%20Leonardo!%20Gostaria%20de%20saber%20mais%20sobre%20o%20plano%20Advance." target="_blank" class="btn-comp">Solicitar proposta</a>
                 </div>
 
-                <!-- Card 2 -->
+                <!-- Card Premium -->
                 <div class="comparison-card">
                     <span class="comp-tag">CUIDADO AMPLIADO</span>
                     <h2 class="comp-title">Premium</h2>
@@ -65,7 +69,7 @@
                     <a href="https://wa.me/5511934152666?text=Ol%C3%A1%20Leonardo!%20Gostaria%20de%20saber%20mais%20sobre%20o%20plano%20Premium." target="_blank" class="btn-comp">Solicitar proposta</a>
                 </div>
 
-                <!-- Card 3 -->
+                <!-- Card Infinity -->
                 <div class="comparison-card">
                     <span class="comp-tag dark">EXPERIÊNCIA MÁXIMA</span>
                     <h2 class="comp-title">Infinity</h2>
@@ -86,7 +90,54 @@
             </div>
         </div>
 
-        <!-- FAQ Section -->
+        <!-- SEÇÃO 2: LINHA METAIS (NOVA) -->
+        <section class="metais-section">
+            <div class="metais-header">
+                <span class="subtitle">LINHA METAIS</span>
+                <h2>Encontre o plano feito para o seu momento</h2>
+                <p>Do profissional que contrata só para si à empresa com até 99 pessoas: um plano para cada fase do seu negócio.</p>
+            </div>
+
+            <div class="metais-layout">
+                <div class="metais-left">
+                    <div class="metais-tabs">
+                        <button class="metais-tab-btn active" onclick="switchMetal('prata')">Prata</button>
+                        <button class="metais-tab-btn" onclick="switchMetal('ouro')">Ouro</button>
+                        <button class="metais-tab-btn" onclick="switchMetal('diamante')">Diamante</button>
+                    </div>
+                    <div class="metais-info-box" id="metaisInfoBox">
+                        <span class="metais-tag" id="metaisTag">VALOR INTELIGENTE</span>
+                        <p class="metais-desc" id="metaisDesc">Cuidado premium com plano odontológico e acompanhamento de ponta a ponta. A porta de entrada para a experiência NotreDame.</p>
+                    </div>
+                </div>
+
+                <div class="metais-right" id="metaisCardsContainer">
+                    <!-- Card 1 -->
+                    <div class="metais-card metais-card-white">
+                        <div class="metais-card-dot" id="metaisDot1" style="background: #d1d5db;"></div>
+                        <h3 id="metaisTitle1">Prata</h3>
+                        <div class="metais-features" id="metaisFeatures1"></div>
+                        <button class="btn-metais" id="metaisBtn1">Quero saber mais</button>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="metais-card metais-card-blue">
+                        <div class="metais-card-dot" id="metaisDot2" style="background: #ffffff;"></div>
+                        <h3 id="metaisTitle2">Prata Max</h3>
+                        <div class="metais-features" id="metaisFeatures2"></div>
+                        <button class="btn-metais" id="metaisBtn2">Quero saber mais</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metais-footnotes">
+                <p>¹ Reembolso de acordo com plano contratado.</p>
+                <p>² Cobertura odontológica para contratos de até 99 vidas.</p>
+                <p>³ Por prestadores indicados pela NotreDame Saúde, em São Paulo e Rio de Janeiro. Vacinas conforme o Calendário do Ministério da Saúde.</p>
+                <p>Consulte regras, condições contratuais e abrangência aplicável.</p>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 3: FAQ -->
         <div class="faq-section">
             <div class="faq-left">
                 <h2>Dúvidas Frequentes</h2>
@@ -109,7 +160,7 @@
         </div>
     </main>
 
-    <!-- COLE O FOOTER COMPLETO AQUI (O MESMO DO INDEX.HTML) -->
+    <!-- FOOTER COMPLETO -->
     <footer class="site-footer">
         <div class="footer-top">
             <div class="footer-col">
@@ -161,9 +212,191 @@
     </a>
 
     <script>
+        // Script do Menu Mobile
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navMenu = document.getElementById('navLinks');
         mobileMenuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+
+        // --- LÓGICA DA LINHA METAIS ---
+        const metaisDb = {
+            prata: {
+                tag: "VALOR INTELIGENTE",
+                desc: "Cuidado premium com plano odontológico e acompanhamento de ponta a ponta. A porta de entrada para a experiência NotreDame.",
+                dot1: "#d1d5db", // Cor Prata
+                dot2: "#ffffff", // Cor Branca
+                card1: {
+                    title: "Prata",
+                    features: [
+                        { label: "Acomodação", value: "Enfermaria ou apartamento" },
+                        { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional" },
+                        { label: "Reembolso de consultas e exames", value: "Até 7 dias" },
+                        { label: "Reembolso no exterior¹", value: "Incluso" },
+                        { label: "Odontologia²", value: "Inclusa" },
+                        { label: "Coleta e vacina domiciliar³", value: "—" },
+                        { label: "Retaguarda Sírio-Libanês", value: "—" },
+                        { label: "Retaguarda Albert Einstein", value: "—" }
+                    ]
+                },
+                card2: {
+                    title: "Prata Max",
+                    features: [
+                        { label: "Acomodação", value: "Enfermaria ou apartamento" },
+                        { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional" },
+                        { label: "Reembolso de consultas e exames", value: "Até 7 dias" },
+                        { label: "Reembolso no exterior¹", value: "Incluso" },
+                        { label: "Odontologia²", value: "Inclusa" },
+                        { label: "Coleta e vacina domiciliar³", value: "—" },
+                        { label: "Retaguarda Sírio-Libanês", value: "—" },
+                        { label: "Retaguarda Albert Einstein", value: "—" }
+                    ]
+                }
+            },
+            ouro: {
+                tag: "CUIDADO AMPLIADO",
+                desc: "Equilíbrio entre rede de referência e cuidado personalizado, com assistência internacional e serviços domiciliares.",
+                dot1: "#ffd700", // Cor Ouro
+                dot2: "#ffd700", // Cor Ouro
+                card1: {
+                    title: "Ouro",
+                    features: [
+                        { label: "Acomodação", value: "Apartamento" },
+                        { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 60 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Até 5 dias" },
+                        { label: "Reembolso no exterior¹", value: "Incluso" },
+                        { label: "Odontologia²", value: "Inclusa" },
+                        { label: "Coleta e vacina domiciliar³", value: "Incluso" },
+                        { label: "Retaguarda Sírio-Libanês", value: "—" },
+                        { label: "Retaguarda Albert Einstein", value: "—" }
+                    ]
+                },
+                card2: {
+                    title: "Ouro Max",
+                    features: [
+                        { label: "Acomodação", value: "Apartamento" },
+                        { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 60 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Até 5 dias" },
+                        { label: "Reembolso no exterior¹", value: "Incluso" },
+                        { label: "Odontologia²", value: "Inclusa" },
+                        { label: "Coleta e vacina domiciliar³", value: "Incluso" },
+                        { label: "Retaguarda Sírio-Libanês", value: "—" },
+                        { label: "Retaguarda Albert Einstein", value: "—" }
+                    ]
+                }
+            },
+            diamante: {
+                tag: "EXPERIÊNCIA MÁXIMA",
+                desc: "O plano mais completo da NotreDame, com retaguarda dos hospitais de referência e todos os serviços domiciliares inclusos.",
+                dot1: "#e0f7fa", // Cor Diamante (Azul claro)
+                dot2: "#e0f7fa", // Cor Diamante (Azul claro)
+                card1: {
+                    title: "Diamante",
+                    features: [
+                        { label: "Acomodação", value: "Apartamento" },
+                        { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 100 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Até 3 dias" },
+                        { label: "Reembolso no exterior¹", value: "Incluso" },
+                        { label: "Odontologia²", value: "Inclusa" },
+                        { label: "Coleta e vacina domiciliar³", value: "Incluso" },
+                        { label: "Retaguarda Sírio-Libanês", value: "Inclusa" },
+                        { label: "Retaguarda Albert Einstein", value: "—" }
+                    ]
+                },
+                card2: {
+                    title: "Diamante Max",
+                    features: [
+                        { label: "Acomodação", value: "Apartamento" },
+                        { label: "Abrangência", value: "Nacional" },
+                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 300 mil)" },
+                        { label: "Reembolso de consultas e exames", value: "Até 3 dias" },
+                        { label: "Reembolso no exterior¹", value: "Incluso" },
+                        { label: "Odontologia²", value: "Inclusa" },
+                        { label: "Coleta e vacina domiciliar³", value: "Incluso" },
+                        { label: "Retaguarda Sírio-Libanês", value: "Inclusa" },
+                        { label: "Retaguarda Albert Einstein", value: "Inclusa" }
+                    ]
+                }
+            }
+        };
+
+        // Elementos do DOM
+        const metaisTabs = document.querySelectorAll('.metais-tab-btn');
+        const metaisInfoBox = document.getElementById('metaisInfoBox');
+        const metaisTag = document.getElementById('metaisTag');
+        const metaisDesc = document.getElementById('metaisDesc');
+        const metaisCardsContainer = document.getElementById('metaisCardsContainer');
+        
+        const metaisDot1 = document.getElementById('metaisDot1');
+        const metaisTitle1 = document.getElementById('metaisTitle1');
+        const metaisFeatures1 = document.getElementById('metaisFeatures1');
+        const metaisBtn1 = document.getElementById('metaisBtn1');
+        
+        const metaisDot2 = document.getElementById('metaisDot2');
+        const metaisTitle2 = document.getElementById('metaisTitle2');
+        const metaisFeatures2 = document.getElementById('metaisFeatures2');
+        const metaisBtn2 = document.getElementById('metaisBtn2');
+
+        function switchMetal(key) {
+            const data = metaisDb[key];
+            
+            // Atualiza classes das abas
+            metaisTabs.forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase() === key) btn.classList.add('active');
+            });
+
+            // Efeito Fade
+            metaisInfoBox.style.opacity = '0';
+            metaisCardsContainer.style.opacity = '0';
+            metaisCardsContainer.style.transform = 'translateY(10px)';
+
+            setTimeout(() => {
+                // Atualiza Textos
+                metaisTag.innerText = data.tag;
+                metaisDesc.innerText = data.desc;
+
+                // Atualiza Card 1
+                metaisDot1.style.backgroundColor = data.dot1;
+                metaisTitle1.innerText = data.card1.title;
+                metaisFeatures1.innerHTML = data.card1.features.map(f => `
+                    <div class="metais-feature-row">
+                        <span class="metais-feature-label">${f.label}</span>
+                        <span class="metais-feature-value">${f.value}</span>
+                    </div>
+                `).join('');
+                metaisBtn1.onclick = () => redirectToWhatsApp(data.card1.title);
+
+                // Atualiza Card 2
+                metaisDot2.style.backgroundColor = data.dot2;
+                metaisTitle2.innerText = data.card2.title;
+                metaisFeatures2.innerHTML = data.card2.features.map(f => `
+                    <div class="metais-feature-row">
+                        <span class="metais-feature-label">${f.label}</span>
+                        <span class="metais-feature-value">${f.value}</span>
+                    </div>
+                `).join('');
+                metaisBtn2.onclick = () => redirectToWhatsApp(data.card2.title);
+
+                // Remove Fade
+                metaisInfoBox.style.opacity = '1';
+                metaisCardsContainer.style.opacity = '1';
+                metaisCardsContainer.style.transform = 'translateY(0)';
+            }, 250);
+        }
+
+        function redirectToWhatsApp(planTitle) {
+            const message = `Olá, Leonardo! Vim pela sua página e gostaria de saber mais sobre o plano *${planTitle}*.`;
+            window.open(`https://wa.me/5511934152666?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Inicializa a aba Prata por padrão
+        window.onload = () => {
+            switchMetal('prata');
+        };
     </script>
 </body>
 </html>
