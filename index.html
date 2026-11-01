@@ -3,18 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NotreDame Saúde</title>
+    <title>NotreDame Saúde | Planos Premium</title>
     
-    <!-- FAVICON NOVO -->
+    <!-- SEO Meta Description -->
+    <meta name="description" content="Planos de saúde empresariais com 75% off na primeira mensalidade. Cobertura nacional, rede referenciada Sírio-Libanês e atendimento exclusivo para PMEs.">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="logo-notredame.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- GOOGLE SEARCH CONSOLE VERIFICATION -->
+    <!-- Google Search Console -->
     <meta name="google-site-verification" content="CDyUAamBO4qaLWkTcwXq_FCLo52zURGgHk4B_KwIZFE" />
-    
+
+    <!-- Schema Markup (JSON-LD) para SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "InsuranceAgency",
+      "name": "NotreDame Saúde",
+      "url": "https://notredamesaude.vercel.app/",
+      "logo": "https://notredamesaude.vercel.app/logo-notredame.png",
+      "description": "Planos de saúde premium para empresas e famílias.",
+      "telephone": "+5511934152666",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Avenida Paulista, 867",
+        "addressLocality": "São Paulo",
+        "addressRegion": "SP",
+        "addressCountry": "BR"
+      }
+    }
+    </script>
+
     <!-- META PIXEL CODE -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -31,12 +54,9 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=2022345561781338&ev=PageView&noscript=1"
     /></noscript>
-    <!-- End Meta Pixel Code -->
 
     <!-- VERCEL ANALYTICS -->
     <script defer src="/_vercel/insights/script.js"></script>
-    
-    <!-- VERCEL SPEED INSIGHTS -->
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <style>
@@ -56,7 +76,6 @@
             --tab-active-bg: #000b45;
             --font-family: 'Montserrat', sans-serif;
             
-            /* Cores específicas da Hero */
             --nd-navy: #000b45;
             --nd-bege: #c5b38b;
             --hero-bg: #F4F3EC;
@@ -90,8 +109,7 @@
             z-index: 1000;
         }
 
-        /* Ajuste na logo para não aplicar filtro branco se ela já for branca */
-        .logo img { height: 35px; } 
+        .logo img { height: 35px; }
 
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a {
@@ -116,13 +134,23 @@
         }
         .btn-header:hover { background-color: var(--btn-blue-hover); }
 
+        /* Menu Mobile */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
         /* ========== CONTROLE DE SEÇÕES ========== */
         .page-section { display: none; animation: fadeIn 0.4s ease-in-out; }
         .page-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* =========================================================
-           SEÇÃO 1: HOME (HERO SECTION COM IMAGEM NOVA E ESPAÇAMENTO)
+           SEÇÃO 1: HOME
            ========================================================= */
         .hero-container {
             max-width: 1440px;
@@ -141,7 +169,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        /* Lado Esquerdo: Imagem */
         .hero-image-wrapper {
             width: 35%;
             position: relative;
@@ -153,7 +180,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
         }
 
         .badge-inedito {
@@ -172,15 +198,8 @@
             gap: 8px;
             z-index: 10;
         }
+        .badge-inedito .dot { width: 6px; height: 6px; border-radius: 50%; background-color: var(--nd-navy); }
 
-        .badge-inedito .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background-color: var(--nd-navy);
-        }
-
-        /* Logo no Topo Direito */
         .hero-logo-top {
             position: absolute;
             top: 30px;
@@ -191,21 +210,14 @@
         }
         .hero-logo-top svg { width: 100%; height: 100%; fill: var(--nd-navy); }
 
-        /* Conteúdo Central (Ticket e Textos) */
         .hero-center-content {
             position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 35%;
-            width: 35%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            top: 0; bottom: 0; left: 35%; width: 35%;
+            display: flex; flex-direction: column; justify-content: center;
             padding-bottom: 60px;
             z-index: 5;
         }
 
-        /* O Ticket */
         .ticket-wrapper {
             position: relative;
             filter: drop-shadow(0 15px 25px rgba(0,20,83,0.35));
@@ -224,31 +236,10 @@
             mask: radial-gradient(circle at 0 100%, transparent 12px, #000 13px) left/51% 100% no-repeat, radial-gradient(circle at 100% 100%, transparent 12px, #000 13px) right/51% 100% no-repeat;
         }
 
-        .ticket-price {
-            display: flex;
-            align-items: flex-end;
-            gap: 15px;
-            line-height: 0.78;
-        }
-
-        .ticket-price .number {
-            font-size: 7.5rem;
-            font-weight: 200;
-            letter-spacing: -0.065em;
-        }
-
-        .ticket-price .off {
-            font-size: 3.5rem;
-            font-weight: 600;
-            color: var(--nd-bege);
-            padding-bottom: 5px;
-        }
-
-        .ticket-top p {
-            margin-top: 15px;
-            font-size: 1.4rem;
-            font-weight: 500;
-        }
+        .ticket-price { display: flex; align-items: flex-end; gap: 15px; line-height: 0.78; }
+        .ticket-price .number { font-size: 7.5rem; font-weight: 200; letter-spacing: -0.065em; }
+        .ticket-price .off { font-size: 3.5rem; font-weight: 600; color: var(--nd-bege); padding-bottom: 5px; }
+        .ticket-top p { margin-top: 15px; font-size: 1.4rem; font-weight: 500; }
 
         .ticket-bottom {
             background-color: var(--nd-navy);
@@ -262,286 +253,117 @@
             background-position: top;
             background-repeat: no-repeat;
             font-size: 0.85rem;
-            line-height: 1.5;
         }
-
         .ticket-bottom .muted { color: #C9D3E3; }
         .ticket-bottom .bold { font-weight: 700; color: #fff; }
 
-        /* Textos Abaixo do Ticket */
         .hero-title {
-            font-size: 2.2rem;
-            font-weight: 300;
-            line-height: 1.12;
-            letter-spacing: -0.02em;
-            color: var(--nd-navy);
-            margin-bottom: 20px;
-            margin-top: 10px;
+            font-size: 2.2rem; font-weight: 300; line-height: 1.12;
+            letter-spacing: -0.02em; color: var(--nd-navy);
+            margin-bottom: 20px; margin-top: 10px;
         }
 
         .hero-bullet {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--hero-muted);
+            display: flex; align-items: flex-start; gap: 10px;
+            font-size: 0.95rem; font-weight: 500; color: var(--hero-muted);
             margin-bottom: 30px;
         }
-
-        .hero-bullet .bullet {
-            width: 6px;
-            height: 6px;
-            background-color: var(--nd-bege);
-            border-radius: 50%;
-            margin-top: 8px;
-            flex-shrink: 0;
-        }
-
-        .hero-bullet strong {
-            color: var(--nd-navy);
-            font-weight: 700;
-            display: block;
-        }
+        .hero-bullet .bullet { width: 6px; height: 6px; background-color: var(--nd-bege); border-radius: 50%; margin-top: 8px; flex-shrink: 0; }
+        .hero-bullet strong { color: var(--nd-navy); font-weight: 700; display: block; }
 
         .btn-whatsapp-hero {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background-color: var(--btn-green);
-            color: #fff;
-            padding: 14px 28px;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background-color 0.2s;
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8px; background-color: var(--btn-green); color: #fff;
+            padding: 14px 28px; border-radius: 30px; font-size: 1rem;
+            font-weight: 600; text-decoration: none; transition: 0.2s;
             width: fit-content;
         }
         .btn-whatsapp-hero:hover { background-color: #1ebe5d; }
         .btn-whatsapp-hero svg { width: 18px; height: 18px; fill: currentColor; }
 
-        /* Formulário (Lado Direito) */
         .hero-form-wrapper {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 25%;
-            z-index: 10;
+            position: absolute; right: 5%; top: 50%;
+            transform: translateY(-50%); width: 25%; z-index: 10;
         }
 
         .hero-form-wrapper h2 {
-            font-size: 1.5rem;
-            font-weight: 500;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: var(--nd-navy);
+            font-size: 1.5rem; font-weight: 500; line-height: 1.2;
+            margin-bottom: 20px; color: var(--nd-navy);
         }
 
         .hero-form-group { margin-bottom: 15px; }
-
         .hero-form-group input {
-            width: 100%;
-            height: 56px;
-            padding: 0 18px;
-            font-size: 1rem;
-            color: var(--nd-navy);
-            background: #fff;
-            border: 1px solid rgba(0,11,69,0.18);
-            border-radius: 12px;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            width: 100%; height: 56px; padding: 0 18px; font-size: 1rem;
+            color: var(--nd-navy); background: #fff;
+            border: 1px solid rgba(0,11,69,0.18); border-radius: 12px;
+            outline: none; transition: 0.2s;
         }
-        .hero-form-group input::placeholder { color: #5B6478; }
-        .hero-form-group input:focus { 
-            border-color: var(--nd-navy); 
-            box-shadow: 0 0 0 3px rgba(0,11,69,0.15); 
-        }
+        .hero-form-group input:focus { border-color: var(--nd-navy); box-shadow: 0 0 0 3px rgba(0,11,69,0.15); }
 
         .hero-submit-btn {
-            width: 100%;
-            height: 56px;
-            background-color: var(--nd-navy);
-            color: var(--hero-bg);
-            border: none;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.2s;
+            width: 100%; height: 56px; background-color: var(--nd-navy);
+            color: var(--hero-bg); border: none; border-radius: 30px;
+            font-size: 1rem; font-weight: 600; cursor: pointer; transition: 0.2s;
         }
         .hero-submit-btn:hover { background-color: #0B2A7A; }
-        .hero-submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-        .hero-disclaimer-form {
-            font-size: 0.75rem;
-            color: #4F5B7A;
-            line-height: 1.5;
-            margin-top: 15px;
-        }
-        .hero-disclaimer-form a {
-            color: var(--nd-navy);
-            text-decoration: underline;
-        }
+        .hero-disclaimer-form { font-size: 0.75rem; color: #4F5B7A; line-height: 1.5; margin-top: 15px; }
+        .hero-disclaimer-form a { color: var(--nd-navy); text-decoration: underline; }
 
-        /* Disclaimer Inferior Esquerdo */
+        /* Prova Social no Formulário */
+        .social-proof-form {
+            display: flex; align-items: center; gap: 8px;
+            margin-top: 15px; font-size: 0.8rem; font-weight: 600; color: var(--nd-navy);
+            background: rgba(255,255,255,0.5); padding: 8px 12px; border-radius: 8px;
+        }
+        .social-proof-form span { color: #d97706; font-size: 1rem; } /* Destaque dourado */
+
         .hero-disclaimer-bottom {
-            position: absolute;
-            bottom: 20px;
-            left: 35%;
-            width: 33%;
-            font-size: 0.7rem;
-            line-height: 1.55;
-            color: #4F5B7A;
-            z-index: 5;
+            position: absolute; bottom: 20px; left: 35%; width: 33%;
+            font-size: 0.7rem; line-height: 1.55; color: #4F5B7A; z-index: 5;
         }
 
         /* =========================================================
-           SEÇÃO 2: PLANOS (CABEÇALHO CORRIGIDO)
+           SEÇÃO 2: PLANOS
            ========================================================= */
+        .plans-header-bg { background-color: var(--texto-azul); padding: 60px 0; width: 100%; }
+        .plans-header { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+        .plans-header .subtitle { color: #a0aec0; font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
+        .plans-header .description { color: #ffffff; font-size: 1rem; max-width: 550px; }
         
-        .plans-header-bg {
-            background-color: var(--texto-azul);
-            padding: 60px 0;
-            width: 100%;
-        }
-
-        .plans-header {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .plans-header .subtitle {
-            color: #a0aec0;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            line-height: 1.5;
-        }
-
-        .plans-header .description {
-            color: #ffffff;
-            font-size: 1rem;
-            max-width: 550px;
-            line-height: 1.6;
-        }
-
-        .plans-layout {
-            max-width: 1200px;
-            margin: 60px auto 80px;
-            padding: 0 20px;
-            display: flex;
-            gap: 60px;
-            align-items: flex-start;
-        }
-
-        .plans-left { width: 38%; padding-top: 10px; }
-
-        .category-tabs {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #dcdcdc;
-            padding-bottom: 10px;
-        }
-        .category-btn {
-            background: transparent;
-            border: none;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--texto-cinza-claro);
-            cursor: pointer;
-            padding: 5px 0;
-            position: relative;
-            transition: color 0.3s;
-        }
+        .plans-layout { max-width: 1200px; margin: 60px auto 80px; padding: 0 20px; display: flex; gap: 60px; align-items: flex-start; }
+        .plans-left { width: 38%; }
+        .category-tabs { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 2px solid #dcdcdc; padding-bottom: 10px; }
+        .category-btn { background: transparent; border: none; font-size: 1.1rem; font-weight: 700; color: var(--texto-cinza-claro); cursor: pointer; padding: 5px 0; position: relative; transition: 0.3s; }
         .category-btn.active { color: var(--texto-azul); }
-        .category-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: var(--texto-azul);
-        }
-
-        .product-tabs {
-            background-color: var(--tab-container-bg);
-            border-radius: 30px;
-            padding: 6px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 40px;
-            width: fit-content;
-        }
-        .tab-btn {
-            background: transparent;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--texto-cinza);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .tab-btn.active {
-            background-color: var(--tab-active-bg);
-            color: #ffffff;
-        }
-
-        .plan-info-box { transition: opacity 0.3s ease; }
+        .category-btn.active::after { content: ''; position: absolute; bottom: -12px; left: 0; width: 100%; height: 3px; background-color: var(--texto-azul); }
+        
+        .product-tabs { background-color: var(--tab-container-bg); border-radius: 30px; padding: 6px; display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 40px; width: fit-content; }
+        .tab-btn { background: transparent; border: none; padding: 10px 20px; border-radius: 25px; font-size: 0.85rem; font-weight: 600; color: var(--texto-cinza); cursor: pointer; transition: 0.3s; }
+        .tab-btn.active { background-color: var(--tab-active-bg); color: #ffffff; }
+        
+        .plan-info-box { transition: opacity 0.3s; }
         .plan-tag { font-size: 0.7rem; font-weight: 700; color: var(--texto-cinza); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: block; }
         .plan-desc { font-size: 0.95rem; color: var(--texto-cinza); margin-bottom: 15px; }
         .plan-min-lives { display: inline-block; font-size: 0.8rem; font-weight: 600; color: var(--texto-azul); background-color: rgba(0, 11, 69, 0.05); padding: 8px 12px; border-radius: 6px; border-left: 3px solid var(--texto-azul); margin-bottom: 40px; }
-
         .footnotes { font-size: 0.65rem; color: var(--texto-cinza-claro); line-height: 1.6; border-top: 1px solid #dcdcdc; padding-top: 20px; }
-        .footnotes p { margin-bottom: 5px; }
 
-        .plans-right {
-            width: 62%;
-            display: flex;
-            gap: 25px;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        .plan-card {
-            flex: 1;
-            border-radius: 16px;
-            padding: 35px 30px;
-            display: flex;
-            flex-direction: column;
-        }
-        .card-light { background-color: var(--card-bg-white); border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.02); color: var(--texto-azul); }
+        .plans-right { width: 62%; display: flex; gap: 25px; transition: opacity 0.3s, transform 0.3s; }
+        .plan-card { flex: 1; border-radius: 16px; padding: 35px 30px; display: flex; flex-direction: column; }
+        .card-light { background-color: var(--card-bg-white); border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
         .card-dark { background-color: var(--card-bg-blue); color: #ffffff; }
         .card-dot { width: 20px; height: 20px; border-radius: 50%; margin-bottom: 25px; }
         .card-light .card-dot { background-color: #d1d5db; }
         .card-dark .card-dot { background-color: #ffffff; }
-        .plan-card h3 { font-size: 1.8rem; font-weight: 500; margin-bottom: 30px; line-height: 1.2; }
-
+        .plan-card h3 { font-size: 1.8rem; font-weight: 500; margin-bottom: 30px; }
         .features-table { flex-grow: 1; margin-bottom: 30px; }
         .feature-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.75rem; gap: 15px; }
         .card-dark .feature-row { border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .feature-label { color: var(--texto-cinza); font-weight: 400; }
+        .feature-label { color: var(--texto-cinza); }
         .card-dark .feature-label { color: #a0aec0; }
-        .feature-value { font-weight: 600; text-align: right; color: var(--texto-azul); }
+        .feature-value { font-weight: 600; text-align: right; }
         .card-dark .feature-value { color: #ffffff; }
-
-        .btn-card {
-            display: block; width: 100%; background-color: var(--btn-blue-light); color: var(--texto-azul);
-            text-align: center; padding: 15px; border-radius: 25px; text-decoration: none;
-            font-size: 0.9rem; font-weight: 700; border: none; cursor: pointer; transition: 0.3s;
-        }
+        .btn-card { display: block; width: 100%; background-color: var(--btn-blue-light); color: var(--texto-azul); text-align: center; padding: 15px; border-radius: 25px; font-size: 0.9rem; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
         .btn-card:hover { background-color: var(--btn-blue-hover); }
 
         /* =========================================================
@@ -550,24 +372,16 @@
         .diff-split { display: flex; width: 100%; min-height: 500px; }
         .diff-image { width: 50%; object-fit: cover; display: block; }
         .diff-text { width: 50%; padding: 80px 10%; display: flex; flex-direction: column; justify-content: center; }
-        
         .diff-text.blue-bg { background-color: var(--texto-azul); color: #ffffff; }
         .diff-text.cream-bg { background-color: var(--bg-body); color: var(--texto-azul); }
-
         .diff-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
         .diff-text.blue-bg .diff-tag { color: #a0aec0; }
         .diff-text.cream-bg .diff-tag { color: var(--texto-cinza); }
-
         .diff-text h2 { font-size: 2.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
         .diff-text p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 40px; max-width: 90%; }
         .diff-text.blue-bg p { color: #e2e8f0; }
         .diff-text.cream-bg p { color: var(--texto-cinza); }
-
-        .diff-link {
-            font-size: 0.9rem; font-weight: 600; text-decoration: underline; text-underline-offset: 4px;
-            color: inherit; cursor: pointer; display: inline-block;
-        }
-        .diff-link:hover { opacity: 0.8; }
+        .diff-link { font-size: 0.9rem; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; color: inherit; cursor: pointer; }
 
         /* =========================================================
            SEÇÃO 4: BENEFÍCIOS
@@ -575,24 +389,61 @@
         .beneficios-container { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
         .beneficios-header { margin-bottom: 50px; }
         .beneficios-header .subtitle { font-size: 0.75rem; font-weight: 600; color: var(--texto-cinza); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; }
-        .beneficios-header h2 { font-size: 2.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 15px; color: var(--texto-azul); }
+        .beneficios-header h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 15px; color: var(--texto-azul); }
         .beneficios-header p { font-size: 1rem; color: var(--texto-cinza); max-width: 600px; }
-
         .beneficios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
         .beneficio-card { background-color: var(--card-bg-white); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.3s; }
         .beneficio-card:hover { transform: translateY(-5px); }
         .beneficio-card img { width: 100%; height: 220px; object-fit: cover; }
         .beneficio-content { padding: 30px; flex-grow: 1; }
-        .beneficio-tag { font-size: 0.65rem; font-weight: 700; color: var(--texto-cinza-claro); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
-        .beneficio-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: var(--texto-azul); line-height: 1.3; }
-        .beneficio-card p { font-size: 0.85rem; color: var(--texto-cinza); line-height: 1.5; }
-
+        .beneficio-tag { font-size: 0.65rem; font-weight: 700; color: var(--texto-cinza-claro); text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .beneficio-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: var(--texto-azul); }
+        .beneficio-card p { font-size: 0.85rem; color: var(--texto-cinza); }
         .beneficio-card.dark { background-color: var(--texto-azul); }
         .beneficio-card.dark .beneficio-tag { color: #a0aec0; }
         .beneficio-card.dark h3 { color: #ffffff; }
         .beneficio-card.dark p { color: #e2e8f0; }
 
-        /* ========== BOTÃO FLUTUANTE WHATSAPP ========== */
+        /* =========================================================
+           RODAPÉ (FOOTER)
+           ========================================================= */
+        .site-footer { background-color: #000b45; color: #ffffff; padding: 60px 20px 20px; font-size: 0.9rem; }
+        .footer-top { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        
+        .footer-col h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 20px; color: #ffffff; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: #a0aec0; text-decoration: none; transition: color 0.3s; }
+        .footer-col ul li a:hover { color: #ffffff; }
+        
+        /* CTA do Rodapé */
+        .footer-cta h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; line-height: 1.2; }
+        .footer-cta p { color: #a0aec0; margin-bottom: 20px; font-size: 0.9rem; }
+        .footer-btn { background-color: var(--btn-blue-light); color: var(--texto-azul); padding: 12px 24px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; border: none; cursor: pointer; }
+        .footer-btn:hover { background-color: var(--btn-blue-hover); }
+
+        /* Informações do Consultor (Card Leonardo) */
+        .consultor-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+        .consultor-card h4 { font-size: 1.2rem; margin-bottom: 5px; color: #ffffff; }
+        .consultor-card .cargo { color: var(--btn-blue-light); font-weight: 600; font-size: 0.9rem; margin-bottom: 15px; display: block; }
+        .consultor-card .contato-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #e2e8f0; font-size: 0.85rem; }
+        .consultor-card .contato-item svg { width: 18px; height: 18px; fill: var(--btn-blue-light); flex-shrink: 0; }
+        .consultor-card .contato-item a { color: #e2e8f0; text-decoration: none; }
+        .consultor-card .contato-item a:hover { color: #fff; text-decoration: underline; }
+
+        /* Telefones de Atendimento (Imagem 2) */
+        .phone-list p { color: #a0aec0; margin-bottom: 10px; font-size: 0.85rem; line-height: 1.4; }
+        .phone-list strong { color: #ffffff; display: block; font-size: 0.95rem; }
+
+        /* Footer Bottom */
+        .footer-bottom { max-width: 1200px; margin: 20px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; font-size: 0.75rem; color: #a0aec0; }
+        .footer-bottom-logo img { height: 40px; }
+        .footer-bottom-left { line-height: 1.6; }
+        .footer-bottom-right { text-align: right; line-height: 1.6; }
+        .footer-bottom-right img { height: 30px; margin-top: 5px; }
+
+        /* ========== BOTÕES FLUTUANTES ========== */
+        /* WhatsApp */
         .whatsapp-float {
             position: fixed; bottom: 30px; right: 30px; background-color: var(--btn-green); color: white;
             padding: 12px 24px; border-radius: 30px; display: flex; align-items: center; gap: 10px;
@@ -602,22 +453,47 @@
         .whatsapp-float:hover { transform: scale(1.05); }
         .whatsapp-float svg { width: 20px; height: 20px; fill: currentColor; }
 
-        /* ========== RESPONSIVIDADE ========== */
-        @media (max-width: 1200px) {
-            .hero-image-wrapper { width: 30%; }
-            .hero-center-content { left: 30%; width: 38%; }
-            .hero-form-wrapper { width: 26%; right: 3%; }
-            .ticket-price .number { font-size: 6rem; }
-            .ticket-price .off { font-size: 3rem; }
+        /* Voltar ao Topo */
+        .back-to-top {
+            position: fixed; bottom: 90px; right: 30px;
+            background-color: var(--texto-azul); color: white;
+            width: 45px; height: 45px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            border: none; cursor: pointer; opacity: 0; visibility: hidden;
+            transition: 0.3s; z-index: 999;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top svg { width: 24px; height: 24px; fill: currentColor; }
 
+        /* ========== EXIT INTENT POPUP ========== */
+        .exit-popup-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 11, 69, 0.8); backdrop-filter: blur(5px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10000; opacity: 0; visibility: hidden; transition: 0.3s;
+        }
+        .exit-popup-overlay.active { opacity: 1; visibility: visible; }
+        .exit-popup-box {
+            background: white; padding: 40px; border-radius: 20px;
+            max-width: 500px; width: 90%; text-align: center; position: relative;
+            transform: translateY(20px); transition: 0.3s;
+        }
+        .exit-popup-overlay.active .exit-popup-box { transform: translateY(0); }
+        .exit-popup-close {
+            position: absolute; top: 15px; right: 15px; background: none;
+            border: none; font-size: 1.5rem; color: #888; cursor: pointer;
+        }
+        .exit-popup-box h2 { color: var(--texto-azul); font-size: 1.8rem; margin-bottom: 15px; }
+        .exit-popup-box p { color: var(--texto-cinza); margin-bottom: 25px; }
+        .exit-popup-box .btn-wpp { background: var(--btn-green); color: white; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 1.1rem; }
+
+        /* ========== RESPONSIVIDADE ========== */
         @media (max-width: 1024px) {
-            .plans-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-
             .hero-section { flex-direction: column; min-height: auto; }
             .hero-image-wrapper { width: 100%; height: 300px; }
-            .hero-center-content { position: relative; left: 0; width: 100%; padding: 20px; transform: none; padding-bottom: 0; }
-            .ticket-wrapper { margin: -40px auto 20px; width: 90%; margin-left: auto; }
+            .hero-center-content { position: relative; left: 0; width: 100%; padding: 20px; padding-bottom: 0; }
+            .ticket-wrapper { margin: -40px auto 20px; width: 90%; }
             .hero-title { font-size: 1.8rem; text-align: center; }
             .hero-bullet { justify-content: center; text-align: center; flex-direction: column; align-items: center; }
             .hero-bullet .bullet { display: none; }
@@ -628,20 +504,36 @@
             .plans-layout { flex-direction: column; gap: 40px; }
             .plans-left, .plans-right { width: 100%; }
             .plans-right { flex-direction: column; }
+            .plans-header { flex-direction: column; align-items: flex-start; gap: 20px; }
             
             .diff-split { flex-direction: column; }
             .diff-image { width: 100%; height: 300px; }
             .diff-text { width: 100%; padding: 60px 20px; text-align: center; }
-            .diff-text p { margin: 0 auto 30px; }
+            
             .beneficios-grid { grid-template-columns: repeat(2, 1fr); }
+            
+            /* Footer Responsivo */
+            .footer-top { grid-template-columns: 1fr 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .footer-bottom-right { text-align: center; }
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; width: 100%; background-color: var(--texto-azul); padding: 20px 0; text-align: center; gap: 15px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            
             .beneficios-grid { grid-template-columns: 1fr; }
             .ticket-price .number { font-size: 5rem; }
             .ticket-price .off { font-size: 2rem; }
-            .ticket-top p { font-size: 1rem; }
+            
+            /* Footer Mobile */
+            .footer-top { grid-template-columns: 1fr; text-align: center; }
+            .consultor-card .contato-item { justify-content: center; }
+            
+            .whatsapp-float { bottom: 20px; right: 20px; padding: 10px; border-radius: 50%; }
+            .whatsapp-float span { display: none; } /* Esconde texto, deixa só o ícone */
+            .back-to-top { bottom: 80px; right: 20px; }
         }
     </style>
 </head>
@@ -650,15 +542,15 @@
     <!-- ========== HEADER ========== -->
     <header>
         <a href="#" data-target="home" class="logo" style="cursor:pointer;">
-            <!-- NOVA LOGO AQUI -->
             <img src="logo-notredame.png" alt="NotreDame">
         </a>
-        <nav class="nav-links">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        <nav class="nav-links" id="navLinks">
             <a href="#" data-target="home" class="active">Home</a>
             <a href="#" data-target="planos">Planos</a>
             <a href="#" data-target="diferenciais">Diferenciais</a>
             <a href="#" data-target="beneficios">Benefícios</a>
-            <a href="https://wa.me/5511934152666" target="_blank" class="btn-header">Quero mais informações</a>
+            <a href="#" class="btn-header" onclick="navigateTo('home'); document.getElementById('homeNome').focus();">Quero mais informações</a>
         </nav>
     </header>
 
@@ -675,18 +567,13 @@
                 </div>
 
                 <div class="hero-logo-top">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
                 </div>
 
                 <div class="hero-center-content">
                     <div class="ticket-wrapper">
                         <div class="ticket-top">
-                            <div class="ticket-price">
-                                <span class="number">75%</span>
-                                <span class="off">Off</span>
-                            </div>
+                            <div class="ticket-price"><span class="number">75%</span><span class="off">Off</span></div>
                             <p>na primeira mensalidade</p>
                         </div>
                         <div class="ticket-bottom">
@@ -721,14 +608,20 @@
                             <input type="email" id="homeEmail" name="email" placeholder="E-mail" required>
                         </div>
                         <button type="submit" class="hero-submit-btn" id="homeBtnSubmit">Quero minha proposta</button>
+                        
+                        <!-- PROVA SOCIAL NO FORMULÁRIO -->
+                        <div class="social-proof-form">
+                            <span>★</span> Rede referenciada: Sírio-Libanês, Einstein e +
+                        </div>
+
                         <p class="hero-disclaimer-form">
-                            Ao continuar, você autoriza a NotreDame Saúde a entrar em contato e a tratar seus dados para elaborar a proposta, conforme a <a href="#">Política de Privacidade</a>.
+                            Ao continuar, você autoriza a NotreDame Saúde a entrar em contato e a tratar seus dados para elaborar a proposta, conforme a <a href="privacidade.html" target="_blank">Política de Privacidade</a>.
                         </p>
                     </form>
                 </div>
 
                 <p class="hero-disclaimer-bottom">
-                    Condições podem variar por região. Oferta válida por tempo limitado e sujeita a alterações sem aviso prévio. Consulte todas as condições no ato da contratação. Responsável técnico: Dr. Rodolfo Pires de Albuquerque – CRM 40137. NotreDame Saúde | ANS 359017
+                    Condições podem variar por região. Oferta válida por tempo limitado. Responsável técnico: Dr. Rodolfo Pires de Albuquerque – CRM 40137. NotreDame Saúde | ANS 359017
                 </p>
 
             </div>
@@ -762,7 +655,6 @@
                     <p>¹ Reembolso de acordo com plano contratado.</p>
                     <p>² Cobertura odontológica para contratos de até 99 vidas.</p>
                     <p>³ Por prestadores indicados pela NotreDame Saúde, em São Paulo e Rio de Janeiro. Vacinas conforme o Calendário do Ministério da Saúde.</p>
-                    <p style="margin-top: 10px;">Consulte regras, condições contratuais e abrangência aplicável.</p>
                 </div>
             </div>
 
@@ -847,7 +739,7 @@
                     <div class="beneficio-content">
                         <span class="beneficio-tag">ECOSSISTEMA DE BEM-ESTAR</span>
                         <h3>Saúde é mais do que<br>os dias de hospital</h3>
-                        <p>Clube de vantagens com benefícios exclusivos, descontos e serviços de bem-estar que fazem do cuidado parte do seu dia, não só do consultório.</p>
+                        <p>Clube de vantagens com benefícios exclusivos, descontos e serviços de bem-estar que fazem do cuidado parte do seu dia.</p>
                     </div>
                 </div>
                 <div class="beneficio-card">
@@ -870,20 +762,161 @@
         </div>
     </section>
 
-    <!-- ========== BOTÃO WHATSAPP FLUTUANTE ========== -->
+    <!-- ========================================================= -->
+    <!-- RODAPÉ (FOOTER COMPLETO) -->
+    <!-- ========================================================= -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            
+            <!-- Coluna 1: CTA e Institucional -->
+            <div class="footer-col">
+                <div class="footer-cta">
+                    <h3>Sua vida é nossa prioridade,<br>faça parte dessa jornada.</h3>
+                    <p>Solicite sua proposta e descubra uma experiência de saúde feita para você.</p>
+                    <button class="footer-btn" onclick="navigateTo('home'); document.getElementById('homeNome').focus();">Solicitar proposta</button>
+                </div>
+                <h4 style="margin-top: 30px;">Institucional</h4>
+                <ul>
+                    <li><a href="#">Sobre a NotreDame Saúde</a></li>
+                    <li><a href="privacidade.html" target="_blank">Portal da Privacidade</a></li>
+                    <li><a href="#">Informações Regulatórias</a></li>
+                </ul>
+            </div>
+
+            <!-- Coluna 2: Atendimento e Telefones -->
+            <div class="footer-col">
+                <h4>Atendimento</h4>
+                <ul>
+                    <li><a href="#">Boas-vindas</a></li>
+                    <li><a href="#">Canais de Atendimento</a></li>
+                    <li><a href="#">Ouvidoria</a></li>
+                </ul>
+                
+                <h4 style="margin-top: 30px;">Precisa de ajuda?</h4>
+                <div class="phone-list">
+                    <p><strong>0800 850 0087</strong> SAC 24h</p>
+                    <p><strong>4004-9057</strong> Central de Serviços (Região Metropolitana)</p>
+                    <p><strong>0800 850 1157</strong> Demais Regiões</p>
+                    <p><strong>0800 770 0061</strong> Central de Serviços PME</p>
+                    <p><strong>0800 770 0330</strong> Acessibilidade (Exclusivo Deficientes Auditivos)</p>
+                </div>
+            </div>
+
+            <!-- Coluna 3: Suas Informações (Consultor Leonardo) -->
+            <div class="footer-col">
+                <h4>Fale com seu Consultor</h4>
+                <div class="consultor-card">
+                    <h4>Leonardo Aguiar</h4>
+                    <span class="cargo">Consultor de Vendas | Hapvida NotreDame</span>
+                    
+                    <div class="contato-item">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        <div>
+                            <span style="font-size: 0.7rem; color: #a0aec0; display: block;">São Paulo e região metropolitana</span>
+                            <a href="https://wa.me/5511934152666" target="_blank">(11) 93415-2666</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contato-item">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        <div>
+                            <span style="font-size: 0.7rem; color: #a0aec0; display: block;">Demais regiões</span>
+                            <a href="https://wa.me/5585996209257" target="_blank">(85) 99620-9257</a>
+                        </div>
+                    </div>
+
+                    <div class="contato-item">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        <a href="https://instagram.com/leonardo_hapvida" target="_blank">@leonardo_hapvida</a>
+                    </div>
+                    <div class="contato-item">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        <a href="https://instagram.com/leonardo.notredamesaude" target="_blank">@leonardo.notredamesaude</a>
+                    </div>
+                    <div class="contato-item">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <a href="mailto:leonardo.moreira.hapvida@gmail.com">leonardo.moreira.hapvida@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna 4: App e Endereço -->
+            <div class="footer-col">
+                <h4>Baixe nosso app</h4>
+                <div style="display: flex; gap: 10px; margin-bottom: 30px;">
+                    <a href="#" style="background: #000; padding: 8px 12px; border-radius: 5px; color: white; text-decoration: none; font-size: 0.7rem; display: flex; align-items: center; gap: 5px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.04 2.26-.82 3.59-.73 1.53.15 2.65.8 3.39 1.91-3.05 1.77-2.52 5.79.46 7.04-.68 1.73-1.57 3.36-2.52 4.04zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                        App Store
+                    </a>
+                    <a href="#" style="background: #000; padding: 8px 12px; border-radius: 5px; color: white; text-decoration: none; font-size: 0.7rem; display: flex; align-items: center; gap: 5px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                        Google Play
+                    </a>
+                </div>
+                
+                <h4>Endereço</h4>
+                <p style="color: #a0aec0; font-size: 0.85rem; line-height: 1.6;">
+                    Avenida Paulista, 867<br>São Paulo / SP
+                </p>
+            </div>
+        </div>
+
+        <!-- Rodapé Inferior (Logos e Legal) -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-left">
+                <p>© 2026 NotreDame Saúde | 44.649.812/0001-38</p>
+                <p>Dr. Rodolfo Pires de Albuquerque 40.137</p>
+            </div>
+            
+            <div class="footer-bottom-logo">
+                <img src="logo-notredame.png" alt="NotreDame">
+            </div>
+            
+            <div class="footer-bottom-right">
+                <p>ANS nº 359017</p>
+                <!-- Substitua pelo logo real da ANS se tiver o arquivo -->
+                <div style="background: white; padding: 5px 10px; border-radius: 4px; display: inline-block; margin-top: 5px;">
+                    <span style="color: #000; font-weight: bold; font-size: 0.8rem;">ANS</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== BOTÕES FLUTUANTES ========== -->
+    
+    <!-- Voltar ao Topo -->
+    <button class="back-to-top" id="backToTop" title="Voltar ao topo">
+        <svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+    </button>
+
+    <!-- WhatsApp -->
     <a href="https://wa.me/5511934152666" target="_blank" class="whatsapp-float">
         <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        Falar no WhatsApp
+        <span>Falar no WhatsApp</span>
     </a>
+
+    <!-- ========== EXIT INTENT POPUP ========== -->
+    <div class="exit-popup-overlay" id="exitPopup">
+        <div class="exit-popup-box">
+            <button class="exit-popup-close" id="closePopup">×</button>
+            <h2>Espere! Não vá embora ainda...</h2>
+            <p>Temos uma condição exclusiva de <strong>75% de desconto</strong> na primeira mensalidade esperando por você. Fale agora com um especialista e garanta a sua cotação sem compromisso.</p>
+            <a href="https://wa.me/5511934152666?text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20aproveitar%20a%20promo%C3%A7%C3%A3o%20de%2075%25%20off." target="_blank" class="btn-wpp">
+                Falar com Especialista Agora
+            </a>
+        </div>
+    </div>
 
     <!-- ========== SCRIPTS ========== -->
     <script>
         const WHATSAPP_NUMBER = "5511934152666";
 
-        // 1. NAVEGAÇÃO COM TRACKING DA VERCEL E META PIXEL
+        // 1. NAVEGAÇÃO
         const navLinks = document.querySelectorAll('.nav-links a[data-target]');
         const logoLink = document.querySelector('.logo');
         const sections = document.querySelectorAll('.page-section');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navLinks');
 
         function navigateTo(targetId) {
             navLinks.forEach(l => l.classList.remove('active'));
@@ -893,17 +926,16 @@
             if (targetLink) targetLink.classList.add('active');
             
             document.getElementById(targetId).classList.add('active');
+            
+            // Fecha menu mobile se estiver aberto
+            if(navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // VERCEL ANALYTICS
-            if (window.va) {
-                window.va('event', { name: 'pageview', data: { page: targetId } });
-            }
-
-            // META PIXEL - PAGEVIEW (Para cada troca de aba)
-            if (window.fbq) {
-                fbq('track', 'PageView', { page: targetId });
-            }
+            if (window.va) window.va('event', { name: 'pageview', data: { page: targetId } });
+            if (window.fbq) fbq('track', 'PageView', { page: targetId });
         }
 
         navLinks.forEach(link => {
@@ -920,7 +952,12 @@
             });
         }
 
-        // 2. FORMULÁRIO DA HOME (COM TRACKING DE LEAD)
+        // Menu Mobile Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // 2. FORMULÁRIO E RASTREAMENTO
         const homeForm = document.getElementById('homeLeadForm');
         const homeBtnSubmit = document.getElementById('homeBtnSubmit');
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzDWwBgsoqBV--vrHchWWgvEehO9rBVlLDMikrMMw4xRNyFhONpUqFp-xtJJ_MLWNtL/exec';
@@ -952,11 +989,7 @@
                 .then(response => console.log('Dados salvos.'))
                 .catch(error => console.error('Erro:', error.message))
                 .finally(() => {
-                    // META PIXEL - LEAD
-                    if (window.fbq) {
-                        fbq('track', 'Lead');
-                    }
-
+                    if (window.fbq) fbq('track', 'Lead');
                     const mensagem = `Olá, Leonardo! Vim pela sua página e quero uma cotação de plano de saúde.\n\nNome: ${nome}\nWhatsApp: ${whatsapp}\nE-mail: ${email}`;
                     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`, '_blank');
                     homeForm.reset();
@@ -966,7 +999,7 @@
             });
         }
 
-        // 3. LÓGICA DE PLANOS
+        // 3. LÓGICA DE PLANOS (Mantida)
         const db = {
             tradicional: {
                 advance600: {
@@ -1169,22 +1202,67 @@
         }
 
         function redirectToWhatsApp(planTitle) {
-            // META PIXEL - CONTACT (Clique no botão do plano)
-            if (window.fbq) {
-                fbq('track', 'Contact', { content_name: planTitle });
-            }
-
+            if (window.fbq) fbq('track', 'Contact', { content_name: planTitle });
             const message = `Olá, Leonardo! Vim pela sua página e gostaria de saber mais sobre o plano *${planTitle}*.`;
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // META PIXEL - CONTACT (Para todos os links estáticos do WhatsApp)
         document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
             link.addEventListener('click', () => {
-                if (window.fbq) {
-                    fbq('track', 'Contact');
-                }
+                if (window.fbq) fbq('track', 'Contact');
             });
+        });
+
+        // 4. BOTÃO VOLTAR AO TOPO
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 5. EXIT INTENT POPUP (Uma vez por sessão)
+        const exitPopup = document.getElementById('exitPopup');
+        const closePopup = document.getElementById('closePopup');
+        let popupShown = false;
+
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY < 0 && !popupShown) {
+                exitPopup.classList.add('active');
+                popupShown = true;
+                if (window.fbq) fbq('trackCustom', 'ExitIntentShown');
+            }
+        });
+
+        closePopup.addEventListener('click', () => {
+            exitPopup.classList.remove('active');
+        });
+
+        exitPopup.addEventListener('click', (e) => {
+            if (e.target === exitPopup) exitPopup.classList.remove('active');
+        });
+
+        // 6. RASTREAMENTO DE SCROLL (Meta Pixel)
+        let scrollTracked50 = false;
+        let scrollTracked90 = false;
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+
+            if (scrollPercent > 50 && !scrollTracked50) {
+                if (window.fbq) fbq('trackCustom', 'Scroll50');
+                scrollTracked50 = true;
+            }
+            if (scrollPercent > 90 && !scrollTracked90) {
+                if (window.fbq) fbq('trackCustom', 'Scroll90');
+                scrollTracked90 = true;
+            }
         });
 
         window.onload = () => {
