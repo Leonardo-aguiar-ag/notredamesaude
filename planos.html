@@ -26,6 +26,41 @@
     </header>
 
     <main>
+        <!-- NOVO HERO PREMIUM -->
+        <section class="plans-hero-premium">
+            <div class="premium-hero-content">
+                <!-- Textos da Esquerda -->
+                <div class="premium-text-box">
+                    <div class="premium-tagline">PLANOS DE SAÚDE PREMIUM</div>
+                    <h1>Guia da sua saúde<br>no <span>Vila Nova Star</span></h1>
+                    <p>Os hospitais que são referência<br>no país, agora no seu plano.</p>
+                    
+                    <div class="premium-details">
+                        CONTRATAÇÃO
+                        <strong>Pelo CNPJ, a partir de 1 vida</strong>
+                    </div>
+                </div>
+
+                <!-- Formulário da Direita -->
+                <div class="premium-form-container">
+                    <h3>Preencha e fale com um especialista:</h3>
+                    <form id="premiumHeroForm" class="premium-form">
+                        <input type="text" id="premiumNome" name="nome" placeholder="Nome completo" required>
+                        <input type="tel" id="premiumWhatsapp" name="whatsapp" placeholder="Whatsapp (00) 0 0000-0000" required>
+                        <input type="email" id="premiumEmail" name="email" placeholder="E-mail" required>
+                        <button type="submit" id="premiumBtnSubmit">Quero minha proposta</button>
+                    </form>
+                    <p class="premium-form-disclaimer">
+                        Ao continuar, você autoriza a NotreDame Saúde a entrar em contato e a tratar seus dados para elaborar a proposta, conforme a <a href="privacidade.html">Política de Privacidade</a>.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="premium-disclaimer-right">
+                Imagem ilustrativa. Rede credenciada varia de acordo com o produto contratado. Consulte as condições do plano escolhido.
+            </div>
+        </section>
+
         <!-- SEÇÃO 1: COMPARATIVO ADVANCE / PREMIUM / INFINITY -->
         <div class="plans-page-container">
             <div class="plans-header-text">
@@ -90,7 +125,7 @@
             </div>
         </div>
 
-        <!-- SEÇÃO 2: LINHA METAIS (NOVA) -->
+        <!-- SEÇÃO 2: LINHA METAIS -->
         <section class="metais-section">
             <div class="metais-header">
                 <span class="subtitle">LINHA METAIS</span>
@@ -112,14 +147,12 @@
                 </div>
 
                 <div class="metais-right" id="metaisCardsContainer">
-                    <!-- Card 1 -->
                     <div class="metais-card metais-card-white">
                         <div class="metais-card-dot" id="metaisDot1" style="background: #d1d5db;"></div>
                         <h3 id="metaisTitle1">Prata</h3>
                         <div class="metais-features" id="metaisFeatures1"></div>
                         <button class="btn-metais" id="metaisBtn1">Quero saber mais</button>
                     </div>
-                    <!-- Card 2 -->
                     <div class="metais-card metais-card-blue">
                         <div class="metais-card-dot" id="metaisDot2" style="background: #ffffff;"></div>
                         <h3 id="metaisTitle2">Prata Max</h3>
@@ -212,129 +245,92 @@
     </a>
 
     <script>
-        // Script do Menu Mobile
+        // --- 1. MENU MOBILE ---
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navMenu = document.getElementById('navLinks');
         mobileMenuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
 
-        // --- LÓGICA DA LINHA METAIS ---
+        // --- 2. FORMULÁRIO DO HERO PREMIUM (PLANOS) ---
+        const premiumForm = document.getElementById('premiumHeroForm');
+        const premiumBtnSubmit = document.getElementById('premiumBtnSubmit');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzDWwBgsoqBV--vrHchWWgvEehO9rBVlLDMikrMMw4xRNyFhONpUqFp-xtJJ_MLWNtL/exec';
+
+        if(premiumForm) {
+            // Máscara de telefone
+            const premiumWhatsappInput = document.getElementById('premiumWhatsapp');
+            premiumWhatsappInput.addEventListener('input', function (e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 11) value = value.slice(0, 11);
+                if (value.length > 6) value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+                else if (value.length > 2) value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+                else if (value.length > 0) value = value.replace(/^(\d*)/, '($1');
+                e.target.value = value;
+            });
+
+            premiumForm.addEventListener('submit', e => {
+                e.preventDefault();
+                
+                const nome = document.getElementById('premiumNome').value;
+                const whatsapp = document.getElementById('premiumWhatsapp').value;
+                const email = document.getElementById('premiumEmail').value;
+
+                premiumBtnSubmit.innerText = 'Enviando...'; 
+                premiumBtnSubmit.disabled = true;
+
+                const formData = new FormData(premiumForm); 
+                const data = new URLSearchParams(formData);
+
+                fetch(scriptURL, { method: 'POST', body: data })
+                .catch(error => console.error('Erro:', error.message))
+                .finally(() => {
+                    // Dispara Meta Pixel
+                    if (window.fbq) fbq('track', 'Lead');
+                    
+                    // Redireciona para WhatsApp
+                    const mensagem = `Olá, Leonardo! Vim pela página de Planos e quero uma cotação.\n\nNome: ${nome}\nWhatsApp: ${whatsapp}\nE-mail: ${email}`;
+                    window.open(`https://wa.me/5511934152666?text=${encodeURIComponent(mensagem)}`, '_blank');
+                    
+                    premiumForm.reset(); 
+                    premiumBtnSubmit.innerText = 'Quero minha proposta'; 
+                    premiumBtnSubmit.disabled = false;
+                });
+            });
+        }
+
+        // --- 3. LÓGICA DA LINHA METAIS ---
         const metaisDb = {
             prata: {
                 tag: "VALOR INTELIGENTE",
                 desc: "Cuidado premium com plano odontológico e acompanhamento de ponta a ponta. A porta de entrada para a experiência NotreDame.",
-                dot1: "#d1d5db", // Cor Prata
-                dot2: "#ffffff", // Cor Branca
-                card1: {
-                    title: "Prata",
-                    features: [
-                        { label: "Acomodação", value: "Enfermaria ou apartamento" },
-                        { label: "Abrangência", value: "Nacional" },
-                        { label: "Assistência viagem", value: "Nacional" },
-                        { label: "Reembolso de consultas e exames", value: "Até 7 dias" },
-                        { label: "Reembolso no exterior¹", value: "Incluso" },
-                        { label: "Odontologia²", value: "Inclusa" },
-                        { label: "Coleta e vacina domiciliar³", value: "—" },
-                        { label: "Retaguarda Sírio-Libanês", value: "—" },
-                        { label: "Retaguarda Albert Einstein", value: "—" }
-                    ]
-                },
-                card2: {
-                    title: "Prata Max",
-                    features: [
-                        { label: "Acomodação", value: "Enfermaria ou apartamento" },
-                        { label: "Abrangência", value: "Nacional" },
-                        { label: "Assistência viagem", value: "Nacional" },
-                        { label: "Reembolso de consultas e exames", value: "Até 7 dias" },
-                        { label: "Reembolso no exterior¹", value: "Incluso" },
-                        { label: "Odontologia²", value: "Inclusa" },
-                        { label: "Coleta e vacina domiciliar³", value: "—" },
-                        { label: "Retaguarda Sírio-Libanês", value: "—" },
-                        { label: "Retaguarda Albert Einstein", value: "—" }
-                    ]
-                }
+                dot1: "#d1d5db", dot2: "#ffffff",
+                card1: { title: "Prata", features: [ { label: "Acomodação", value: "Enfermaria ou apartamento" }, { label: "Abrangência", value: "Nacional" }, { label: "Assistência viagem", value: "Nacional" }, { label: "Reembolso de consultas e exames", value: "Até 7 dias" }, { label: "Reembolso no exterior¹", value: "Incluso" }, { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "—" }, { label: "Retaguarda Sírio-Libanês", value: "—" }, { label: "Retaguarda Albert Einstein", value: "—" } ]},
+                card2: { title: "Prata Max", features: [ { label: "Acomodação", value: "Enfermaria ou apartamento" }, { label: "Abrangência", value: "Nacional" }, { label: "Assistência viagem", value: "Nacional" }, { label: "Reembolso de consultas e exames", value: "Até 7 dias" }, { label: "Reembolso no exterior¹", value: "Incluso" }, { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "—" }, { label: "Retaguarda Sírio-Libanês", value: "—" }, { label: "Retaguarda Albert Einstein", value: "—" } ]}
             },
             ouro: {
                 tag: "CUIDADO AMPLIADO",
                 desc: "Equilíbrio entre rede de referência e cuidado personalizado, com assistência internacional e serviços domiciliares.",
-                dot1: "#ffd700", // Cor Ouro
-                dot2: "#ffd700", // Cor Ouro
-                card1: {
-                    title: "Ouro",
-                    features: [
-                        { label: "Acomodação", value: "Apartamento" },
-                        { label: "Abrangência", value: "Nacional" },
-                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 60 mil)" },
-                        { label: "Reembolso de consultas e exames", value: "Até 5 dias" },
-                        { label: "Reembolso no exterior¹", value: "Incluso" },
-                        { label: "Odontologia²", value: "Inclusa" },
-                        { label: "Coleta e vacina domiciliar³", value: "Incluso" },
-                        { label: "Retaguarda Sírio-Libanês", value: "—" },
-                        { label: "Retaguarda Albert Einstein", value: "—" }
-                    ]
-                },
-                card2: {
-                    title: "Ouro Max",
-                    features: [
-                        { label: "Acomodação", value: "Apartamento" },
-                        { label: "Abrangência", value: "Nacional" },
-                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 60 mil)" },
-                        { label: "Reembolso de consultas e exames", value: "Até 5 dias" },
-                        { label: "Reembolso no exterior¹", value: "Incluso" },
-                        { label: "Odontologia²", value: "Inclusa" },
-                        { label: "Coleta e vacina domiciliar³", value: "Incluso" },
-                        { label: "Retaguarda Sírio-Libanês", value: "—" },
-                        { label: "Retaguarda Albert Einstein", value: "—" }
-                    ]
-                }
+                dot1: "#ffd700", dot2: "#ffd700",
+                card1: { title: "Ouro", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" }, { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 60 mil)" }, { label: "Reembolso de consultas e exames", value: "Até 5 dias" }, { label: "Reembolso no exterior¹", value: "Incluso" }, { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Incluso" }, { label: "Retaguarda Sírio-Libanês", value: "—" }, { label: "Retaguarda Albert Einstein", value: "—" } ]},
+                card2: { title: "Ouro Max", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" }, { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 60 mil)" }, { label: "Reembolso de consultas e exames", value: "Até 5 dias" }, { label: "Reembolso no exterior¹", value: "Incluso" }, { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Incluso" }, { label: "Retaguarda Sírio-Libanês", value: "—" }, { label: "Retaguarda Albert Einstein", value: "—" } ]}
             },
             diamante: {
                 tag: "EXPERIÊNCIA MÁXIMA",
                 desc: "O plano mais completo da NotreDame, com retaguarda dos hospitais de referência e todos os serviços domiciliares inclusos.",
-                dot1: "#e0f7fa", // Cor Diamante (Azul claro)
-                dot2: "#e0f7fa", // Cor Diamante (Azul claro)
-                card1: {
-                    title: "Diamante",
-                    features: [
-                        { label: "Acomodação", value: "Apartamento" },
-                        { label: "Abrangência", value: "Nacional" },
-                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 100 mil)" },
-                        { label: "Reembolso de consultas e exames", value: "Até 3 dias" },
-                        { label: "Reembolso no exterior¹", value: "Incluso" },
-                        { label: "Odontologia²", value: "Inclusa" },
-                        { label: "Coleta e vacina domiciliar³", value: "Incluso" },
-                        { label: "Retaguarda Sírio-Libanês", value: "Inclusa" },
-                        { label: "Retaguarda Albert Einstein", value: "—" }
-                    ]
-                },
-                card2: {
-                    title: "Diamante Max",
-                    features: [
-                        { label: "Acomodação", value: "Apartamento" },
-                        { label: "Abrangência", value: "Nacional" },
-                        { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 300 mil)" },
-                        { label: "Reembolso de consultas e exames", value: "Até 3 dias" },
-                        { label: "Reembolso no exterior¹", value: "Incluso" },
-                        { label: "Odontologia²", value: "Inclusa" },
-                        { label: "Coleta e vacina domiciliar³", value: "Incluso" },
-                        { label: "Retaguarda Sírio-Libanês", value: "Inclusa" },
-                        { label: "Retaguarda Albert Einstein", value: "Inclusa" }
-                    ]
-                }
+                dot1: "#e0f7fa", dot2: "#e0f7fa",
+                card1: { title: "Diamante", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" }, { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 100 mil)" }, { label: "Reembolso de consultas e exames", value: "Até 3 dias" }, { label: "Reembolso no exterior¹", value: "Incluso" }, { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Incluso" }, { label: "Retaguarda Sírio-Libanês", value: "Inclusa" }, { label: "Retaguarda Albert Einstein", value: "—" } ]},
+                card2: { title: "Diamante Max", features: [ { label: "Acomodação", value: "Apartamento" }, { label: "Abrangência", value: "Nacional" }, { label: "Assistência viagem", value: "Nacional e internacional (USD/€ 300 mil)" }, { label: "Reembolso de consultas e exames", value: "Até 3 dias" }, { label: "Reembolso no exterior¹", value: "Incluso" }, { label: "Odontologia²", value: "Inclusa" }, { label: "Coleta e vacina domiciliar³", value: "Incluso" }, { label: "Retaguarda Sírio-Libanês", value: "Inclusa" }, { label: "Retaguarda Albert Einstein", value: "Inclusa" } ]}
             }
         };
 
-        // Elementos do DOM
         const metaisTabs = document.querySelectorAll('.metais-tab-btn');
         const metaisInfoBox = document.getElementById('metaisInfoBox');
         const metaisTag = document.getElementById('metaisTag');
         const metaisDesc = document.getElementById('metaisDesc');
         const metaisCardsContainer = document.getElementById('metaisCardsContainer');
-        
         const metaisDot1 = document.getElementById('metaisDot1');
         const metaisTitle1 = document.getElementById('metaisTitle1');
         const metaisFeatures1 = document.getElementById('metaisFeatures1');
         const metaisBtn1 = document.getElementById('metaisBtn1');
-        
         const metaisDot2 = document.getElementById('metaisDot2');
         const metaisTitle2 = document.getElementById('metaisTitle2');
         const metaisFeatures2 = document.getElementById('metaisFeatures2');
@@ -342,49 +338,26 @@
 
         function switchMetal(key) {
             const data = metaisDb[key];
-            
-            // Atualiza classes das abas
             metaisTabs.forEach(btn => {
                 btn.classList.remove('active');
                 if(btn.innerText.toLowerCase() === key) btn.classList.add('active');
             });
 
-            // Efeito Fade
-            metaisInfoBox.style.opacity = '0';
-            metaisCardsContainer.style.opacity = '0';
-            metaisCardsContainer.style.transform = 'translateY(10px)';
-
+            metaisInfoBox.style.opacity = '0'; metaisCardsContainer.style.opacity = '0'; metaisCardsContainer.style.transform = 'translateY(10px)';
             setTimeout(() => {
-                // Atualiza Textos
-                metaisTag.innerText = data.tag;
-                metaisDesc.innerText = data.desc;
-
-                // Atualiza Card 1
+                metaisTag.innerText = data.tag; metaisDesc.innerText = data.desc;
+                
                 metaisDot1.style.backgroundColor = data.dot1;
                 metaisTitle1.innerText = data.card1.title;
-                metaisFeatures1.innerHTML = data.card1.features.map(f => `
-                    <div class="metais-feature-row">
-                        <span class="metais-feature-label">${f.label}</span>
-                        <span class="metais-feature-value">${f.value}</span>
-                    </div>
-                `).join('');
+                metaisFeatures1.innerHTML = data.card1.features.map(f => `<div class="metais-feature-row"><span class="metais-feature-label">${f.label}</span><span class="metais-feature-value">${f.value}</span></div>`).join('');
                 metaisBtn1.onclick = () => redirectToWhatsApp(data.card1.title);
 
-                // Atualiza Card 2
                 metaisDot2.style.backgroundColor = data.dot2;
                 metaisTitle2.innerText = data.card2.title;
-                metaisFeatures2.innerHTML = data.card2.features.map(f => `
-                    <div class="metais-feature-row">
-                        <span class="metais-feature-label">${f.label}</span>
-                        <span class="metais-feature-value">${f.value}</span>
-                    </div>
-                `).join('');
+                metaisFeatures2.innerHTML = data.card2.features.map(f => `<div class="metais-feature-row"><span class="metais-feature-label">${f.label}</span><span class="metais-feature-value">${f.value}</span></div>`).join('');
                 metaisBtn2.onclick = () => redirectToWhatsApp(data.card2.title);
 
-                // Remove Fade
-                metaisInfoBox.style.opacity = '1';
-                metaisCardsContainer.style.opacity = '1';
-                metaisCardsContainer.style.transform = 'translateY(0)';
+                metaisInfoBox.style.opacity = '1'; metaisCardsContainer.style.opacity = '1'; metaisCardsContainer.style.transform = 'translateY(0)';
             }, 250);
         }
 
@@ -393,10 +366,7 @@
             window.open(`https://wa.me/5511934152666?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // Inicializa a aba Prata por padrão
-        window.onload = () => {
-            switchMetal('prata');
-        };
+        window.onload = () => { switchMetal('prata'); };
     </script>
 </body>
 </html>
