@@ -9,21 +9,19 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- ========================================================= -->
-    <!-- 1. GOOGLE CONSENT MODE V2 - STUB (deve ser o PRIMEIRO)    -->
-    <!-- Define todos os sinais como 'denied' por padrão (LGPD)    -->
+    <!-- 1. GOOGLE CONSENT MODE V2 - STUB                          -->
     <!-- ========================================================= -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
 
-      // Verifica se o usuário já consentiu anteriormente
       (function() {
         function getCookie(name) {
           const value = `; ${document.cookie}`;
           const parts = value.split(`; ${name}=`);
           if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
         }
-        window.__ND_CONSENT__ = getCookie('nd_consent'); // 'granted' | 'denied' | undefined
+        window.__ND_CONSENT__ = getCookie('nd_consent'); 
       })();
 
       gtag('consent', 'default', {
@@ -37,7 +35,6 @@
         'wait_for_update': 500
       });
 
-      // Se o usuário já tinha consentido antes, aplica imediatamente
       if (window.__ND_CONSENT__ === 'granted') {
         gtag('consent', 'update', {
           'ad_storage': 'granted',
@@ -51,36 +48,25 @@
     </script>
 
     <!-- ========================================================= -->
-    <!-- 2. META PIXEL (com consentimento revogado por padrão)     -->
+    <!-- 2. META PIXEL (Código enviado por você)                   -->
     <!-- ========================================================= -->
+    <!-- Meta Pixel Code -->
     <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-
-      // Revoga consentimento ANTES de inicializar o pixel
-      fbq('consent', 'revoke');
-
-      // Inicializa os dois pixels
-      fbq('init', '2022345561781338');
-      fbq('init', '1468775435179688');
-
-      // Se já havia consentimento salvo, libera imediatamente
-      if (window.__ND_CONSENT__ === 'granted') {
-        fbq('consent', 'grant');
-      }
-
-      fbq('track', 'PageView');
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2022345561781338');
+    fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=2022345561781338&ev=PageView&noscript=1"/></noscript>
-    <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1468775435179688&ev=PageView&noscript=1"/></noscript>
+    src="https://www.facebook.com/tr?id=2022345561781338&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 
     <!-- ========================================================= -->
     <!-- 3. ESTILO DO BANNER DE COOKIES                            -->
@@ -278,7 +264,6 @@
             }
 
             function applyConsent(granted) {
-                // Google Consent Mode v2
                 if (typeof gtag === 'function') {
                     gtag('consent', 'update', {
                         'ad_storage': granted ? 'granted' : 'denied',
@@ -289,20 +274,15 @@
                         'personalization_storage': granted ? 'granted' : 'denied'
                     });
                 }
-                // Meta Pixel
-                if (typeof fbq === 'function') {
-                    fbq('consent', granted ? 'grant' : 'revoke');
-                }
             }
 
             function handleChoice(granted) {
-                setCookie(consentCookie, granted ? 'granted' : 'denied', 180); // 180 dias
+                setCookie(consentCookie, granted ? 'granted' : 'denied', 180);
                 window.__ND_CONSENT__ = granted ? 'granted' : 'denied';
                 applyConsent(granted);
                 banner.style.display = 'none';
             }
 
-            // Se ainda não há escolha salva, mostra o banner
             if (!window.__ND_CONSENT__) {
                 banner.style.display = 'block';
             }
@@ -333,10 +313,12 @@
                 homeBtnSubmit.innerText = 'Enviando...'; homeBtnSubmit.disabled = true;
                 const formData = new FormData(homeForm); const data = new URLSearchParams(formData);
                 fetch(scriptURL, { method: 'POST', body: data }).catch(error => console.error('Erro:', error.message)).finally(() => {
-                    // Só dispara o Lead se o consentimento estiver garantido
-                    if (window.fbq && window.__ND_CONSENT__ === 'granted') {
+                    
+                    // Dispara o Lead se o usuário tiver consentido (ou se você quiser remover essa checagem)
+                    if (window.fbq) {
                         fbq('track', 'Lead');
                     }
+                    
                     // Envia evento para o GA4 (se consentimento dado)
                     if (window.__ND_CONSENT__ === 'granted') {
                         window.dataLayer = window.dataLayer || [];
