@@ -15,6 +15,7 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
 
+      // Verifica se o usuário já consentiu anteriormente
       (function() {
         function getCookie(name) {
           const value = `; ${document.cookie}`;
@@ -24,6 +25,7 @@
         window.__ND_CONSENT__ = getCookie('nd_consent'); 
       })();
 
+      // Define bloqueio padrão para o Google
       gtag('consent', 'default', {
         'ad_storage': 'denied',
         'analytics_storage': 'denied',
@@ -35,6 +37,7 @@
         'wait_for_update': 500
       });
 
+      // Se já tiver consentimento salvo, libera o Google
       if (window.__ND_CONSENT__ === 'granted') {
         gtag('consent', 'update', {
           'ad_storage': 'granted',
@@ -48,25 +51,25 @@
     </script>
 
     <!-- ========================================================= -->
-    <!-- 2. META PIXEL (Código enviado por você)                   -->
+    <!-- 2. META PIXEL CODE (Conforme solicitado)                  -->
     <!-- ========================================================= -->
     <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2022345561781338');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2022345561781338&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2022345561781338');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2022345561781338&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 
     <!-- ========================================================= -->
     <!-- 3. ESTILO DO BANNER DE COOKIES                            -->
@@ -264,6 +267,7 @@ src="https://www.facebook.com/tr?id=2022345561781338&ev=PageView&noscript=1"
             }
 
             function applyConsent(granted) {
+                // Atualiza o Google Consent Mode
                 if (typeof gtag === 'function') {
                     gtag('consent', 'update', {
                         'ad_storage': granted ? 'granted' : 'denied',
@@ -277,26 +281,31 @@ src="https://www.facebook.com/tr?id=2022345561781338&ev=PageView&noscript=1"
             }
 
             function handleChoice(granted) {
-                setCookie(consentCookie, granted ? 'granted' : 'denied', 180);
+                setCookie(consentCookie, granted ? 'granted' : 'denied', 180); // Salva por 180 dias
                 window.__ND_CONSENT__ = granted ? 'granted' : 'denied';
                 applyConsent(granted);
-                banner.style.display = 'none';
+                banner.style.display = 'none'; // Esconde o banner
             }
 
+            // Se o usuário ainda não escolheu, mostra o banner
             if (!window.__ND_CONSENT__) {
                 banner.style.display = 'block';
             }
 
+            // Ações dos botões
             btnAccept.addEventListener('click', () => handleChoice(true));
             btnReject.addEventListener('click', () => handleChoice(false));
         })();
 
-        // ---- Formulário de Lead (existente) ----
+        // ---- Formulário de Lead ----
         const homeForm = document.getElementById('homeLeadForm');
         const homeBtnSubmit = document.getElementById('homeBtnSubmit');
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzDWwBgsoqBV--vrHchWWgvEehO9rBVlLDMikrMMw4xRNyFhONpUqFp-xtJJ_MLWNtL/exec';
+        
         if(homeForm) {
             const homeWhatsappInput = document.getElementById('homeWhatsapp');
+            
+            // Máscara de telefone
             homeWhatsappInput.addEventListener('input', function (e) {
                 let value = e.target.value.replace(/\D/g, '');
                 if (value.length > 11) value = value.slice(0, 11);
@@ -305,21 +314,30 @@ src="https://www.facebook.com/tr?id=2022345561781338&ev=PageView&noscript=1"
                 else if (value.length > 0) value = value.replace(/^(\d*)/, '($1');
                 e.target.value = value;
             });
+
+            // Envio do formulário
             homeForm.addEventListener('submit', e => {
                 e.preventDefault();
                 const nome = document.getElementById('homeNome').value;
                 const whatsapp = document.getElementById('homeWhatsapp').value;
                 const email = document.getElementById('homeEmail').value;
-                homeBtnSubmit.innerText = 'Enviando...'; homeBtnSubmit.disabled = true;
-                const formData = new FormData(homeForm); const data = new URLSearchParams(formData);
-                fetch(scriptURL, { method: 'POST', body: data }).catch(error => console.error('Erro:', error.message)).finally(() => {
+                
+                homeBtnSubmit.innerText = 'Enviando...'; 
+                homeBtnSubmit.disabled = true;
+                
+                const formData = new FormData(homeForm); 
+                const data = new URLSearchParams(formData);
+                
+                fetch(scriptURL, { method: 'POST', body: data })
+                .catch(error => console.error('Erro:', error.message))
+                .finally(() => {
                     
-                    // Dispara o Lead se o usuário tiver consentido (ou se você quiser remover essa checagem)
+                    // 1. Dispara o Lead no Meta Pixel
                     if (window.fbq) {
                         fbq('track', 'Lead');
                     }
                     
-                    // Envia evento para o GA4 (se consentimento dado)
+                    // 2. Dispara o Lead para o GA4 (se o usuário tiver aceitado os cookies)
                     if (window.__ND_CONSENT__ === 'granted') {
                         window.dataLayer = window.dataLayer || [];
                         window.dataLayer.push({
@@ -327,9 +345,15 @@ src="https://www.facebook.com/tr?id=2022345561781338&ev=PageView&noscript=1"
                             'form_name': 'home_hero_form'
                         });
                     }
+                    
+                    // 3. Abre o WhatsApp
                     const mensagem = `Olá, Leonardo! Quero uma cotação.\n\nNome: ${nome}\nWhatsApp: ${whatsapp}\nE-mail: ${email}`;
                     window.open(`https://wa.me/5511934152666?text=${encodeURIComponent(mensagem)}`, '_blank');
-                    homeForm.reset(); homeBtnSubmit.innerText = 'Quero minha proposta'; homeBtnSubmit.disabled = false;
+                    
+                    // Reseta o botão e formulário
+                    homeForm.reset(); 
+                    homeBtnSubmit.innerText = 'Quero minha proposta'; 
+                    homeBtnSubmit.disabled = false;
                 });
             });
         }
