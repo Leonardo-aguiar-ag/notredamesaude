@@ -20,6 +20,24 @@
       gtag('config', 'AW-18584419494');
     </script>
     <!-- End Google Ads -->
+    <!-- Google Ads conversion event -->
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-18584419494/fBgtCKqWxLsdEKb53p1F',
+          'value': 1.0,
+          'currency': 'BRL',
+          'event_callback': callback
+      });
+      return false;
+    }
+    </script>
+    <!-- End Google Ads conversion event -->
     <link rel="icon" type="image/png" href="logo-notredame.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -202,16 +220,6 @@
         const navMenu = document.getElementById('navMenu');
         if(mobileMenuBtn) { mobileMenuBtn.addEventListener('click', () => navMenu.classList.toggle('active')); }
 
-        function reportGoogleAdsConversion() {
-            if (typeof gtag === 'function') {
-                gtag('event', 'conversion', {
-                    'send_to': 'AW-18584419494/fBgtCKqWxLsDkEb53p1F',
-                    'value': 1.0,
-                    'currency': 'BRL'
-                });
-            }
-        }
-
         // Formulário Premium
         const premiumForm = document.getElementById('premiumHeroForm');
         const premiumBtnSubmit = document.getElementById('premiumBtnSubmit');
@@ -228,6 +236,7 @@
             });
             premiumForm.addEventListener('submit', e => {
                 e.preventDefault();
+                gtag_report_conversion();
                 const nome = document.getElementById('premiumNome').value;
                 const whatsapp = document.getElementById('premiumWhatsapp').value;
                 const email = document.getElementById('premiumEmail').value;
@@ -235,7 +244,6 @@
                 const formData = new FormData(premiumForm); const data = new URLSearchParams(formData);
                 fetch(scriptURL, { method: 'POST', body: data }).catch(error => console.error('Erro:', error.message)).finally(() => {
                     if (window.fbq) fbq('track', 'Lead');
-                    reportGoogleAdsConversion();
                     const mensagem = `Olá, Leonardo! Vim pela página de Planos e quero uma cotação.\n\nNome: ${nome}\nWhatsApp: ${whatsapp}\nE-mail: ${email}`;
                     window.open(`https://wa.me/5511934152666?text=${encodeURIComponent(mensagem)}`, '_blank');
                     premiumForm.reset(); premiumBtnSubmit.innerText = 'Quero minha proposta'; premiumBtnSubmit.disabled = false;
