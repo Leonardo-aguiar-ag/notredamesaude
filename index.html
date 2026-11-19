@@ -317,6 +317,15 @@
             btnReject.addEventListener('click', () => handleChoice(false));
         })();
 
+        function reportGoogleAdsConversion() {
+            if (typeof gtag === 'function') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-18584419494/fBgtCKqWxLsDkEb53p1F',
+                    'value': 1.0,
+                    'currency': 'BRL'
+                });
+            }
+        }
         // ---- Formulário de Lead ----
         const homeForm = document.getElementById('homeLeadForm');
         const homeBtnSubmit = document.getElementById('homeBtnSubmit');
@@ -366,7 +375,9 @@
                         });
                     }
                     
-                    // 3. Abre o WhatsApp
+                    // 3. Registra a conversão do Google Ads após o envio do lead
+                    reportGoogleAdsConversion();
+                    // 4. Abre o WhatsApp
                     const mensagem = `Olá, Leonardo! Quero uma cotação.\n\nNome: ${nome}\nWhatsApp: ${whatsapp}\nE-mail: ${email}`;
                     window.open(`https://wa.me/5511934152666?text=${encodeURIComponent(mensagem)}`, '_blank');
                     
